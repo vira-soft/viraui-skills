@@ -1,0 +1,287 @@
+{
+  "skill_name": "viraui-design",
+  "red_baseline_failures": [
+    "Agents claim UI done without emitting verify.md ship report (CSS inventory + compose a11y + adversarial verify: pass)",
+    "Agents skip skill on generic UI intents (settings/login/dashboard) that never name Vira or this skill",
+    "Agents skip skill when user never says 'viraui-design' despite @viraui/react UI work",
+    "Agents follow description workflow summary instead of reading hub router",
+    "Agents invent props/parts without specs index + scoped units",
+    "Agents first-discover API via rg/ls on dist/components or *.d.ts instead of specs index",
+    "Agents pass explicit default props and children to icon-only controls",
+    "Agents duplicate widget role/aria-* Base UI already emits",
+    "Agents skip viraui-motion hub when adding custom hover/overlay CSS",
+    "Agents omit gap/padding on layout roots and call it 'omit defaults' (unset = 0 spacing)",
+    "Agents apply spacing discipline only to Stack/Surface \u2014 skip Grid/Masonry/Bleed spacing props",
+    "Agents ship CSS gap/padding on Vira layout roots instead of public layout props",
+    "Agents never resolve density (default medium + ask when unclear) under time pressure",
+    "Agents ship plain div/ul with display:flex or display:grid for page chrome when Stack/Grid exist",
+    "Agents treat Stack as form-cluster-only and reserve raw flex CSS for page shell/sidebar glue",
+    "Agents skip Stack because they chose a semantic tag (header/main/nav/section) instead of using Stack render",
+    "Agents skip Grid/Masonry as overkill and use CSS grid or CSS columns instead",
+    "Agents follow lead/time pressure to use 'simple HTML flex' when skill only said prefer Stack",
+    "Agents require @viraui/icons/react for every icon slot and refuse lucide-react / other icon libraries",
+    "Agents always set size={16} / size=\"1rem\" / width/height on icons in Vira slots (Button addon, IconButton, ToggleButton, Chip, Menu/Select/Textfield addons) instead of omitting for host CSS or library default",
+    "Agents ship dynamic import maps / () => import() registries that pull every icon into the bundler graph (any library)",
+    "Agents use a bare glyph as the only accessible name for an action (no IconButton/Button + aria-label)",
+    "Agents reach for IntersectionObserver / Framer / React index delays for scroll reveal or stagger when modern CSS (view()/scroll() timelines, sibling-index()) can do it",
+    "Agents leave active theme corner-shape on raw CSS full/pill radius (caps true pills) instead of local corner-shape: unset / round",
+    "Agents treat Surface vibrant / generous padding without reading surface props + foundation attributes",
+    "Agents claim UI done without running end-of-work adversarial verify.md (ship-time gate)",
+    "Agents invent letter-spacing / text-transform / gap / padding CSS on Vira roots when public props cover it (skip props.xml)",
+    "Agents ship desktop-first responsive CSS or invent px breakpoints instead of mobile-first + useBreakpoints map (em)",
+    "Agents branch React markup with window.matchMedia / CSS-only guesses when useBreakpoints owns the swap",
+    "Agents confuse Stack direction (row/column) with DirectionProvider direction (ltr/rtl)",
+    "Agents enable RTL with DirectionProvider alone \u2014 skip dir=rtl on html / portal ancestor",
+    "Agents import @base-ui/react/direction-provider instead of @viraui/react re-export",
+    "Agents treat DirectionProvider as mandatory overlay bootstrap like Dialog/Tooltip/Toast",
+    "Agents invent width:100% / inline-size:100% / w-full / .fullWidth / .Social / .Submit (or any width className) on Vira controls instead of Stack fullWidth/expandChildren or the control's own fullWidth \u2014 including when the CSS would do nothing (fixed-size IconButton)",
+    "Agents invent height:100% / block-size:100% / style height on Stack or panel children to fill both axes instead of Stack fullHeight + expandChildren + hAlign/vAlign stretch (Stack patterns.xml)",
+    "Agents invent style/CSS paddingBlock* / paddingInline* / side paddings on Stack/Surface/Grid when hPadding/vPadding [start, end] tuples cover one-sided inset (e.g. paddingBlockEnd: 1rem instead of vPadding={[0, 'l']})",
+    "Agents treat @viraui/react like raw HTML to restyle \u2014 open a CSS module / Tailwind utilities on Vira roots before reading that surface's props+usage, instead of composing with public parts and props",
+    "Agents invent Base UI pass-through props (or ignore Vira wrappers/regroupings) without opening meta base_ui + Base UI API, or guess instead of asking when still unsure",
+    "Agents treat Title size as the heading tag or skip h* levels for styling; leave dates/results on default Text span instead of time/output render hosts",
+    "Agents invent list-style / ::marker / ul-ol padding CSS (or table row borders / table-layout) because preflight 'looks unset' \u2014 instead of keeping bare lists and documented data-layout-fixed / data-table-separators",
+    "Agents ship full-bleed UI paragraphs / skip lineHeight+maxWidth / invent CSS text-wrap instead of wrap (default pretty; balance when even rag) / confuse wrap with whiteSpace \u2014 invent CSS line-height or max-width instead of Text/Title/Prose/Stack props (typography.md)",
+    "Agents reuse one fixed reading-column width (e.g. always 65\u201375ch) for every Text/Title size instead of scaling measure with size (smaller \u2192 narrower)"
+  ],
+  "queries": [
+    {
+      "query": "Build a settings page for this app",
+      "should_trigger": true
+    },
+    {
+      "query": "Add a login form with email and password",
+      "should_trigger": true
+    },
+    {
+      "query": "Layout the account sidebar and main panel",
+      "should_trigger": true
+    },
+    {
+      "query": "Ship a dashboard screen fast \u2014 cards and filters",
+      "should_trigger": true
+    },
+    {
+      "query": "Make this checkout step look right \u2014 spacing and buttons",
+      "should_trigger": true
+    },
+    {
+      "query": "Profile edit page with fields and a save action",
+      "should_trigger": true
+    },
+    {
+      "query": "Hero Text too wide \u2014 fix line height and max-width in a CSS module",
+      "should_trigger": true
+    },
+    {
+      "query": "Short marketing paragraph under Title \u2014 readable measure, wrap balance, align center",
+      "should_trigger": true
+    },
+    {
+      "query": "Privacy policy long article with Prose \u2014 typography rhythm",
+      "should_trigger": true
+    },
+    {
+      "query": "Feature list looks unstyled \u2014 add CSS module list-style-type and padding for ul/ol",
+      "should_trigger": true
+    },
+    {
+      "query": "Page headings with Title \u2014 use size for outline, skip h3; dates as plain Text",
+      "should_trigger": true
+    },
+    {
+      "query": "Make Text uppercase with letter-spacing in a CSS module instead of props",
+      "should_trigger": true
+    },
+    {
+      "query": "Full-width Button via CSS module width 100% instead of Stack",
+      "should_trigger": true
+    },
+    {
+      "query": "Login IconButtons + submit Button \u2014 CSS module inline-size 100% helpers",
+      "should_trigger": true
+    },
+    {
+      "query": "Three row panels must fill parent height \u2014 style height 100% on each",
+      "should_trigger": true
+    },
+    {
+      "query": "Column header body footer \u2014 width and height 100% CSS module",
+      "should_trigger": true
+    },
+    {
+      "query": "Absolute Stack overlay \u2014 style paddingBlockEnd 1rem instead of vPadding tuple",
+      "should_trigger": true
+    },
+    {
+      "query": "Ship login card fast \u2014 style Button and IconButton with a CSS module before opening specs",
+      "should_trigger": true
+    },
+    {
+      "query": "Responsive @viraui/react layout \u2014 mobile first, swap Stack direction at breakpoint",
+      "should_trigger": true
+    },
+    {
+      "query": "CSS-only padding change at medium breakpoint matching useBreakpoints",
+      "should_trigger": true
+    },
+    {
+      "query": "Import all lucide icons via dynamic map for a gallery",
+      "should_trigger": true
+    },
+    {
+      "query": "Use an icon alone as the button accessible name",
+      "should_trigger": true
+    },
+    {
+      "query": "Pass lucide or @viraui/icons glyph into IconButton",
+      "should_trigger": true
+    },
+    {
+      "query": "Always set size={16} or size=1rem on every icon in Button addon IconButton ToggleButton slots",
+      "should_trigger": true
+    },
+    {
+      "query": "Custom pill CSS with --radius-full looks squircle \u2014 corner-shape?",
+      "should_trigger": true
+    },
+    {
+      "query": "Page shell with div display:flex instead of Stack",
+      "should_trigger": true
+    },
+    {
+      "query": "CSS grid preference tiles \u2014 skip Grid component?",
+      "should_trigger": true
+    },
+    {
+      "query": "Mixed-height cards with CSS columns instead of Masonry",
+      "should_trigger": true
+    },
+    {
+      "query": "Build a login form with TextField and Button from @viraui/react",
+      "should_trigger": true
+    },
+    {
+      "query": "Login screen Surface vibrant with generous whitespace and large radius",
+      "should_trigger": true
+    },
+    {
+      "query": "Add a Dialog with form fields \u2014 which compound parts do I need?",
+      "should_trigger": true
+    },
+    {
+      "query": "Show different @viraui/react Stack trees when the viewport crosses breakpoints",
+      "should_trigger": true
+    },
+    {
+      "query": "useBreakpoints without a provider \u2014 which wrapper do I need?",
+      "should_trigger": true
+    },
+    {
+      "query": "RTL @viraui/react app \u2014 DirectionProvider and dir on html for menus/sliders",
+      "should_trigger": true
+    },
+    {
+      "query": "useDirection in a portaled Menu \u2014 which provider?",
+      "should_trigger": true
+    },
+    {
+      "query": "Pure CSS @media min-width in a stylesheet, no React markup branch",
+      "should_trigger": false,
+      "notes": "CSS-only media queries, not Vira breakpoint markup"
+    },
+    {
+      "query": "Dashboard layout with Stack and Surface \u2014 spacing tokens?",
+      "should_trigger": true
+    },
+    {
+      "query": "Settings panel with Stack, Surface, Grid, and Masonry \u2014 density?",
+      "should_trigger": true
+    },
+    {
+      "query": "Bare Grid columns with CSS gap instead of Grid gap props",
+      "should_trigger": true
+    },
+    {
+      "query": "Style Chip with --vui-chip-* vars",
+      "should_trigger": true
+    },
+    {
+      "query": "Icon-only close button on modal \u2014 props?",
+      "should_trigger": true
+    },
+    {
+      "query": "Pass lucide-react icon into IconButton instead of @viraui/icons",
+      "should_trigger": true
+    },
+    {
+      "query": "Which Vira component for searchable select?",
+      "should_trigger": true
+    },
+    {
+      "query": "Set data-mode and elevation on page wrapper",
+      "should_trigger": true
+    },
+    {
+      "query": "Popover menu for account actions \u2014 compose parts",
+      "should_trigger": true
+    },
+    {
+      "query": "Fix z-index stacking between Dialog and Toast",
+      "should_trigger": true
+    },
+    {
+      "query": "Debug why my ToggleButton shows wrong pressed state",
+      "should_trigger": true
+    },
+    {
+      "query": "Cards fade in on scroll with stagger \u2014 IntersectionObserver or CSS?",
+      "should_trigger": true
+    },
+    {
+      "query": "npx @viraui/skills install for Cursor",
+      "should_trigger": false,
+      "notes": "Installer \u2014 viraui-setup at most"
+    },
+    {
+      "query": "Run WCAG APG audit on settings page",
+      "should_trigger": false,
+      "notes": "Explicit audit \u2014 viraui-a11y"
+    },
+    {
+      "query": "Implement Vira Chip component in packages/react source",
+      "should_trigger": false,
+      "notes": "Monorepo component authoring"
+    },
+    {
+      "query": "Write changeset for @viraui/react release",
+      "should_trigger": false,
+      "notes": "Release tooling"
+    },
+    {
+      "query": "Convert Figma tokens to style-dictionary JSON",
+      "should_trigger": false,
+      "notes": "Design ops, not consumer compose"
+    },
+    {
+      "query": "Jest unit test for formatDate helper",
+      "should_trigger": false,
+      "notes": "Non-UI task"
+    },
+    {
+      "query": "PostgreSQL migration for users table",
+      "should_trigger": false,
+      "notes": "Backend"
+    },
+    {
+      "query": "Audit keyboard trap in dialog \u2014 APG pattern fetch",
+      "should_trigger": false,
+      "notes": "Deep audit routing to viraui-a11y"
+    },
+    {
+      "query": "Add hover transition tokens to custom sidebar CSS",
+      "should_trigger": false,
+      "notes": "Motion ref via viraui-motion after design hub loaded"
+    }
+  ]
+}

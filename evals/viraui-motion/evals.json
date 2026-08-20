@@ -1,0 +1,39 @@
+{
+  "skill_name": "viraui-motion",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Custom CSS hover on marketing cards \u2014 Vira Button already has motion so skip the cards.",
+      "expected_output": "Reject skip; whole interface rule; functional hover on custom CSS; token durations/easing; reduced-motion media query.",
+      "assertions": [
+        "States custom consumer CSS still requires motion tokens",
+        "Uses --duration-* and --easing-* \u2014 not raw ms or ease",
+        "Includes prefers-reduced-motion override",
+        "Does not defer custom CSS motion as polish"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Dialog overlay fade \u2014 transition: opacity 200ms ease-in-out ok?",
+      "expected_output": "Replace with theme tokens (--duration-normal or appropriate, --easing-entrance/exit); cite speed/timing refs; reduced-motion.",
+      "assertions": [
+        "Rejects raw 200ms and ease-in-out as primary pattern",
+        "Names specific --duration-* and --easing-* tokens",
+        "Mentions prefers-reduced-motion: reduce handling",
+        "Points to one motion ref (principles/speed/timing/animations) not whole folder dump"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Adding motion while composing a ViraUI settings page \u2014 load every file in viraui-motion?",
+      "expected_output": "Load hub only then one matching ref per router; tied to viraui-design compose context. Engine choice (CSS timelines vs JS) \u2192 viraui-design styling.md; this skill owns tokens/principles.",
+      "assertions": [
+        "Says read hub then one sibling ref \u2014 not entire folder",
+        "References action router table intent \u2192 file mapping",
+        "Assumes viraui-design compose context",
+        "Does not mandate loading all of principles/animations/speed/timing at once",
+        "Defers motion engine to viraui-design styling.md; owns tokens/principles here"
+      ]
+    }
+  ]
+}

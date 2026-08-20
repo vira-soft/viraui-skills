@@ -1,0 +1,26 @@
+---
+description: Same-change sync for consumer-facing data-* attrs (preflight + skill map)
+globs: packages/react/src/core/preflight/**/*,packages/react/src/core/specs/**/*,packages/react/src/preflight.css
+alwaysApply: false
+---
+
+# Consumer data-attribute surface sync
+
+Editing preflight `data-*` (or the skill map for them)? **Same change** update every surface — no “docs later”.
+
+## Required same-change set
+
+1. Effect CSS under `packages/react/src/core/preflight/` (+ `preflight.css` import if new module)
+2. `packages/react/src/core/specs/attributes.xml` (+ related core units when relevant)
+3. `skills/viraui-design/custom-attributes.md` (when/how map) — **always** for consumer-facing add/change/remove
+4. `skills/viraui-setup/preflight.md` when bootstrap/attr tables change
+
+## Link chrome (`data-no-link-style`)
+
+- Preflight styles every `a:any-link` unless `data-no-link-style` is present.
+- Class presence does **not** opt out. Do not reintroduce `:not([class])` heuristics in skill copy.
+- Prose links keep styles; chrome links set the attr (`ButtonLink`, `Chip`, `Menu.LinkItem`, custom Surface-as-a).
+
+## Before done
+
+Diff preflight `[data-*]` selectors vs `core/specs/attributes.xml` + `custom-attributes.md`. No stale rows.

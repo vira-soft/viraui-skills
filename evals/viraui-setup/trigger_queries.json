@@ -1,0 +1,141 @@
+{
+  "skill_name": "viraui-setup",
+  "red_baseline_failures": [
+    "Agents bootstrap via CSS @import instead of JS side-effect imports in app root",
+    "Agents skip Toast/Dialog/Tooltip root providers and patch symptoms per page",
+    "Agents load theme after components or omit preflight.css",
+    "Agents auto-load setup for routine compose tasks that need viraui-design only",
+    "Agents guess import paths instead of reading foundation/bootstrap.xml",
+    "Agents treat @viraui/icons as a required bootstrap peer and refuse lucide-react / other icon libraries in Vira icon slots",
+    "Agents omit full+corner-shape gotcha when teaching --radius-* / --corner-shape (raw CSS pills need local corner-shape unset; Vira sets --__corner-shape for full)",
+    "Agents auto-install @viraui/foundation and fontsource packages without asking default Vira theme vs App Studio custom CSS first",
+    "Agents finish bootstrap with prose-only dump and no visual setup-recap table of done / skipped / blocked",
+    "Agents ignore Tailwind/Bootstrap (or other) preflight/reset when coexisting with ViraUI and keep full framework CSS imports",
+    "Agents drop @viraui/react/preflight.css to keep Tailwind/Bootstrap reset instead of asking and recommending no third-party preflight"
+  ],
+  "queries": [
+    {
+      "query": "New Next.js app — wire up ViraUI theme, preflight, and overlay providers",
+      "should_trigger": true
+    },
+    {
+      "query": "Components render unstyled — probably missing theme or preflight import order",
+      "should_trigger": true
+    },
+    {
+      "query": "Toasts never appear after adding Toast.Provider in a nested route only",
+      "should_trigger": true
+    },
+    {
+      "query": "How do I pick between foundation brand presets and custom theme tokens?",
+      "should_trigger": true
+    },
+    {
+      "query": "Should I use default @viraui/foundation or paste App Studio theme.css?",
+      "should_trigger": true
+    },
+    {
+      "query": "Vite entry: where should @viraui/react/preflight.css load relative to theme CSS?",
+      "should_trigger": true
+    },
+    {
+      "query": "Dialog content doesn't indent — missing Dialog.Provider in root layout",
+      "should_trigger": true
+    },
+    {
+      "query": "Setting data-mode on html for dark mode — which preflight attrs matter?",
+      "should_trigger": true
+    },
+    {
+      "query": "Remix root.tsx bootstrap order for @viraui/react",
+      "should_trigger": true
+    },
+    {
+      "query": "First-time install: @viraui/react peers and bootstrap checklist",
+      "should_trigger": true
+    },
+    {
+      "query": "Do I need to install @viraui/icons to bootstrap ViraUI?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can I use lucide-react in IconButton instead of @viraui/icons?",
+      "should_trigger": true
+    },
+    {
+      "query": "Install ViraUI agent skills via npx skills add vira-soft/viraui-skills",
+      "should_trigger": true
+    },
+    {
+      "query": "Paste my Studio-exported theme.css and wire fonts from fontsource",
+      "should_trigger": true
+    },
+    {
+      "query": "Project already has Tailwind — can I keep @import \"tailwindcss\" with ViraUI preflight?",
+      "should_trigger": true
+    },
+    {
+      "query": "Bootstrap reboot vs @viraui/react/preflight.css — will they fight?",
+      "should_trigger": true
+    },
+    {
+      "query": "Wire ViraUI without importing Tailwind preflight — theme and utilities only",
+      "should_trigger": true
+    },
+    {
+      "query": "Add a settings form with TextField and Button using ViraUI",
+      "should_trigger": false,
+      "notes": "Routine compose — viraui-design; setup only if styles missing"
+    },
+    {
+      "query": "Audit this dialog for APG keyboard patterns",
+      "should_trigger": false,
+      "notes": "viraui-a11y audit ask"
+    },
+    {
+      "query": "Hover transition on my custom card — use --duration-fast?",
+      "should_trigger": false,
+      "notes": "viraui-motion via design compose"
+    },
+    {
+      "query": "Refactor Button variant props on checkout page",
+      "should_trigger": false,
+      "notes": "viraui-design consumption"
+    },
+    {
+      "query": "Fix eslint config in monorepo packages/react",
+      "should_trigger": false,
+      "notes": "Repo tooling, not consumer setup"
+    },
+    {
+      "query": "Storybook story for Chip component in vira-ui repo",
+      "should_trigger": false,
+      "notes": "Monorepo authoring — out of scope"
+    },
+    {
+      "query": "Which Stack gap token for dashboard layout?",
+      "should_trigger": false,
+      "notes": "Layout compose — viraui-design"
+    },
+    {
+      "query": "Screen reader says tabs wrong — run APG audit",
+      "should_trigger": false,
+      "notes": "viraui-a11y"
+    },
+    {
+      "query": "Migrate from MUI Button to Vira Button — same JSX props?",
+      "should_trigger": false,
+      "notes": "Component API — viraui-design discovery"
+    },
+    {
+      "query": "npx skills find typescript on skills.sh",
+      "should_trigger": false,
+      "notes": "Generic skills discovery — not ViraUI bootstrap"
+    },
+    {
+      "query": "npx @viraui/skills --agent cursor",
+      "should_trigger": false,
+      "notes": "Deprecated npm package — not a supported install path"
+    }
+  ]
+}

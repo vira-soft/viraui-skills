@@ -1,0 +1,40 @@
+---
+description: Agent Skills format + evals for publishable viraui* skills (sibling repo)
+alwaysApply: false
+---
+
+# Publishable ViraUI skills authoring
+
+Consumer skills live in sibling repo **`../viraui-skills`** ([vira-soft/viraui-skills](https://github.com/vira-soft/viraui-skills)), not under `packages/skills`.
+
+Editing skills? **Read owning spec first**, then follow the Agent Skills checklist.
+
+## Required flow
+
+1. Read [skills-package.md](docs/specs/skills-package.md) §4 registry row and §7 (Agent Skills format + checklist).
+2. Follow [agentskills.io](https://agentskills.io/skill-creation/quickstart) guidance: thin hub, trigger-only description, progressive disclosure into sibling refs.
+3. **RED before GREEN:** write or refresh `../viraui-skills/evals/<skill>/trigger_queries.json` and `evals.json` **before** editing `SKILL.md`.
+4. Hub `description`: starts `Use when…`, ≤ 1024 chars, **triggers/symptoms only** — no workflow summary (see [optimizing-descriptions](https://agentskills.io/skill-creation/optimizing-descriptions)).
+5. Hub frontmatter: `name`, `description`, then `license: MIT` and `metadata` (`author: Vira Software`, `version` semver string).
+6. Hub body ~80–120 lines: router + hard contract + out of scope; refs are load-on-demand (“Read `foo.md` when …”).
+7. Same change: update spec §4 registry when action/trigger changes; discipline skills need red-flag + rationalization tables.
+8. Evals stay under `../viraui-skills/evals/<skill>/` — **never** under `skills/`.
+
+Contract: [skills-package §7](docs/specs/skills-package.md#7-authoring-rules).
+
+## Before done
+
+- Diff description against `trigger_queries.json` (true triggers vs near-miss false).
+- Confirm hub frontmatter has `license: MIT` and `metadata.author` / `metadata.version`.
+- Confirm consumer install docs still cite `npx skills add vira-soft/viraui-skills`.
+- Run format check in `viraui-skills` for markdown edits.
+
+## Red flags — STOP
+
+- “Skip evals — small hub tweak”
+- “Put evals next to SKILL.md under `skills/`”
+- “Description can summarize the workflow — agents read the body anyway”
+- “Registry update later”
+- “Document npm `@viraui/skills` / tarball install”
+
+**All of these mean: complete §7 checklist in this change.**

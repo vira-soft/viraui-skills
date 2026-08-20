@@ -1,0 +1,115 @@
+{
+  "skill_name": "viraui-motion",
+  "red_baseline_failures": [
+    "Agents skip motion on custom consumer CSS ('Vira already animates')",
+    "Agents use raw 200ms / ease instead of --duration-* / --easing-* tokens",
+    "Agents omit prefers-reduced-motion overrides",
+    "Agents load entire motion folder instead of hub + one ref",
+    "Agents skip motion when transition/hover/overlay symptoms match because user never said viraui-design"
+  ],
+  "queries": [
+    {
+      "query": "Add a hover lift transition on the promo card CSS",
+      "should_trigger": true
+    },
+    {
+      "query": "Toast slide-in feels wrong \u2014 which duration token?",
+      "should_trigger": true
+    },
+    {
+      "query": "Panel expand animation \u2014 respect prefers-reduced-motion",
+      "should_trigger": true
+    },
+    {
+      "query": "Replace raw 200ms ease with Vira motion tokens on sidebar",
+      "should_trigger": true
+    },
+    {
+      "query": "viraui-design composing checkout \u2014 add hover lift on custom promo card",
+      "should_trigger": true
+    },
+    {
+      "query": "Overlay enter/exit transition for my sidebar drawer CSS",
+      "should_trigger": true
+    },
+    {
+      "query": "Debug janky Dialog open \u2014 should I use --easing-entrance?",
+      "should_trigger": true
+    },
+    {
+      "query": "prefers-reduced-motion \u2014 disable my panel expand animation",
+      "should_trigger": true
+    },
+    {
+      "query": "Micro-interaction on press for custom filter chip CSS",
+      "should_trigger": true
+    },
+    {
+      "query": "Which --duration-* for toast slide-in?",
+      "should_trigger": true
+    },
+    {
+      "query": "Replace Framer Motion hover with Vira tokens on custom button",
+      "should_trigger": true
+    },
+    {
+      "query": "Functional vs evocative motion for loading skeleton shimmer?",
+      "should_trigger": true
+    },
+    {
+      "query": "Skip motion on custom CSS \u2014 Vira components already animate",
+      "should_trigger": true,
+      "notes": "Anti-pattern scenario \u2014 skill must reject skip"
+    },
+    {
+      "query": "Bootstrap @viraui/react in Remix root",
+      "should_trigger": false,
+      "notes": "viraui-setup"
+    },
+    {
+      "query": "Pick Combobox vs Select for search",
+      "should_trigger": false,
+      "notes": "viraui-design discovery"
+    },
+    {
+      "query": "APG audit Tabs keyboard",
+      "should_trigger": false,
+      "notes": "viraui-a11y"
+    },
+    {
+      "query": "Implement Accordion in packages/react",
+      "should_trigger": false,
+      "notes": "Monorepo authoring"
+    },
+    {
+      "query": "npm publish @viraui/skills tarball",
+      "should_trigger": false,
+      "notes": "Deprecated npm package / release train \u2014 not motion"
+    },
+    {
+      "query": "Stack gap token for form layout",
+      "should_trigger": false,
+      "notes": "viraui-design layout \u2014 no motion symptom"
+    },
+    {
+      "query": "aria-label on IconButton",
+      "should_trigger": false,
+      "notes": "viraui-design accessibility"
+    },
+    {
+      "query": "Dark mode data-mode on html",
+      "should_trigger": false,
+      "notes": "viraui-setup preflight"
+    },
+    {
+      "query": "Write unit tests for motion utils in repo",
+      "should_trigger": false,
+      "notes": "Monorepo test task"
+    },
+    {
+      "query": "Read all viraui-motion refs before any UI task",
+      "should_trigger": false,
+      "notes": "Skill forbids loading whole folder \u2014 hub + one ref only"
+    }
+  ]
+}

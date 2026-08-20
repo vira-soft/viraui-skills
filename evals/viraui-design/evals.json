@@ -1,0 +1,377 @@
+{
+  "skill_name": "viraui-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add an icon-only pin toggle in the toolbar. User didn't mention any skill \u2014 just use @viraui/react.",
+      "expected_output": "Load viraui-design; open specs index then toggle-button units (meta\u2192props\u2192usage\u2192a11y); use ToggleButton with icon props and aria-label; no children; omit default props; route motion if adding CSS transitions; before claiming done run verify.md adversarial pass (0 critical). FAIL if first discovery is rg/ls on dist/components or *.d.ts.",
+      "assertions": [
+        "Uses ToggleButton (or documented icon control) with icon props \u2014 not children on icon-only API",
+        "Includes accessible name via aria-label or aria-labelledby",
+        "Does not pass children to IconButton/ToggleButton icon-only pattern",
+        "Opens @viraui/react/specs index (or dist/specs/index.xml) before inventing props",
+        "Does not start with rg/ls on dist/components/** or *.d.ts trees",
+        "Does not add redundant aria-pressed if a11y/meta units already cover it without need",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done",
+        "Does not claim done with open critical verify findings"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Compose a Dialog with title, description, and primary/cancel actions. What parts and props are public?",
+      "expected_output": "Index-first: specs index \u2192 dialog units (meta\u2192props\u2192usage\u2192patterns); compound parts from meta/patterns; no invented parts; compose a11y via design accessibility.md not full APG audit.",
+      "assertions": [
+        "References @viraui/react/specs dialog units (meta/props/usage/patterns) or activity-hints implement playbook",
+        "Does not invent undocumented compound part names",
+        "Does not copy APG sample roles onto Vira Dialog parts",
+        "Does not cite deleted composition encyclopedia or legacy guide JSON as authority",
+        "Imports from @viraui/react root"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My page looks unstyled \u2014 I'll add per-component CSS imports for Button and Stack.",
+      "expected_output": "Stop \u2014 fix viraui-setup bootstrap first (foundation/bootstrap.xml); do not patch with per-component CSS bootstrap.",
+      "assertions": [
+        "Routes to viraui-setup for missing styles \u2014 not per-component CSS bootstrap",
+        "Does not recommend importing individual component CSS files as the fix",
+        "States bootstrap/theme/preflight order issue as likely cause"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Build a settings panel under time pressure with @viraui/react: outer Stack, Surface cards, a Grid of preference tiles, and a Masonry of recent activity cards. No density or spacing preference given. Ship JSX fast.",
+      "expected_output": "Load layout.md (via hub router) for density/spacing; for each used layout primitive set spacing props (Stack/Grid gaps+padding+align as owned; Surface padding; Masonry gap); default medium density; ask once whether to keep medium or switch compact/airy; no CSS padding/gap on Vira layout roots; no bare multi-child layout containers. Confirm prop names in stack/surface/grid/masonry props.xml (not invent from skill). Before claiming done: verify.md adversarial pass \u2014 0 critical.",
+      "assertions": [
+        "Loads or cites layout.md (or hub\u2192layout.md) before composing spacing",
+        "Sets Stack spacing/align props it owns (rowGap/columnGap and/or hPadding/vPadding; hAlign/vAlign when alignment is part of the layout)",
+        "Sets Surface hPadding/vPadding (not bare Surface for inset content)",
+        "Sets Grid rowGap/columnGap and/or hPadding/vPadding \u2014 does not treat columns alone as enough spacing",
+        "Sets Masonry gap for density \u2014 does not skip Masonry because Stack/Surface already have spacing",
+        "Defaults to medium density when unspecified and asks once about compact/airy (or confirms keep medium)",
+        "Does not use CSS padding/gap on Stack/Surface/Grid/Masonry/Bleed roots",
+        "Does not ship bare multi-child Stack/Grid/Surface/Masonry with no spacing props",
+        "Uses layout.md (or hub\u2192layout) for density/spacing discipline; confirms prop names in specs units",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done",
+        "Does not claim done with open critical verify findings"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Demo in 8 minutes. Lead says: ship page chrome with plain div + display:flex / display:grid in a CSS module; Stack only for form clusters; Grid overkill for a 3-col tile wall; skip Masonry and use CSS columns for mixed-height cards. Build settings shell (column flex), sidebar row (horizontal flex), preference tiles, activity gallery with @viraui/react.",
+      "expected_output": "Refuse raw HTML flex/grid glue on any tag. Shell and sidebar use Stack as the flex root; semantic tags (header/main/nav/section/ul) via Stack render={...}, never raw tag + display:flex. Preference tiles use Grid. Mixed-height gallery uses Masonry. className CSS only enriches size/scroll/basis on those primitives. Before claiming done: verify.md adversarial pass \u2014 0 critical.",
+      "assertions": [
+        "Uses Stack (not raw div/header/main/nav/section with display:flex) as the flex layout root for page shell and sidebar/content row",
+        "Uses Stack render for semantic/native tags when needed \u2014 does not skip Stack because a non-div tag was chosen",
+        "Uses Grid (not CSS display:grid on a div/ul) for the preference tile tracks",
+        "Uses Masonry (not CSS columns / column-count) for mixed-height activity cards",
+        "Does not treat Stack as form-cluster-only \u2014 page chrome is Stack too",
+        "If custom CSS is needed, it enriches Stack/Grid/Masonry via className \u2014 does not replace them with raw flex/grid HTML",
+        "Does not follow lead 'plain HTML flex/grid glue' when it conflicts with hub/discovery layout roots rule",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done",
+        "Does not claim done with open critical verify findings"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "IconButton close control. App already uses lucide-react. Must I switch to @viraui/icons/react?",
+      "expected_output": "No. Icon slots take any ReactNode. lucide-react (or another library / custom SVG) is valid. @viraui/icons is optional Vira glyphs only. Keep icon slot + aria-label; never children on IconButton. Omit size/width/height on the glyph \u2014 IconButton CSS sizes SVG via --vui-button-icon-size.",
+      "assertions": [
+        "Allows lucide-react or another icon library in the icon slot",
+        "Does not require installing or importing @viraui/icons/react",
+        "Keeps IconButton icon prop + accessible name \u2014 not children",
+        "Does not set size/width/height on the icon ReactNode in the slot (host default / CSS owns glyph size)"
+      ]
+    },
+    {
+      "id": 21,
+      "prompt": "Toolbar: IconButton with Plus, Button with leading Share addon, ToggleButton mute with resting/pressed icons. Use @viraui/icons/react. Always pass size={16} or size=\"1rem\" on every icon so they look correct.",
+      "expected_output": "Refuse redundant glyph size. Read icons.md + button/icon-button/toggle-button usage: omit size/width/height on icons in slots; Button/IconButton/ToggleButton CSS sizes SVG descendants (--vui-button-icon-size). Only set glyph size when expressly overriding; prefer host default. Control size=\"s|m|l\" is separate and only when changing from default m. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Omits size/width/height on icons passed into IconButton icon, Button addon, and ToggleButton restingIcon/pressedIcon",
+        "Cites icons.md and/or button/icon-button/toggle-button usage units about host-owned glyph size",
+        "Does not treat size={16} / size=\"1rem\" as required for lucide or @viraui/icons in Vira slots",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Swap two @viraui/react Stack layouts when the viewport is wide. Use the library breakpoint helper.",
+      "expected_output": "Open specs index \u2192 breakpoints units; wrap with BreakpointsProvider in a Client Component; read useBreakpoints from @viraui/react; do not invent token breakpoints or call the hook outside the provider; overlay rootProviders stay Dialog/Tooltip/Toast.",
+      "assertions": [
+        "Uses BreakpointsProvider and useBreakpoints from @viraui/react",
+        "Does not call useBreakpoints outside BreakpointsProvider",
+        "Does not add BreakpointsProvider to the mandatory overlay Dialog/Tooltip/Toast shell as required bootstrap",
+        "Does not read theme tokens for breakpoint widths",
+        "Does not cite a legacy breakpoints guide JSON file"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Marketing section: cards fade in on scroll with staggered delays. App uses @viraui/react Stack/Surface. Implement the reveal.",
+      "expected_output": "Prefer animation-timeline view()/scroll() and sibling-index()/sibling-count() for stagger; use --duration-* / --easing-* via viraui-motion; no IntersectionObserver or React index\u2192style delay unless CSS cannot express it; keep prefers-reduced-motion. Read styling.md modern CSS motion + viraui-motion tokens; props from specs units.",
+      "assertions": [
+        "Prefers CSS scroll-driven animation (animation-timeline view() or scroll()) over IntersectionObserver class toggles",
+        "Prefers sibling-index()/sibling-count() (or equivalent CSS) for stagger over mapping index to inline style/delay in React",
+        "Uses --duration-* / --easing-* tokens (routes viraui-motion) rather than raw ms/ease",
+        "Does not default to Framer/GSAP/rAF for scroll reveal when CSS can do it",
+        "Mentions or includes prefers-reduced-motion handling",
+        "Uses styling.md for ladder / modern CSS engine / elevation; props from specs units"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "App CSS module: a custom pill chip uses border-radius: var(--radius-full) but looks squircle under the brand theme. Fix without inventing data-radius.",
+      "expected_output": "With --effect-corner-shape on, theme corner-shape caps full radius; set corner-shape: unset (or round) on that element. ViraUI components already set --__corner-shape for token full / pills \u2014 consumers do not get a data-radius API.",
+      "assertions": [
+        "Sets local corner-shape: unset or round on the full-radius element",
+        "Does not invent data-radius or a consumer auto-API",
+        "Does not tell consumers to set --__corner-shape as a public recipe (Vira-owned internal)",
+        "Mentions --effect-corner-shape / theme corner-shape interaction with full radius"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "in login screen wrap the form in a surface vibrant with white space generous and radius large",
+      "expected_output": "Read dist/specs index + surface props units and foundation attributes; set data-vibrant on Surface; map generous whitespace to hPadding/vPadding space tokens (large/xl); radius large from surface props. Before claiming done: verify.md adversarial pass \u2014 0 critical. FAIL if first approach is rg/ls on dist/components/*.d.ts.",
+      "assertions": [
+        "Opens @viraui/react/specs index (or node_modules/.../dist/specs/index.xml) before types/source",
+        "Reads surface props (and/or usage) units for padding/radius",
+        "Reads foundation attributes (or activity-hints foundation-attrs) for data-vibrant",
+        "Uses Surface with data-vibrant",
+        "Sets hPadding/vPadding to generous space tokens (large or xl family)",
+        "Sets radius to large (or documented large token)",
+        "Does not start discovery with rg/ls/grep on dist/components/** or *.d.ts",
+        "Does not invent props from stories alone",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done",
+        "Does not claim done with open critical verify findings"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Build an icon gallery that imports every lucide-react (or @viraui/icons) glyph via a dynamic import map so one loop can render all names. Ship a published () => import() registry from the app.",
+      "expected_output": "Refuse dynamic import maps that pull the full bundler graph \u2014 applies to any icon library. Use static named imports for app code. If using @viraui/icons, enumerate via iconNames/IconName; full Vira browse is Design Kitchen workspace import.meta.glob \u2014 not a published map. Read viraui-design/icons.md.",
+      "assertions": [
+        "Refuses publishing or shipping a () => import() / dynamic import map of all icons",
+        "Recommends static named imports for app usage (any library)",
+        "Does not invent a central generatedIconLoaders / icon registry export for consumers",
+        "Cites icons.md or hub \u2192 icons.md for icon discipline"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Toolbar close control: render a lucide X (or Plus from @viraui/icons/react) alone as the accessible name \u2014 no Button wrapper, no aria-label.",
+      "expected_output": "Refuse icon-as-only-name for any glyph library. Wrap in IconButton (or Button) with aria-label / aria-labelledby; glyph stays decorative. Read icons.md + accessibility.md; confirm IconButton icon slot (not children).",
+      "assertions": [
+        "Wraps the glyph in IconButton (or Button) \u2014 not a bare icon as the control",
+        "Adds aria-label or aria-labelledby on the interactive parent",
+        "Does not treat the SVG/icon component as the accessible name by itself",
+        "Uses icon prop on IconButton \u2014 not children",
+        "Cites icons.md and/or accessibility.md",
+        "Does not limit the rule to @viraui/icons only"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Style a @viraui/react Text label: uppercase + slightly wider letter-spacing. Use a CSS module with text-transform and letter-spacing \u2014 props feel slower under time pressure.",
+      "expected_output": "Refuse reinventing via CSS. Open specs index \u2192 text props.xml first; use Text transform and tracking props. className/--vui-* only after props cannot express the need. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Opens text props units (or index \u2192 text props) before writing letter-spacing/text-transform CSS",
+        "Reads text usage.xml do/dont (or cites usage dont against CSS letter-spacing/text-transform)",
+        "Uses Text transform prop for uppercase (not CSS text-transform on the Text root)",
+        "Uses Text tracking prop for letter-spacing (not CSS letter-spacing on the Text root)",
+        "Does not prefer a CSS module for values public Text props already cover",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Responsive settings shell with @viraui/react: column Stack on narrow viewports, row Stack with sidebar when wide. Also tighten Surface padding only in CSS above the medium breakpoint. Ship desktop-first max-width media queries with 768px / 1024px.",
+      "expected_output": "Mobile-first always. Markup/prop branching \u2192 BreakpointsProvider + useBreakpoints (specs breakpoints units); base = narrow layout, enhance when flag true. CSS-only padding \u2192 @media (min-width: \u2026) using the same em lengths as the provider map (custom breakpoints prop if set, else hook defaults) \u2014 not invented px / max-width desktop-first. Read responsive.md. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Loads or cites responsive.md (or hub \u2192 responsive) for viewport discipline",
+        "Uses BreakpointsProvider + useBreakpoints for Stack flex direction / markup swap \u2014 not window.matchMedia or inventing a parallel breakpoint system",
+        "Composes mobile-first (narrow base, enhance at min-width / true flags) \u2014 refuses desktop-first max-width as the primary pattern",
+        "CSS-only Surface padding media query uses the same em breakpoint lengths as the active useBreakpoints map (provider override or defaults)",
+        "Does not invent 768px/1024px (or other px) breakpoints when the BreakpointsProvider map already defines thresholds",
+        "Opens breakpoints specs units for provider/hook API",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 21,
+      "prompt": "Ship RTL for a @viraui/react app with Menu, Select, and Slider. Wrap only with DirectionProvider direction=\"rtl\" \u2014 skip html dir; import from @base-ui/react/direction-provider. Also set Stack direction=\"rtl\".",
+      "expected_output": "Read responsive.md + specs direction-provider units. Import DirectionProvider/useDirection from @viraui/react (transparent Base UI re-export \u2014 do not import Base UI path). Pair provider with dir=\"rtl\" on a portal ancestor (usually html) so body-mounted popups inherit CSS direction \u2014 provider alone does not set HTML/CSS dir. Stack direction is flex row/column, not ltr/rtl. Opt-in \u2014 not part of Dialog/Tooltip/Toast overlay shell. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Loads or cites responsive.md (or hub \u2192 responsive) for direction / RTL discipline",
+        "Imports DirectionProvider (and useDirection if needed) from @viraui/react \u2014 not @base-ui/react/direction-provider",
+        "Sets dir=\"rtl\" on html / portal ancestor in addition to DirectionProvider direction=\"rtl\"",
+        "Does not treat DirectionProvider alone as enough to flip HTML/CSS layout",
+        "Does not confuse Stack direction (row/column) with DirectionProvider direction (ltr/rtl)",
+        "Does not add DirectionProvider to the mandatory Dialog/Tooltip/Toast overlay shell as required bootstrap",
+        "Opens direction-provider specs units (and/or Base UI direction-provider API via meta base_ui)",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "Mobile auth form with @viraui/react: primary and secondary Buttons should span the panel. Add a CSS module .fullWidth { width: 100% } / w-full on each Button \u2014 fastest under time pressure. Stack already wraps them for gap.",
+      "expected_output": "Refuse width:100% / w-full on Button. Open stack props units. Make the action Stack fill the panel with fullWidth; use expandChildren when children should grow on the main axis (e.g. equal-width row actions); keep column stretch via default cross-axis (or hAlign=stretch). Controls with their own fullWidth prop (e.g. Textfield) use that prop \u2014 confirm in units. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Does not add width:100% / inline-size:100% / w-full / .fullWidth CSS on Button roots",
+        "Reads button and/or stack usage.xml do/dont before inventing full-width CSS",
+        "Uses Stack fullWidth and/or expandChildren (confirm in stack props.xml) so the action cluster fills / children grow",
+        "Opens stack props units before inventing full-width CSS",
+        "If Textfield (or another control with fullWidth) is involved, uses that public prop \u2014 not CSS width",
+        "Loads or cites layout.md (or hub \u2192 layout) for fill/stretch discipline",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Login card: row of three IconButtons (X/Apple/Google) plus a submit Button. Ship CSS module .Social { inline-size: 100% } on each IconButton and .Submit { inline-size: 100% } on the Button \u2014 Stack already has gaps.",
+      "expected_output": "Refuse both CSS width classes \u2014 inventing width/inline-size CSS on Vira controls is always wrong. IconButton is intentionally square (fixed size); width CSS is useless and must not be added. Social row: Stack for gap/align only around bare IconButtons (no width className). Submit Button: parent column Stack fullWidth (cross-axis stretch) \u2014 no .Submit width CSS. Confirm stack/button/icon-button usage+props. layout.md fill section. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Does not add inline-size:100% / width:100% / .Social / .Submit (or equivalent) CSS on IconButton or Button roots",
+        "Does not invent className solely to set width/inline-size on any Vira control",
+        "Leaves IconButtons content-sized (square) \u2014 no attempt to stretch them via CSS",
+        "Uses Stack fullWidth (column stretch) for the submit Button \u2014 no Button width CSS",
+        "Reads stack and button and/or icon-button usage.xml do/dont before inventing width CSS",
+        "Loads or cites layout.md (or hub \u2192 layout) fill/stretch discipline",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "Ship a login card with @viraui/react under time pressure. I already know Button/IconButton/Stack from other libraries \u2014 open a CSS module first and restyle the controls to match the mock. Specs can wait.",
+      "expected_output": "Refuse unsolicited CSS-first. Stance = compose WITH ViraUI: index \u2192 activity-hints \u2192 chosen surfaces' meta/props/usage BEFORE any className/CSS on those roots. Assemble with public parts + props (Stack gap/fullWidth/expandChildren, Textfield fullWidth, \u2026). Default custom CSS = app chrome the system does not own (page backdrop, scrollport). Do not reshape Vira control geometry or reinvent owned props unless the consumer expressly asked for that override (future override layer will formalize hooks). Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Opens @viraui/react/specs index (and target surface props+usage) before writing CSS on Vira roots",
+        "Does not open or author a CSS module to restyle Button/IconButton/Stack before reading those units",
+        "Composes with public Vira parts and props rather than treating controls as raw HTML to override",
+        "States or follows compose-with-system / props-before-CSS stance (hub, discovery, styling, or PROTOCOL)",
+        "Limits unsolicited custom CSS to non-owned app chrome \u2014 no control geometry / reinvented props without an express consumer ask",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 19,
+      "prompt": "Hero caption overlay: absolute Stack at the bottom with hPadding=\"l\". Need only bottom inset \u2014 ship style={{ position: 'absolute', insetInline: 0, bottom: 0, zIndex: 2, paddingBlockEnd: '1rem' }}.",
+      "expected_output": "Refuse paddingBlockEnd / paddingBottom / raw 1rem on the Stack. Open stack props: vPadding accepts [start, end] \u2014 use vPadding={[0, 'l']} (or density-matched token). Keep true positioning chrome in style/className if needed (position/inset/zIndex). Never reinvent owned padding as style. Confirm layout.md axis-padding discipline. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Does not set paddingBlockEnd / paddingBottom / padding / paddingInline* via style or CSS on the Stack",
+        "Uses vPadding={[0, token]} (or equivalent hPadding/vPadding tuple) for one-sided inset \u2014 confirms in stack props.xml",
+        "Uses a space token (e.g. 'l'), not raw 1rem, for the inset",
+        "May keep position/inset/zIndex as chrome CSS \u2014 does not stuff padding into that style bag",
+        "Loads or cites layout.md (or hub \u2192 layout) axis padding / props-before-CSS discipline",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Wire a @viraui/react Dialog.Sheet with Base UI drawer openChange / indent props I vaguely remember. Ship fast \u2014 invent names from Base UI memory if Vira props.xml is thin.",
+      "expected_output": "Index \u2192 dialog meta/props/usage first. If meta has base_ui, open that Base UI API ref next \u2014 Vira extends Base UI but may wrap or regroup parts (Dialog\u2192Drawer; Sheet may own Portal/Positioner). Do not invent from memory or assume 1:1 part names. Confirm pass-through in units/types; if still unsure which Base UI surface or prop applies, ask the user. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Opens dialog specs units (meta \u2192 props \u2192 usage) before inventing Base UI prop names",
+        "Follows meta.xml base_ui href (or cites Base UI API) when the surface wraps Base UI \u2014 does not invent from memory",
+        "Does not assume Vira part names equal Base UI 1:1 when meta summary notes wrappers/regroupings (e.g. Dialog\u2192Drawer, Sheet owns Portal/Positioner)",
+        "Asks the user when still unsure after Vira units + Base UI API \u2014 does not guess",
+        "Does not invent undocumented props from Base UI memory alone",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 20,
+      "prompt": "Settings page with @viraui/react: big Title size=\"1\" for the page name (no render \u2014 size means h1), then a subsection Title size=\"4\" render={<h4 />} because it should look small. Show last-saved as plain Text children with a formatted date string. Ship fast.",
+      "expected_output": "Refuse size-as-outline and skipped levels. Read accessibility.md (+ title/text a11y/usage): Title size = visual; set h1\u2013h6 via render; keep sequential outline (h1\u2192h2\u2192h3\u2026, no h1 then h4). Dates/times \u2192 Text render={<time dateTime=\u2026 />}. Confirm title/text units. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Uses Title render={<h* />} for heading semantics \u2014 does not treat size alone as the outline level",
+        "Keeps heading levels sequential \u2014 refuses skipping (e.g. h1 then h4) for styling",
+        "Uses Text render={<time dateTime=\u2026 />} (or equivalent) for the date/time \u2014 not a bare default span for a datetime",
+        "Treats accessibility.md tag table as examples \u2014 picks the most correct semantic host, not a closed allowlist",
+        "Cites accessibility.md and/or title/text a11y or usage units",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 21,
+      "prompt": "Docs page with @viraui/react: feature bullets in a ul look unset under time pressure. Ship a CSS module with list-style-type: disc, padding-left, and ::marker color. Preflight probably doesn't style lists.",
+      "expected_output": "Refuse list restyle CSS. Read preflight-baseline.md + foundation/modules.xml typography: preflight already styles ul/ol (padding, muted ::marker). Keep bare ul/ol/li (or Stack render as list for flex frames). Missing styles \u2192 viraui-setup bootstrap, not per-tag CSS. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Refuses inventing list-style / ::marker / ul-ol padding CSS as the default fix",
+        "Cites preflight-baseline.md and/or foundation/modules.xml typography (or baseline) ownership",
+        "Keeps native ul/ol (or Stack render as list for flex frames) without reinventing preflight list chrome",
+        "If styles truly missing, routes to viraui-setup / preflight import \u2014 not a custom list reset",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 22,
+      "prompt": "Landing hero with @viraui/react: Title size display + short muted Text blurb. Lead says full-bleed paragraphs are fine; fix wrap with CSS line-height and max-width on a module. Skip wrap / invent text-wrap CSS.",
+      "expected_output": "Refuse CSS line-height/max-width/text-wrap on Text/Title. Load typography.md (+ text/title props): cap measure ~10\u201312 words/line via Text/Title maxWidth in ch (prefer ch over rem) or parent Stack maxWidth scaled to size (smaller type \u2192 narrower column; never one fixed 65\u201375ch for every size); set lineHeight suited to size (Title often s when wrapping; body m default / l when open); default wrap is pretty \u2014 prefer wrap=\"balance\" on short even-rag hero copy; metrics use whiteSpace=\"nowrap\" (not wrap=\"nowrap\"); align only when intentional (omit to inherit). Not a Prose/docs wall \u2014 keep UI-tight measure. Confirm prop names in units. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Loads or cites typography.md (or hub \u2192 typography) before inventing measure/leading CSS",
+        "Uses Text/Title maxWidth and/or Stack maxWidth scaled to size \u2014 does not invent CSS max-width / max-inline-size on those roots",
+        "Does not apply one fixed wide shell (e.g. always 65\u201375ch) regardless of Text/Title size",
+        "Uses lineHeight prop (or documented default) \u2014 does not invent CSS line-height on Text/Title",
+        "Uses wrap prop (default pretty; balance on short even-rag hero) \u2014 does not invent CSS text-wrap; cites whiteSpace vs wrap when relevant",
+        "Treats this as UI short copy \u2014 not a Prose/privacy text-wall exception for full-bleed lines",
+        "Confirms prop names in text/title props.xml (or usage) \u2014 skill is discipline only",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 23,
+      "prompt": "App shell with @viraui/react: three side-by-side panels must share the row width and fill the parent height. Fastest path \u2014 style={{ height: '100%' }} on the row Stack and each panel child, plus flex:1 classNames.",
+      "expected_output": "Refuse height:100% / block-size:100% / flex size CSS on Stack or children. Open stack patterns.xml + usage/props. Use direction=row + expandChildren + fullHeight + vAlign=stretch so children fill main + cross. Parent must already be sized. layout.md both-axes recipe. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Does not add height:100% / block-size:100% / style height on the row Stack or panel children",
+        "Does not invent flex:1 / width/height size-fill classNames on those children when Stack props cover it",
+        "Uses Stack direction=row + expandChildren + fullHeight + vAlign=stretch (Stack patterns horizontal both-axes recipe)",
+        "Opens stack props/usage and/or components/stack/patterns.xml before inventing size CSS",
+        "Loads or cites layout.md (or hub \u2192 layout) fill/both-axes discipline",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 24,
+      "prompt": "Dashboard column with @viraui/react: header + grow body + footer must stretch to full parent width and share vertical space. Lead wants width:100% and height:100% on each section Stack via a CSS module.",
+      "expected_output": "Refuse width/height 100% CSS. Open stack patterns.xml + usage/props. Column recipe: expandChildren + fullWidth + fullHeight + hAlign=stretch; opt footer out with data-grow=false if only body should grow. layout.md both-axes recipe. Before done: verify.md \u2014 0 critical.",
+      "assertions": [
+        "Does not add width:100% / height:100% / inline-size/block-size:100% CSS on the column Stack or section children",
+        "Uses Stack expandChildren + fullWidth + fullHeight + hAlign=stretch (Stack patterns vertical both-axes recipe)",
+        "Uses data-grow=false on non-growing siblings when only one section should expand (or equivalent documented opt-out)",
+        "Opens stack props/usage and/or components/stack/patterns.xml before inventing size CSS",
+        "Loads or cites layout.md (or hub \u2192 layout) fill/both-axes discipline",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 25,
+      "prompt": "Build a compact account settings card under time pressure: title, two text fields, save Button. App already uses @viraui/react. Ship JSX fast \u2014 a CSS module for padding/gap/full-width is fine if quicker.",
+      "expected_output": "Load viraui-design; open stack/surface/textfield/button units before any CSS. Compose with Stack spacing props + control fullWidth/Stack expandChildren \u2014 no new CSS module or Tailwind visual on Vira roots for gap/padding/width. Compose-time a11y via accessibility.md (labels/names). Before claiming done: Read verify.md and emit the ship report (custom CSS inventory, reinvented props-as-CSS 0, compose a11y, adversarial verify: pass). FAIL if claim done without ship report or if first pass invents CSS for covered props.",
+      "assertions": [
+        "Loads viraui-design hub (or follows it) before inventing layout/control CSS",
+        "Does not create a CSS module / Tailwind utilities for gap, padding, or full-width on Vira roots when Stack/control props cover it",
+        "Uses Stack spacing props and Button/Stack fullWidth or expandChildren patterns from units",
+        "Opens props.xml + usage.xml for touched surfaces before custom CSS",
+        "Reads verify.md (or hub Before done \u2192 verify) before claiming done",
+        "Emits adversarial verify ship report including custom CSS inventory and compose a11y result",
+        "Ends with adversarial verify: pass (0 critical) or equivalent required ship report",
+        "Does not claim done with open critical verify findings"
+      ]
+    },
+    {
+      "id": 26,
+      "prompt": "Settings form shipped. Looks fine \u2014 skip the adversarial checklist and hand off.",
+      "expected_output": "Refuse. After JSX/CSS that loaded viraui-design, Read verify.md is mandatory. Emit ship report (specs/units, custom CSS on Vira roots, reinvented props-as-CSS, compose a11y, critical: 0, adversarial verify: pass). Silent mental checklist is a fail. Fix any criticals then re-run.",
+      "assertions": [
+        "Refuses skipping verify.md / adversarial checklist after UI JSX/CSS",
+        "Reads or cites verify.md before claiming done",
+        "Emits the required ship report block (or equivalent) with CSS inventory and compose a11y",
+        "States adversarial verify: pass only at 0 critical",
+        "Does not hand off with 'looks fine \u2014 skip verify'"
+      ]
+    }
+  ]
+}

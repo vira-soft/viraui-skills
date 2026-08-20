@@ -1,0 +1,21 @@
+---
+description: Same-change sync for public React component surfaces (skills side)
+globs: skills/viraui-design/**/*,skills/viraui-a11y/vira-map.md,skills/viraui-setup/preflight.md,skills/viraui-design/custom-attributes.md
+alwaysApply: false
+---
+
+# Public component surface sync (skills)
+
+When `@viraui/react` public components or consumer `data-*` change in the monorepo, update matching files here in the **same change** (or linked PR).
+
+Public component impact requires:
+
+1. `skills/viraui-design/component-matrix.md` — intent → specs id rows (thin pointer only)
+2. Affected thin routers under `viraui-design` (discovery, composition, layout, styling, accessibility) when taught behavior changes
+3. `skills/viraui-a11y/vira-map.md` on add/rename/remove (APG pattern URL, or n/a / layout / decorative footnote — do not rewrite `roles.md` / `properties.md` for Vira add/remove)
+
+Do **not** reintroduce per-component API encyclopedias into skills; composition/layout/styling/bootstrap stay discipline/playbooks only. Authority for props = `@viraui/react/specs/*`.
+
+Consumer-facing `data-*` sync: update `custom-attributes.md` + setup `preflight.md` pointers to `specs/foundation/attributes.xml` — see sibling rule `04-consumer-data-attrs.mdc`.
+
+Contract (monorepo): [public component surface sync](https://github.com/vira-soft/vira-ui/blob/main/docs/component-and-pattern-contracts.md#public-component-surface-sync).

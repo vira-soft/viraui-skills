@@ -1,0 +1,98 @@
+{
+  "skill_name": "viraui-a11y",
+  "red_baseline_failures": [
+    "Agents fetch APG example-index HTML instead of vira-map tables",
+    "Agents copy APG sample role/aria-* onto Vira JSX for audit visibility",
+    "Agents auto-load for ordinary compose without explicit audit ask",
+    "Agents skip vira-map.md and guess APG pattern URLs",
+    "Agents treat design accessibility.md compose rules as full structured audit"
+  ],
+  "queries": [
+    {
+      "query": "Audit this settings screen for APG compliance",
+      "should_trigger": true
+    },
+    {
+      "query": "Is my Dialog accessible? Run an a11y review against APG",
+      "should_trigger": true
+    },
+    {
+      "query": "Screen reader announces tabs wrong — keyboard pattern debug",
+      "should_trigger": true
+    },
+    {
+      "query": "WCAG widget check on ToggleGroup implementation",
+      "should_trigger": true
+    },
+    {
+      "query": "Validate ARIA on this Menu — fetch APG pattern",
+      "should_trigger": true
+    },
+    {
+      "query": "APG review: does Combobox match pattern keyboard support?",
+      "should_trigger": true
+    },
+    {
+      "query": "Accessibility audit of checkout flow with Dialog and Toast",
+      "should_trigger": true
+    },
+    {
+      "query": "Deep audit routed from accessibility.md — structured APG report",
+      "should_trigger": true
+    },
+    {
+      "query": "Check aria-expanded on Accordion against APG",
+      "should_trigger": true
+    },
+    {
+      "query": "Build a new Card grid layout with Stack",
+      "should_trigger": false,
+      "notes": "Compose — viraui-design"
+    },
+    {
+      "query": "Install ViraUI theme and preflight in Astro",
+      "should_trigger": false,
+      "notes": "viraui-setup"
+    },
+    {
+      "query": "Add hover fade on custom panel",
+      "should_trigger": false,
+      "notes": "viraui-motion"
+    },
+    {
+      "query": "What aria-label for icon button — compose guidance",
+      "should_trigger": false,
+      "notes": "viraui-design accessibility.md unless full audit requested"
+    },
+    {
+      "query": "Fix TypeScript error in Button props",
+      "should_trigger": false,
+      "notes": "Typing/debug, not audit"
+    },
+    {
+      "query": "Update component-matrix.md for new Chip export",
+      "should_trigger": false,
+      "notes": "Monorepo surface sync"
+    },
+    {
+      "query": "Storybook a11y addon warnings on story",
+      "should_trigger": false,
+      "notes": "Story tooling unless user asks APG audit"
+    },
+    {
+      "query": "Choose Button vs ButtonLink for external URL",
+      "should_trigger": false,
+      "notes": "viraui-design discovery"
+    },
+    {
+      "query": "eslint jsx-a11y rule failing on div onClick",
+      "should_trigger": false,
+      "notes": "Lint fix — design compose unless audit explicitly requested"
+    },
+    {
+      "query": "Fetch APG example index page to list all patterns",
+      "should_trigger": false,
+      "notes": "Explicit anti-pattern — skill forbids fetching example-index"
+    }
+  ]
+}

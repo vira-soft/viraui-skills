@@ -1,0 +1,32 @@
+{
+  "css.validate": false,
+  "js/ts.validate.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts, ${capture}.css, ${capture}-*.tsx, ${capture}.*.json, ${capture}.*.tsx, ${capture}.*.css",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "sentry.*.config.js, .oxlintrc.json, .oxfmtrc.json, .npmrc, .graphqlrc, next.config.js, *.config.mjs, .npmrc, *.config.js, *.config.ts, *.config.cjs, package-lock.json, jest.config.json"
+  },
+  "oxc.fmt.configPath": ".oxfmtrc.json",
+  "oxc.configPath": ".oxlintrc.json",
+  "oxc.tsConfigPath": "tsconfig.json",
+  "oxc.path.oxlint": "./node_modules/.bin/oxlint",
+  "oxc.path.tsgolint": "./node_modules/.bin/tsgolint",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "[css]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  // Oxc type-aware diagnostics come from workspace oxlint + workspace tsgolint (TS7 backend),
+  // intentionally separate from the TS6 language service above.
+  "oxc.enable.oxlint": true,
+  "oxc.enable.oxfmt": true,
+  "oxc.typeAware": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit",
+    "source.organizeImports": "explicit"
+  }
+}

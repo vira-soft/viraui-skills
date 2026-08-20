@@ -1,0 +1,131 @@
+{
+  "skill_name": "viraui-setup",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Fresh Vite + React app. I installed @viraui/react but everything looks unstyled and toasts don't show. Give me the root bootstrap steps.",
+      "expected_output": "Ask default foundation vs App Studio custom theme before installing @viraui/foundation/fonts. Then ordered bootstrap: peers, one theme CSS before components, fonts, preflight after theme, JS side-effect imports in app root (not CSS @import), canonical Dialog/Tooltip/Toast providers in root layout, authority from @viraui/react/specs/foundation/bootstrap.xml (hub checklist). End with a Markdown setup-recap table (status + what landed), not prose-only.",
+      "assertions": [
+        "Asks (or requires an answer for) default Vira/@viraui/foundation theme vs App Studio custom CSS before installing foundation/fonts",
+        "Lists JavaScript side-effect imports in app root \u2014 not CSS @import for bootstrap",
+        "Theme CSS loads before Vira components render",
+        "Mentions Toast.Provider with viewport at app root",
+        "References @viraui/react/specs/foundation/bootstrap.xml (or hub setup checklist) for authoritative order",
+        "May use bootstrap.md playbook; authority remains foundation/bootstrap.xml",
+        "Does not invent component APIs or skip overlay providers",
+        "Ends with a Markdown setup-recap table (or equivalent visual status grid) of steps done / skipped / blocked \u2014 not prose-only"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Next.js App Router project \u2014 where do I put theme, preflight, and Dialog.Provider?",
+      "expected_output": "Framework-specific entry guidance from frameworks.md: root layout module, import order, overlay providers wrapping children. Theme line depends on prior default vs Studio choice.",
+      "assertions": [
+        "Names root layout or app entry as import site",
+        "Keeps bootstrap imports as JS imports in that module",
+        "Includes Dialog.Provider (and related overlay providers) at root",
+        "Points to frameworks.md or foundation/bootstrap.xml rather than guessing paths"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Can I @import @viraui/react/preflight.css inside my global.css to keep things tidy?",
+      "expected_output": "No \u2014 bootstrap must be JS side-effect imports in app root per setup skill; explain why and give correct pattern.",
+      "assertions": [
+        "Rejects CSS @import for Vira bootstrap chain",
+        "Prescribes JS side-effect import in app root entry",
+        "Does not suggest per-page provider patches as the primary fix"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "How do I install the ViraUI agent skills into my coding agent?",
+      "expected_output": "npx skills add vira-soft/viraui-skills; no npm @viraui/skills; no private monorepo clone.",
+      "assertions": [
+        "Gives npx skills add vira-soft/viraui-skills (or equivalent GitHub owner/repo)",
+        "Does not prescribe npm view @viraui/skills dist.tarball or a registry .tgz URL",
+        "Does not prescribe npx @viraui/skills or a wipe-copy package installer",
+        "Does not tell the consumer to clone the private monorepo"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Fresh Vite app with @viraui/react. I already use lucide-react. Should I also install @viraui/icons before first render?",
+      "expected_output": "@viraui/icons is optional \u2014 install only to use Vira named glyphs from @viraui/icons/react. Icon slots accept any ReactNode: lucide-react, other icon libraries, or custom SVG. Chrome defaults ship inlined in @viraui/react. Do not add @viraui/icons as a required peer.",
+      "assertions": [
+        "States @viraui/icons is optional, not a required bootstrap peer",
+        "Allows lucide-react or another icon library in Vira icon slots",
+        "Does not require installing @viraui/icons when the app already has an icon library",
+        "Does not say content icons must come from @viraui/icons/react"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Custom theme: what do --radius-* and --corner-shape mean for pill shapes?",
+      "expected_output": "Radius scale + corner-shape; with --effect-corner-shape on, theme corner-shape can cap full/pill radius. Consumer raw CSS: set corner-shape: unset locally. ViraUI components set internal --__corner-shape for token full / pills \u2014 no consumer data-radius.",
+      "assertions": [
+        "Mentions corner-shape interaction with full / pill radius",
+        "Says consumer local override is corner-shape: unset (or equivalent) for raw CSS",
+        "Does not invent data-radius or public --__corner-shape consumer API"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Bootstrap my app with ViraUI. Install whatever theme packages you need.",
+      "expected_output": "Stop and ask: default @viraui/foundation theme (plus matching fontsource) OR App Studio custom theme.css. Do not install @viraui/foundation or fonts until the consumer answers. If any steps already ran, end with a setup-recap table marking theme choice as blocked.",
+      "assertions": [
+        "Asks default foundation theme vs App Studio / custom generated CSS before installing @viraui/foundation",
+        "Does not install @viraui/foundation in the same turn without a theme-choice answer",
+        "Does not install @fontsource-variable packages before theme choice is known",
+        "When work stops mid-checklist, includes a setup-recap table with theme choice (or later steps) marked blocked / pending"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "I'll use my App Studio export. Here is theme.css with @font-face src urls to cdn.jsdelivr.net/fontsource/fonts/raleway:vf@\u2026 and --font-family-body: Geist Variable. Wire it up.",
+      "expected_output": "Skip @viraui/foundation. Save/import the pasted CSS as the theme sheet. Detect fontsource ids (raleway from URL; geist from --font-family-*). Install @fontsource-variable/raleway and @fontsource-variable/geist, import their wght.css after theme CSS, strip or ignore CDN @font-face quick-setup blocks, then preflight. Close with a Markdown setup-recap table of what landed.",
+      "assertions": [
+        "Does not install @viraui/foundation for the Studio custom path",
+        "Imports the consumer-saved Studio CSS as the theme sheet",
+        "Installs or imports @fontsource-variable packages derived from the CSS (raleway and geist)",
+        "Keeps import order theme \u2192 fonts \u2192 preflight via JS side-effect imports",
+        "Ends with a Markdown setup-recap table showing Studio theme path, fonts, and preflight status"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Wire ViraUI into this Vite app. package.json has tailwindcss and the CSS entry is `@import \"tailwindcss\";`. Keep Tailwind utilities.",
+      "expected_output": "Warn that Tailwind (and other CSS frameworks) ship a preflight/reset that can fight @viraui/react/preflight.css and break ViraUI. Ask what to do. Recommend keeping Vira preflight and NOT importing Tailwind preflight \u2014 replace full `@import \"tailwindcss\"` with theme + utilities only (`@import \"tailwindcss/theme.css\" layer(theme);` and `@import \"tailwindcss/utilities.css\" layer(utilities);`). Do not silently keep the full Tailwind bundle. End with setup-recap noting CSS-framework coexistence.",
+      "assertions": [
+        "Warns that Tailwind preflight/reset (or equivalent) can conflict with ViraUI preflight",
+        "Asks the consumer what to do rather than silently keeping `@import \"tailwindcss\"`",
+        "Recommends omitting Tailwind preflight and shows theme.css + utilities.css layered imports (or equivalent no-preflight pattern)",
+        "Does not tell the consumer to drop @viraui/react/preflight.css in favor of Tailwind preflight",
+        "Mentions the same class of risk for other framework resets (e.g. Bootstrap reboot) when relevant",
+        "Ends with a setup-recap table that records CSS-framework coexistence / warning status"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Next.js app already has Bootstrap CSS (reboot). Adding @viraui/react \u2014 anything I should change?",
+      "expected_output": "Warn that Bootstrap reboot/reset CSS can override or fight ViraUI preflight baselines. Ask whether to keep Bootstrap reset, drop it, or scope it. Prefer keeping @viraui/react/preflight.css and removing or isolating Bootstrap's global reset/reboot when coexisting.",
+      "assertions": [
+        "Warns about Bootstrap reboot/reset vs ViraUI preflight conflict",
+        "Asks how to handle the third-party reset rather than ignoring it",
+        "Keeps @viraui/react/preflight.css as the Vira baseline",
+        "Does not claim Bootstrap and Vira preflight are always safe together with no changes"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "I want Text and Title sizes fixed at their largest step — no fluid scaling when the viewport shrinks. How do I turn that off?",
+      "expected_output": "Set --effect-fluid-typography: initial on the theme root (:root or html). Empty/unset keeps fluid clamp on (brand default). Off locks Text/Title to each size’s theme scale token (--font-scale-body-* / --font-scale-display / --font-scale-h*). No React prop or data-* on Text/Title. Text size s and xs stay fixed either way.",
+      "assertions": [
+        "Names --effect-fluid-typography: initial as the opt-out",
+        "Says off locks Text/Title at theme scale tokens (or equivalent fixed-at-token wording)",
+        "Does not invent a fluid/static React prop or data-* on Text/Title",
+        "Mentions empty/unset (or brand default) keeps fluid on"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "bracketSameLine": false,
+  "proseWrap": "preserve",
+  "ignorePatterns": [
+    "dist/",
+    ".changeset/*.md",
+    "node_modules/",
+    ".cursor/skills/**",
+    "**/*.module.css.d.ts",
+    "**/*.d.ts",
+    "docs/**"
+  ]
+}

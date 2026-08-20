@@ -1,0 +1,40 @@
+{
+  "skill_name": "viraui-a11y",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit my Tabs screen for APG keyboard support. I added role=tablist on Tabs.List so the audit sees it in source.",
+      "expected_output": "Structured audit via audit.md; use vira-map for pattern; inspect rendered DOM; do not keep redundant role/aria Base UI emits; fetch specific pattern page not example-index.",
+      "assertions": [
+        "Does not endorse copying APG roles into consumer JSX for audit visibility",
+        "References vira-map.md or audit.md workflow",
+        "States not to fetch APG example-index HTML",
+        "Recommends inspecting rendered DOM / Base UI output",
+        "Routes compose fixes back to viraui-design accessibility.md",
+        "Does not cite legacy guide JSON as API authority"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Full accessibility audit of Dialog + Menu checkout flow. Give APG-shaped report.",
+      "expected_output": "Follow audit.md report shape; map widgets via vira-map; verify widget facts in @viraui/react/specs a11y units; fetch only in-scope pattern URLs; separate page landmarks from widget chrome.",
+      "assertions": [
+        "Uses structured audit steps from audit.md (not generic a11y tips only)",
+        "Maps Dialog and Menu via vira-map or roles/properties tables",
+        "Does not fetch https://www.w3.org/WAI/ARIA/apg/example-index/",
+        "Distinguishes consumer page semantics from widget behavior",
+        "Does not treat legacy guide JSON as authority for Vira widget chrome"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm composing a new form — load viraui-a11y first for every field?",
+      "expected_output": "No auto-load for compose; use viraui-design accessibility.md; load viraui-a11y only for explicit audit/debug.",
+      "assertions": [
+        "Declines mandatory auto-load for ordinary compose",
+        "Points to viraui-design for compose-time a11y rules",
+        "Names viraui-a11y for explicit audit or deep debug routing"
+      ]
+    }
+  ]
+}

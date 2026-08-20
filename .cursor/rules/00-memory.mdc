@@ -1,0 +1,14 @@
+---
+description: Session bootstrap — attach root MEMORY.md instead of re-exploring specs
+alwaysApply: true
+---
+
+# Session memory
+
+@MEMORY.md
+
+MEMORY = map + durable gotchas. Specs + `AGENTS.md` = source of truth.
+Do not re-read all specs. Open only the owning spec for the current task.
+Do not dump `AGENTS.md` or rule text back into MEMORY.
+
+Update `MEMORY.md` only when the durable map or gotchas change.
