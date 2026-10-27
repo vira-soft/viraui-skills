@@ -24,7 +24,7 @@ Skill table below = orientation only. Confirm ownership in those units.
 | Surface                         | Preflight covers (summary)                                   | Prefer instead                                       |
 | ------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------- |
 | `p`, `small`, `strong`/`b`, `s` | Body size/leading, weight, strikethrough tone                | `Text` props when in Vira copy; bare `p` OK in prose |
-| `a:any-link`                    | Interactive color + animated underline                       | Keep for prose; chrome → `data-no-link-style`        |
+| `a:any-link`                    | Interactive color + always-visible underline (`--global-link-decoration`; hover/focus offset only) | Keep for prose; chrome → `data-no-link-style`        |
 | `ul` / `ol` / `li`              | Padding, muted `::marker` (`ol` tabular-nums)                | Bare lists; Stack `render={<ul/>}` for flex frames   |
 | Nested lists                    | `font-size: initial` so parent list does not shrink children | No extra nested-list size CSS                        |
 | `code` / `kbd` / `abbr`         | Inline pill / dashed underline; `pre code` drops code shadow | Bare tags; no hand-rolled pill chrome                |
@@ -40,7 +40,7 @@ Readable measure / leading / `wrap` (default `pretty`) for wrapping copy (Vira T
 
 ## Links
 
-Every prose anchor keeps preflight underline unless `data-no-link-style` is set. Class alone does **not** opt out. Detail → [custom-attributes.md](custom-attributes.md).
+Every prose anchor gets interactive color + always-visible text-decoration (`--global-link-decoration`, brand default `wavy`; color `--global-contrast`) unless `data-no-link-style` is set. Hover/focus only increases underline offset. Theme `none` clears the line. Class alone does **not** opt out. Detail → [custom-attributes.md](custom-attributes.md).
 
 ## Tables
 
