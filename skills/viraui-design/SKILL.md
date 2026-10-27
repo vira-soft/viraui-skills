@@ -13,7 +13,7 @@ description: >-
 license: MIT
 metadata:
   author: Vira Software
-  version: '2026.10.16'
+  version: '2026.10.27'
 ---
 
 # viraui-design
@@ -60,7 +60,7 @@ Missing global styles → **viraui-setup** first. Vague intent / anti-pattern ma
 | Choose component or inspect API                                 | [discovery.md](discovery.md) → package specs index + units (`props` **and** `usage` do/dont) |
 | Intent → component id shortcut                                  | [component-matrix.md](component-matrix.md) — confirm in specs index/units                    |
 | Forms, Dialog, Popover, Menu, Toast, compounds                  | [composition.md](composition.md) → then specs `patterns`/`usage`/`props`                     |
-| Layout / density / Stack·Grid·Masonry                           | [layout.md](layout.md); prop names in units                                                  |
+| Layout / density / Stack·Grid·Masonry / prefer-`safe` align     | [layout.md](layout.md); prop names in units                                                  |
 | Mobile-first / `@media` / `useBreakpoints` / RTL                | [responsive.md](responsive.md) → specs `breakpoints` + `direction-provider` units            |
 | Props, `--vui-*`, elevation, motion **engine**                  | [styling.md](styling.md)                                                                     |
 | Readable text measure / leading / `wrap` / `whiteSpace` / align | [typography.md](typography.md) → Text / Title / Prose / plain HTML                           |

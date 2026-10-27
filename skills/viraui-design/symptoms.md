@@ -22,6 +22,7 @@ These cues used to live in the hub `description` (≤1024 discovery budget). The
 | Raw HTML `div`/`header` + `display:flex` / `display:grid` / CSS columns      | [layout.md](layout.md) — Stack / Grid / Masonry                                                               |
 | CSS / Tailwind `gap` / `padding` on Stack / Surface / Grid / Masonry / Bleed | [layout.md](layout.md) — public spacing props                                                                 |
 | `style` / CSS `paddingBlock*` / `paddingInline*` / one-side padding          | [layout.md](layout.md) — `hPadding` / `vPadding` `[start, end]` tuples                                        |
+| `style` / CSS `justify-content` / `align-items` / `safe center` on Stack     | [layout.md](layout.md) — `hAlign`/`vAlign` with prefer-`safe` content-position                                |
 | `width:100%` / `w-full` / size-fill `className` on Button or other controls  | [layout.md](layout.md) — Stack `fullWidth` / `expandChildren` or control `fullWidth`                          |
 | `height:100%` / `block-size:100%` on panels / Stack children                 | [layout.md](layout.md) — Stack `fullHeight` + `expandChildren` + stretch                                      |
 | CSS module / Tailwind first “to match the mock” on a Vira root               | [styling.md](styling.md) — props + `usage` before CSS                                                         |

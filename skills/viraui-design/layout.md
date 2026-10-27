@@ -71,18 +71,52 @@ Need inset on only one logical side?
 ```tsx
 {/* BAD — reinvented block-end padding as inline style */}
 <Stack
-  hAlign="center"
+  hAlign="safe center"
   hPadding="l"
   style={{ position: 'absolute', insetInline: 0, bottom: 0, zIndex: 2, paddingBlockEnd: '1rem' }}
 >
 
 {/* GOOD — tuple owns the inset; style only for true positioning chrome */}
 <Stack
-  hAlign="center"
+  hAlign="safe center"
   hPadding="l"
   vPadding={[0, 'l']}
   style={{ position: 'absolute', insetInline: 0, bottom: 0, zIndex: 2 }}
 >
+```
+
+## Alignment (`hAlign` / `vAlign`) — prefer `safe` (required)
+
+`hAlign` / `vAlign` accept full CSS `justify-content` / `align-items` values (which property maps depends on `direction`) — including overflow-position keywords (`safe` / `unsafe`). Confirm in stack `props.xml`.
+
+**Hard rule:** never invent `style` / CSS module / Tailwind for `justify-content` / `align-items` / `place-content` on a Stack when `hAlign`/`vAlign` cover it — including solely to write `safe center`.
+
+**Default preference:** content-position values that can overflow → prefix **`safe`**.
+
+| Goal                    | Prefer                                                        | Avoid                                                      |
+| ----------------------- | ------------------------------------------------------------- | ---------------------------------------------------------- |
+| Center on an axis       | `hAlign="safe center"` / `vAlign="safe center"`               | bare `center`; `style={{ justifyContent: 'safe center' }}` |
+| End / bottom / trailing | `safe end`                                                    | bare `end` + custom CSS                                    |
+| Start (explicit)        | `safe start` or `start`                                       | CSS `align-items`/`justify-content`                        |
+| Cross-axis fill         | `stretch` (no `safe`)                                         | —                                                          |
+| Main-axis distribution  | `space-between` / `space-around` / `space-evenly` (no `safe`) | —                                                          |
+| Browser / unset         | `initial`                                                     | —                                                          |
+
+```text
+Need Stack alignment?
+  content-position (center / end / start / flex-*)?
+    yes → hAlign/vAlign with `safe …` (e.g. safe center, safe end)
+  stretch or space-* or initial?
+    yes → bare token — do not invent `safe stretch` / `safe space-between`
+→ never style={{ justifyContent / alignItems: 'safe center' }} (or CSS module) for that job
+```
+
+```tsx
+{/* BAD — reinvented safe alignment as inline style */}
+<Stack direction="row" style={{ justifyContent: 'safe center', alignItems: 'safe center' }}>
+
+{/* GOOD — props own overflow-safe alignment */}
+<Stack direction="row" hAlign="safe center" vAlign="safe center" columnGap="m">
 ```
 
 ## Fill / stretch / full-width (required)
@@ -133,7 +167,7 @@ Need something to fill parent inline size or share flex space?
        One child grows, siblings stay content-sized? → expandChildren + data-grow="false" on siblings
          (or data-grow="true" on the one child — attributes.xml)
        Column of stretch actions (full-bleed CTAs)? → fullWidth Stack; cross-axis stretch
-         (default hAlign initial/normal ≈ stretch). Do not fight with hAlign="center" then CSS-width children.
+         (default hAlign initial/normal ≈ stretch). Do not fight with hAlign="safe center" then CSS-width children.
        Fixed-size children (IconButton, chips of intrinsic size)? → Stack for gap/align only.
          Leave children content-sized. No width CSS. expandChildren will not (and must not) reshape them.
   3. Else documented --vui-* / minimal CSS — rare. Still never width/inline-size/height/block-size on the Vira root.
@@ -219,7 +253,7 @@ Need long-form heading/block rhythm (article, docs copy)?
   <Stack
     direction="row"
     hAlign="space-between"
-    vAlign="center"
+    vAlign="safe center"
     columnGap="m"
     hPadding="m"
     vPadding="m"
@@ -256,6 +290,7 @@ CSS module on `styles.Shell` may set `min-block-size` / scroll — **not** `disp
 - Bare multi-child layout roots with no spacing props.
 - CSS `gap`/`padding` on Vira layout roots instead of public props.
 - `style` / CSS `paddingBlock*` / `paddingInline*` / side paddings on Stack/Surface/Grid/… when `vPadding`/`hPadding` tuples cover one-sided inset (`[0, 'l']`, `['l', 0]`, …).
+- Bare `center` / `end` on `hAlign`/`vAlign` when `safe center` / `safe end` is the better default; inventing `style`/`justifyContent`/`alignItems` solely for `safe …`.
 - **Any** `width` / `height` / `inline-size` / `block-size: 100%` / `w-full` / size-fill `className` on Stack or Vira controls — including when it would do nothing (square `IconButton`). Use Stack `fullWidth` / `fullHeight` / `expandChildren` + stretch align (Stack `patterns.xml`) or the control’s own `fullWidth`.
 - Using `expandChildren` when only the Stack root must fill parent — that is `fullWidth` / `fullHeight`.
 - Reaching for `height: 100%` on row/column panel children instead of the both-axes recipes above.

@@ -18,6 +18,8 @@
 | “Button / IconButton needs width:100% / inline-size class”   | **Never** — Stack `fullWidth` / `expandChildren` or control `fullWidth`; fixed-size controls stay content-sized — [layout.md](layout.md) |
 | “Panels need height:100% / block-size:100% CSS”              | **Never** — Stack `fullHeight` + `expandChildren` + stretch align (Stack `patterns.xml`) — [layout.md](layout.md)                        |
 | “Need bottom padding — style paddingBlockEnd”                | **Never** — `vPadding={[0, 'l']}` / `hPadding` tuples on Stack/Surface/Grid — [layout.md](layout.md)                                     |
+| “Need safe center — style justifyContent/alignItems”         | **Never** — Stack `hAlign`/`vAlign` (`safe center` / `safe end`); prefer `safe` on content-position — [layout.md](layout.md)             |
+| “Bare center is fine — skip safe”                            | Prefer `safe center` / `safe end` for content-position; keep `stretch` / `space-*` bare — [layout.md](layout.md)                         |
 | “Bare Stack/Grid/Surface is omit-defaults”                   | Unset gap/padding = 0 — [layout.md](layout.md)                                                                                           |
 | “Plain `div`/`header` + display:flex”                        | Flex framing = `Stack`; tag via `render`                                                                                                 |
 | “CSS grid / columns instead of Grid/Masonry”                 | Tracks → `Grid`; ragged pack → `Masonry`                                                                                                 |

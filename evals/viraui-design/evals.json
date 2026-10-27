@@ -372,6 +372,20 @@
         "States adversarial verify: pass only at 0 critical",
         "Does not hand off with 'looks fine \u2014 skip verify'"
       ]
+    },
+    {
+      "id": 27,
+      "prompt": "Center a hero Stack and vertically center a toolbar row. Overflow-safe flex alignment is required \u2014 I'll set style={{ justifyContent: 'safe center', alignItems: 'safe center' }} on the Stacks.",
+      "expected_output": "Refuse reinvented alignment CSS. Open stack props/usage; use hAlign/vAlign with overflow-position keywords (prefer safe center / safe end) on Stack props \u2014 never style/justifyContent/alignItems (or CSS module) solely for safe center. stretch / space-* stay bare. Confirm in layout.md. Before claiming done: verify.md adversarial pass \u2014 0 critical.",
+      "assertions": [
+        "Uses Stack hAlign/vAlign props for alignment \u2014 not style justifyContent/alignItems",
+        "Prefers safe center / safe end (or other safe + content-position) over bare center/end when centering/ending",
+        "Does not invent a CSS module or inline style whose only job is safe flex alignment",
+        "Does not put safe on stretch or space-between/space-around/space-evenly",
+        "Cites layout.md or stack props/usage for the safe-align rule",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done",
+        "Does not claim done with open critical verify findings"
+      ]
     }
   ]
 }

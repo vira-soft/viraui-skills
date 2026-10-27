@@ -42,7 +42,8 @@
     "Agents treat Title size as the heading tag or skip h* levels for styling; leave dates/results on default Text span instead of time/output render hosts",
     "Agents invent list-style / ::marker / ul-ol padding CSS (or table row borders / table-layout) because preflight 'looks unset' \u2014 instead of keeping bare lists and documented data-layout-fixed / data-table-separators",
     "Agents ship full-bleed UI paragraphs / skip lineHeight+maxWidth / invent CSS text-wrap instead of wrap (default pretty; balance when even rag) / confuse wrap with whiteSpace \u2014 invent CSS line-height or max-width instead of Text/Title/Prose/Stack props (typography.md)",
-    "Agents reuse one fixed reading-column width (e.g. always 65\u201375ch) for every Text/Title size instead of scaling measure with size (smaller \u2192 narrower)"
+    "Agents reuse one fixed reading-column width (e.g. always 65\u201375ch) for every Text/Title size instead of scaling measure with size (smaller \u2192 narrower)",
+    "Agents invent style/CSS justifyContent/alignItems (including solely for safe center) on Stack instead of hAlign/vAlign, or ship bare center/end when safe center/safe end is the preferred content-position default"
   ],
   "queries": [
     {

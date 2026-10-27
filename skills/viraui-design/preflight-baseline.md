@@ -21,18 +21,18 @@ Skill table below = orientation only. Confirm ownership in those units.
 
 ## Already owned (do not reinvent)
 
-| Surface                         | Preflight covers (summary)                                   | Prefer instead                                       |
-| ------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------- |
-| `p`, `small`, `strong`/`b`, `s` | Body size/leading, weight, strikethrough tone                | `Text` props when in Vira copy; bare `p` OK in prose |
+| Surface                         | Preflight covers (summary)                                                                         | Prefer instead                                       |
+| ------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `p`, `small`, `strong`/`b`, `s` | Body size/leading, weight, strikethrough tone                                                      | `Text` props when in Vira copy; bare `p` OK in prose |
 | `a:any-link`                    | Interactive color + always-visible underline (`--global-link-decoration`; hover/focus offset only) | Keep for prose; chrome → `data-no-link-style`        |
-| `ul` / `ol` / `li`              | Padding, muted `::marker` (`ol` tabular-nums)                | Bare lists; Stack `render={<ul/>}` for flex frames   |
-| Nested lists                    | `font-size: initial` so parent list does not shrink children | No extra nested-list size CSS                        |
-| `code` / `kbd` / `abbr`         | Inline pill / dashed underline; `pre code` drops code shadow | Bare tags; no hand-rolled pill chrome                |
-| `mark` / `del` / `ins`          | Highlight-tinted chips                                       | Bare tags                                            |
-| `dt` / `dd`                     | Semibold term; zero dd margin/padding                        | Bare definition lists                                |
-| `img` / `svg`                   | Block/full img; svg without `fill` → `currentcolor`          | No default black-fill SVG hacks                      |
-| `button` / `fieldset`           | Unstyled baseline (Vira controls re-skin)                    | Vira `Button` / form compounds — not raw restyles    |
-| `table`                         | Collapse, full width, cell padding, thead hairline           | `data-layout-fixed` / `data-table-separators`        |
+| `ul` / `ol` / `li`              | Padding, muted `::marker` (`ol` tabular-nums)                                                      | Bare lists; Stack `render={<ul/>}` for flex frames   |
+| Nested lists                    | `font-size: initial` so parent list does not shrink children                                       | No extra nested-list size CSS                        |
+| `code` / `kbd` / `abbr`         | Inline pill / dashed underline; `pre code` drops code shadow                                       | Bare tags; no hand-rolled pill chrome                |
+| `mark` / `del` / `ins`          | Highlight-tinted chips                                                                             | Bare tags                                            |
+| `dt` / `dd`                     | Semibold term; zero dd margin/padding                                                              | Bare definition lists                                |
+| `img` / `svg`                   | Block/full img; svg without `fill` → `currentcolor`                                                | No default black-fill SVG hacks                      |
+| `button` / `fieldset`           | Unstyled baseline (Vira controls re-skin)                                                          | Vira `Button` / form compounds — not raw restyles    |
+| `table`                         | Collapse, full width, cell padding, thead hairline                                                 | `data-layout-fixed` / `data-table-separators`        |
 
 Headings (`h1`–`h6`) are **not** preflight-typed — use `Title` + `render={<h*/>}` ([accessibility.md](accessibility.md)).
 
