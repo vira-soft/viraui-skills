@@ -13,7 +13,7 @@ description: >-
 license: MIT
 metadata:
   author: Vira Software
-  version: '2026.10.27'
+  version: '2026.10.28'
 ---
 
 # viraui-design
@@ -93,7 +93,7 @@ Do **not** `ls` / `rg` / `grep` `dist/components/**` or `*.d.ts` trees to discov
 
 1. **Compose with ViraUI** — public parts + props from units. Reshape with custom CSS **only when the consumer expressly asks**.
 2. Import from `@viraui/react`. Icon slots take any `ReactNode`.
-3. Index-first units; omit equals-default props. Base UI: follow `meta` `base_ui` after Vira props.
+3. Index-first units; omit equals-default props — **including color**: a part / `variant` / `tone` set to its own default is a bug, not explicitness. Paint only where it carries a meaning — [styling.md](styling.md). Base UI: follow `meta` `base_ui` after Vira props.
 4. **Props before CSS** — Step 0. No exceptions for “I already know Button.”
 5. Layout → [layout.md](layout.md). Responsive/RTL → [responsive.md](responsive.md). Visual ladder → [styling.md](styling.md). Measure → [typography.md](typography.md).
 6. Icon-only: icon slots + accessible name — never `children` on `IconButton` / `IconButtonLink` / `ToggleButton`. Omit glyph `size` / width / height — [icons.md](icons.md).

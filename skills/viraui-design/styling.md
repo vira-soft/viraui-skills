@@ -48,6 +48,20 @@ Fluid type: Text locks size by default (`fluid` false); pass `fluid` for viewpor
 
 Layout roots first → [layout.md](layout.md). Then layout/visual props from units. Motion **tokens** → **viraui-motion**. Motion **implementation** → prefer modern CSS below before JS/React.
 
+## Paint: defaults first
+
+The theme is the design. Every Vira surface ships a resolved default paint; **omitting the color prop is a complete composition, not a placeholder.** Pass color only when it carries meaning the surface cannot show otherwise.
+
+| Job                       | Do                                                                                   | Don't                                                                                                  |
+| ------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| Plain reading / chrome    | omit color props entirely                                                            | restate the default (`color="var(--global-foreground)"` on a part whose default is already foreground) |
+| Status / severity / bands | per-zone or per-segment token (`--highlight-*`), plus the arc that follows them      | color every part up front "to match the mock" or "to be safe"                                          |
+| One accent for hierarchy  | the surface's own prop (`Text tone`, `Meter` / `Chip` `variant`, `IconMeter` accent) | raw `--highlight-*` when a prop already names the semantics                                            |
+
+Restating a documented default is the quiet failure: it changes nothing on screen, and it pins that part to a literal token so theme changes stop reaching it. Treat "set color so it's explicit" as a bug, same as passing any other equals-default prop (`discovery.md` → omit equals-default props).
+
+Applies per component family: `Gauge` parts (`color`, `tailColor`, `dimColor`, `haloColor`, `zones[].color`), `Meter` / `Chip` `variant`, `IconMeter` accent, `Text` `tone`. Confirm the default in that surface's `props.xml` before adding paint.
+
 ## Modern CSS motion (prefer over JS)
 
 Default: enter/exit, scroll reveal, stagger, size morph, and custom anchored chrome in **CSS**. JS/TS/React (`IntersectionObserver`, rAF, Framer/GSAP, index→`style` delays, `getBoundingClientRect` pinning) only when CSS cannot express the behavior.
@@ -168,6 +182,7 @@ Do not set `z-index` above `4` unless extremely necessary. In-tree exception: th
 - `style` / CSS `paddingBlockEnd` (etc.) on Stack/Surface/Grid when `vPadding={[0, 'l']}` / `hPadding` tuples cover it.
 - `style` / CSS `justify-content` / `align-items` / `safe center` on Stack when `hAlign`/`vAlign` cover it — prefer `safe center` / `safe end` ([layout.md](layout.md)).
 - Inline gap/padding/radius/color/sizing before checking props.
+- Part color set to its own default (`color="var(--global-foreground)"` on Gauge ticks/text, `color="var(--global-primary)"` on `GaugeArc`, `variant="primary"` on a `Meter` that already defaults to it) — paint only for meaning — [Paint: defaults first](#paint-defaults-first).
 - Body copy via raw `--global-*` / literal `color` when `Text tone` covers it.
 - `list-style` / marker / ul-ol padding, link underline, or inline `code`/`kbd`/`mark` chrome when preflight already owns it — [preflight-baseline.md](preflight-baseline.md).
 - `Surface elevation={…}` or hand-rolled `box-shadow` instead of `Elevator`.

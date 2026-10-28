@@ -29,7 +29,7 @@ Depth → [discovery.md](discovery.md).
 
 ### API hygiene
 
-- [ ] Every equals-default prop **omitted**.
+- [ ] Every equals-default prop **omitted** — including **color**: no part / `variant` / `tone` / accent set to the value it already defaults to. Paint appears only where it carries a meaning (zone, severity, status) — [styling.md](styling.md).
 - [ ] Icon-only controls use icon slots + accessible name — never `children` on `IconButton` / `IconButtonLink` / `ToggleButton`.
 - [ ] Icons in slots omit `size` / `width` / `height` unless expressly overriding the host/library default ([icons.md](icons.md)).
 - [ ] Imports from `@viraui/react` root (icons: any `ReactNode` in slots — [icons.md](icons.md)).

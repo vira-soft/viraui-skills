@@ -9,6 +9,7 @@
 | “rg/ls dist/components or *.d.ts first”                      | Specs index + units first — FORBIDDEN shell-parse                                                                                        |
 | “Story shows this prop — ship it”                            | Specs units + source own API                                                                                                             |
 | “Default prop for clarity”                                   | Omit documented defaults                                                                                                                 |
+| “Set `color` on every part so it’s explicit”                 | Restating a default changes nothing and pins it — omit; paint only for meaning — [styling.md](styling.md)                                |
 | “CSS letter-spacing / text-transform on Text”                | `tracking` / `transform` props — open `props.xml`                                                                                        |
 | “Full-bleed UI paragraph — CSS line-height / max-width”      | Measure ~10–12 words **scaled to size** + `lineHeight` / `maxWidth` / `wrap` — [typography.md](typography.md)                            |
 | “Lists need list-style / custom bullets — preflight bare”    | Preflight already styles `ul`/`ol` — [preflight-baseline.md](preflight-baseline.md) / `modules.xml`                                      |

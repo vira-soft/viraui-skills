@@ -386,6 +386,20 @@
         "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done",
         "Does not claim done with open critical verify findings"
       ]
+    },
+    {
+      "id": 28,
+      "prompt": "Build a battery gauge with @viraui/react Gauge: track, arc, ticks, value and a label. No color or severity requirement was given.",
+      "expected_output": "Compose parts on their default paint \u2014 omit color entirely (props.xml defaults: Track contrast, Arc primary, text/ticks/needle/hub foreground). Do not restate a part's own default as an explicit color prop, and do not color every part up front. Paint only where it carries meaning (zones / severity / zoneColor). Before claiming done: verify.md adversarial pass \u2014 0 critical.",
+      "assertions": [
+        "Omits part color props on the default composition instead of setting them",
+        "Does not pass color=\"var(--global-foreground)\" (or the same token) to a part whose documented default is already foreground",
+        "Does not set GaugeArc color=\"var(--global-primary)\" when no zone/severity meaning was requested",
+        "Opens gauge props.xml / usage.xml before choosing colors and cites documented defaults instead of inventing them",
+        "If paint is added, ties it to a stated meaning (zone bands, zoneColor, status) rather than coloring every part",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done",
+        "Does not claim done with open critical verify findings"
+      ]
     }
   ]
 }
