@@ -4,7 +4,7 @@
 
 Canonical **shapes** only. Complete props/defaults → specs `components/<id>/` (`meta` → `props` → `usage` → `patterns`) + types verify. Prefer high-level parts (`Sheet`, `Popup`, `Banner`) over reimplementing Portal/Positioner.
 
-Lower-risk compounds (`Accordion`, `Disclosure`, `Grid`, `Masonry`, `Skeleton`, `Tabs`, `Tooltip`): follow that surface’s units (`Tooltip.Provider` for shared delay; `Skeleton.Overlay` for child-sized placeholders; `Disclosure` = `Trigger` + `Panel` for one section — not Accordion). Overlay enter/exit motion → **viraui-motion**.
+Lower-risk compounds (`Accordion`, `Disclosure`, `Grid`, `Masonry`, `Skeleton`, `Tabs`, `Tooltip`, `Gauge`): follow that surface’s units (`Tooltip.Provider` for shared delay; `Skeleton.Overlay` for child-sized placeholders; `Disclosure` = `Trigger` + `Panel` for one section — not Accordion; `Gauge` = round domain root + SVG parts, optional `GaugeControl` wrapper — linear ranges stay on `Slider`). Overlay enter/exit motion → **viraui-motion**.
 
 `BreakpointsProvider` / `DirectionProvider` are **opt-in**, not part of the Dialog/Tooltip/Toast overlay shell. Full discipline (mobile-first map, RTL + `dir` on `html`, Stack flex vs LTR/RTL) → [responsive.md](responsive.md) → specs `breakpoints` / `direction-provider` units.
 

@@ -37,6 +37,8 @@ Base: `https://www.w3.org/WAI/ARIA/apg/patterns/<id>/`
 | `OTPField` | n/a (Base UI OTP labeling) | — |
 | `NumberField` | n/a (Base UI Number Field labeling) | — |
 | `Meter` | Meter | https://www.w3.org/WAI/ARIA/apg/patterns/meter/ |
+| `Gauge` | Meter | https://www.w3.org/WAI/ARIA/apg/patterns/meter/ |
+| `GaugeControl` | Slider | https://www.w3.org/WAI/ARIA/apg/patterns/slider/ |
 | `Popover` | Disclosure | https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/ |
 | `Radio` / `RadioGroup` | Radio Group | https://www.w3.org/WAI/ARIA/apg/patterns/radio/ |
 | `Select` | Combobox | https://www.w3.org/WAI/ARIA/apg/patterns/combobox/ |
