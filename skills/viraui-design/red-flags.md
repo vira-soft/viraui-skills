@@ -22,6 +22,7 @@
 | “Need safe center — style justifyContent/alignItems”         | **Never** — Stack `hAlign`/`vAlign` (`safe center` / `safe end`); prefer `safe` on content-position — [layout.md](layout.md)             |
 | “Bare center is fine — skip safe”                            | Prefer `safe center` / `safe end` for content-position; keep `stretch` / `space-*` bare — [layout.md](layout.md)                         |
 | “Bare Stack/Grid/Surface is omit-defaults”                   | Unset gap/padding = 0 — [layout.md](layout.md)                                                                                           |
+| “Dense UI → use `xs`/`2xs` gaps and padding”                 | Container floor is `m`; `s` = tight cluster, `xs`/`2xs` = optical micro pair only — [layout.md](layout.md)                               |
 | “Plain `div`/`header` + display:flex”                        | Flex framing = `Stack`; tag via `render`                                                                                                 |
 | “CSS grid / columns instead of Grid/Masonry”                 | Tracks → `Grid`; ragged pack → `Masonry`                                                                                                 |
 | “Desktop-first max-width media”                              | Mobile-first — [responsive.md](responsive.md)                                                                                            |

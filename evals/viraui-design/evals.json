@@ -347,6 +347,20 @@
       ]
     },
     {
+      "id": 29,
+      "prompt": "Dashboard page with @viraui/react: page shell Stack, two Surface cards (each with Title, description, a few Textfields), and a Grid of stat tiles. Ship the spacing fast.",
+      "expected_output": "Load layout.md density. Scale floor: container gap/padding never below m — page/section rhythm l/xl, panel and field gaps m, card inset m. s only for tight clusters; xs/2xs only optical micro pairs (inline icon↔text, dot↔label), never as container gap/padding. Every layout root gets spacing props; no CSS gap/padding.",
+      "assertions": [
+        "Uses m or larger for gaps between form fields, between cards/tiles, and between page sections",
+        "Uses m or larger for hPadding/vPadding on page shell, Surface cards, and panel roots",
+        "Does not use 2xs or xs as a container rowGap/columnGap/hPadding/vPadding on Stack/Grid/Surface/Masonry",
+        "Allows s only for tight in-row clusters and xs/2xs only for optical micro pairs — not as the general layout gap",
+        "Does not ship a cramped layout with every gap at s or below just because the brief said 'compact'",
+        "Cites layout.md density/scale floor (or hub → layout) for the token choice",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
       "id": 25,
       "prompt": "Build a compact account settings card under time pressure: title, two text fields, save Button. App already uses @viraui/react. Ship JSX fast \u2014 a CSS module for padding/gap/full-width is fine if quicker.",
       "expected_output": "Load viraui-design; open stack/surface/textfield/button units before any CSS. Compose with Stack spacing props + control fullWidth/Stack expandChildren \u2014 no new CSS module or Tailwind visual on Vira roots for gap/padding/width. Compose-time a11y via accessibility.md (labels/names). Before claiming done: Read verify.md and emit the ship report (custom CSS inventory, reinvented props-as-CSS 0, compose a11y, adversarial verify: pass). FAIL if claim done without ship report or if first pass invents CSS for covered props.",

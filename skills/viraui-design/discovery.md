@@ -34,7 +34,7 @@ On disk: `node_modules/@viraui/react/dist/specs/…`. Package export: `@viraui/r
 
 ## Layout discipline
 
-Full rules + examples → [layout.md](layout.md). Summary: density default **medium**; every used layout root gets spacing props; flex→`Stack`, tracks→`Grid`, ragged→`Masonry`; confirm prop names in units.
+Full rules + examples → [layout.md](layout.md). Summary: density default **medium**; container spacing floor is **`m`** (`s` = tight cluster, `xs`/`2xs` = optical micro pair only — never container gap/padding); every used layout root gets spacing props; flex→`Stack`, tracks→`Grid`, ragged→`Masonry`; confirm prop names in units.
 
 ## Imports
 

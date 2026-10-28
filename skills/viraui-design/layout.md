@@ -18,17 +18,37 @@ Compose layout primitives → density clear?
 - Do **not** block every 1-component tweak with a density interview.
 - Do **not** re-ask every nested layout once density is chosen for the task.
 
+### Scale floor (required — read before picking a token)
+
+Theme space scale: `2xs` 2px · `xs` 4px · `s` 8px · `m` 16px · `l` 24px · `xl` 32px · … (confirm in theme / units).
+
+`m` is the baseline. Values below `m` are **exceptions, not defaults**. Picking `xs` / `2xs` for container spacing is the #1 cause of cramped, muddy layouts — whitespace is what makes hierarchy readable.
+
+| Token      | Allowed for                                                                                                                           | Never for                                                       |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `m`        | Baseline container gap, panel/card inset, field-to-field gap, label-to-control                                                        | —                                                               |
+| `l` / `xl` | Page and section rhythm, screen-level padding, airy profiles, hero/empty-state breathing room                                         | dense control rows                                              |
+| `s`        | Tight in-row clusters (icon + label + trailing action), toolbar/sidebar item gaps, one-step nested tightening inside an `m` container | page/section gap, card inset, field-to-field gap                |
+| `xs`       | Optical micro pairs only — glyph↔label inside one control, dot↔caption, stacked meta lines under a title                              | any `Stack`/`Grid`/`Surface`/`Masonry` container gap or padding |
+| `2xs`      | Hairline optical tuning only — chip/tag innards, separator rhythm, 1–2px nudge to align optical centers                               | any container gap/padding; never a layout decision              |
+
+Rules:
+
+1. **Container floor = `m`.** Any gap between sibling blocks (sections, fields, cards, tiles) and any root inset (`hPadding`/`vPadding`, Masonry `gap`) starts at `m`. Go below only when the element is a _controlled cluster_ (`s`) or _optical pair_ (`xs`/`2xs`).
+2. **"Compact" ≠ `small everywhere`.** Compact profiles reduce the _optional_ air — they do not take container spacing under `m`. A dense admin table may use `s` for row gaps; a settings panel still uses `m` between fields.
+3. **Balance, not minimum.** If a screen reads cramped, the fix is one step _up_, never a blanket step down. Check the whole screen: dense middle + airy edges reads broken; aim for consistent rhythm.
+4. **Nested rule.** Inner cluster may sit one step below its container (container `m` → cluster `s`), never two. Container `m` with `xs`/`2xs` children is the cramped pattern to avoid.
+5. **Never invent below-scale values.** No raw `2px`/`0.25rem` for spacing; if `2xs` feels too big, the structure is wrong, not the scale.
+
 ### Density → token recipe
 
-Theme space scale: `'2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | …` (confirm in theme / units).
+| Profile          | Container gaps (`rowGap` / `columnGap` / Masonry `gap`)   | Section gaps | Padding (`hPadding` / `vPadding`) / Bleed `amount` |
+| ---------------- | --------------------------------------------------------- | ------------ | -------------------------------------------------- |
+| compact          | `m` (tight in-row clusters `s`; micro pairs `xs` / `2xs`) | `l`          | `m`                                                |
+| medium (default) | `m` (in-row clusters `s`)                                 | `l` / `xl`   | `m`                                                |
+| airy             | `l` (in-row clusters `m`)                                 | `xl` / `2xl` | `l`                                                |
 
-| Profile          | Typical gaps (`rowGap` / `columnGap` / Masonry `gap`) | Typical padding (`hPadding` / `vPadding`) / Bleed `amount` |
-| ---------------- | ----------------------------------------------------- | ---------------------------------------------------------- |
-| compact          | `s` (tight clusters `xs`)                             | `s`                                                        |
-| medium (default) | `m`                                                   | `m`                                                        |
-| airy             | `l` (section chrome `xl`)                             | `l`                                                        |
-
-Nested: outer section often one step larger than inner cluster; still props-only.
+Nested: outer section often one step larger than inner cluster; still props-only. A profile never pushes container spacing below `m`.
 
 **Required:** on every layout container that owns spacing, set at least one intentional gap and/or padding (or Masonry `gap` / Bleed `amount`) when children need separation or inset. Bare multi-child `Stack` / `Grid` / `Surface` / `Masonry` with no spacing props = violation.
 
@@ -140,7 +160,7 @@ Parent must already be sized (viewport shell, `fullHeight` ancestor, CSS `min-bl
 {
   /* ROW — children expand main (inline) + cross (block) */
 }
-<Stack direction="row" columnGap="s" expandChildren fullHeight vAlign="stretch">
+<Stack direction="row" columnGap="m" expandChildren fullHeight vAlign="stretch">
   <Stack>{/* panel */}</Stack>
   <Stack>{/* panel */}</Stack>
 </Stack>;
@@ -148,7 +168,7 @@ Parent must already be sized (viewport shell, `fullHeight` ancestor, CSS `min-bl
 {
   /* COLUMN — children expand main (block) + cross (inline) */
 }
-<Stack rowGap="s" expandChildren fullWidth fullHeight hAlign="stretch">
+<Stack rowGap="m" expandChildren fullWidth fullHeight hAlign="stretch">
   <Stack>{/* section */}</Stack>
   <Stack>{/* section */}</Stack>
 </Stack>;
@@ -198,7 +218,7 @@ Need something to fill parent inline size or share flex space?
 <Stack direction="row" columnGap="s" fullWidth>
   <IconButton aria-label="…" icon={…} variant="secondary" />  {/* no width className */}
 </Stack>
-<Stack fullWidth rowGap="s">
+<Stack fullWidth rowGap="m">
   <Button type="submit">Continue with Email</Button>  {/* stretch via Stack — no width CSS */}
 </Stack>
 ```
@@ -206,7 +226,7 @@ Need something to fill parent inline size or share flex space?
 ### Example: full-bleed auth actions
 
 ```tsx
-<Stack fullWidth rowGap="s">
+<Stack fullWidth rowGap="m">
   <Button>Continue</Button>
   <Button variant="secondary">Cancel</Button>
 </Stack>
@@ -263,7 +283,7 @@ Need long-form heading/block rhythm (article, docs copy)?
     <Button>Save</Button>
   </Stack>
   <Stack direction="row" columnGap="m" expandChildren render={<main />}>
-    <Stack rowGap="xs" hPadding="s" vPadding="s" render={<nav aria-label="Settings" />}>
+    <Stack rowGap="s" hPadding="m" vPadding="m" render={<nav aria-label="Settings" />}>
       {/* nav links */}
     </Stack>
     <Stack rowGap="l" expandChildren>
@@ -280,7 +300,7 @@ CSS module on `styles.Shell` may set `min-block-size` / scroll — **not** `disp
 ```tsx
 <Stack rowGap="m" hPadding="m" vPadding="m">
   <Surface color={1} radius="m" hPadding="m" vPadding="m">
-    <Stack rowGap="s">{/* fields */}</Stack>
+    <Stack rowGap="m">{/* fields */}</Stack>
   </Surface>
 </Stack>
 ```
@@ -288,6 +308,8 @@ CSS module on `styles.Shell` may set `min-block-size` / scroll — **not** `disp
 ## Gotchas
 
 - Bare multi-child layout roots with no spacing props.
+- **Cramped default:** `xs` / `2xs` (or `s` everywhere) used as container `rowGap`/`columnGap`/`hPadding`/`vPadding`. Container floor is `m`; below is only for tight clusters (`s`) and optical micro pairs (`xs`/`2xs`).
+- Reading "compact" / "dense" as "smallest token everywhere" — compact trims optional air, never container spacing under `m`.
 - CSS `gap`/`padding` on Vira layout roots instead of public props.
 - `style` / CSS `paddingBlock*` / `paddingInline*` / side paddings on Stack/Surface/Grid/… when `vPadding`/`hPadding` tuples cover one-sided inset (`[0, 'l']`, `['l', 0]`, …).
 - Bare `center` / `end` on `hAlign`/`vAlign` when `safe center` / `safe end` is the better default; inventing `style`/`justifyContent`/`alignItems` solely for `safe …`.

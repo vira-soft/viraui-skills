@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Patch
+
+- `viraui-design`: add layout **scale floor** — `m` (16px) is the baseline for container gaps and insets; `s` is for tight in-row clusters, `xs`/`2xs` for optical micro pairs only. Fixes agents shipping cramped layouts with `xs`/`2xs` container spacing. Touches `layout.md` (floor table + rules), `verify.md`, `red-flags.md`, `discovery.md`, hub router row, and evals.
+
 ### Major
 
 - Consumer install is `npx skills add vira-soft/viraui-skills` (GitHub). skills.sh pack URL is no longer documented.

@@ -11,6 +11,7 @@
     "Agents duplicate widget role/aria-* Base UI already emits",
     "Agents skip viraui-motion hub when adding custom hover/overlay CSS",
     "Agents omit gap/padding on layout roots and call it 'omit defaults' (unset = 0 spacing)",
+    "Agents ship cramped layouts by using xs/2xs (or s everywhere) as container gap/padding on Stack/Surface/Grid/Masonry, instead of m as the layout baseline with s for tight clusters and xs/2xs only for optical micro pairs",
     "Agents apply spacing discipline only to Stack/Surface \u2014 skip Grid/Masonry/Bleed spacing props",
     "Agents ship CSS gap/padding on Vira layout roots instead of public layout props",
     "Agents never resolve density (default medium + ask when unclear) under time pressure",
