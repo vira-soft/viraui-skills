@@ -40,7 +40,7 @@ Readable measure / leading / `wrap` (default `pretty`) for wrapping copy (Vira T
 
 ## Links
 
-Every prose anchor gets interactive color + always-visible text-decoration (`--global-link-decoration`, brand default `wavy`; color `currentColor`) unless `data-no-link-style` is set. Hover/focus only increases underline offset. Theme `none` clears the line. Class alone does **not** opt out. Detail → [custom-attributes.md](custom-attributes.md).
+Every prose anchor gets interactive color + always-visible text-decoration (`--global-link-decoration`, brand default `dotted`; color `currentColor`) unless `data-no-link-style` is set. Hover/focus only increases underline offset. Theme `none` clears the line. Class alone does **not** opt out. Detail → [custom-attributes.md](custom-attributes.md).
 
 ## Tables
 
