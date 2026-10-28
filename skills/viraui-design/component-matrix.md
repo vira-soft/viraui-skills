@@ -22,6 +22,7 @@ Ids below are package folder / index ids (co-located exports share a parent fold
 | Corner status-dot overlay | `Badge` | `badge` |
 | In-progress / indeterminate | `LinearProgress` | `linear-progress` |
 | Determinate metric (storage, score) | `Meter` | `meter` |
+| Discrete icon-row score / level | `IconMeter` | `icon-meter` |
 | Composable round dial / polar gauge | `Gauge` (+ parts); interactive via `GaugeControl` (linear bars → `Slider`) | `gauge` |
 | Loading placeholder | `Skeleton` (block or `Skeleton.Overlay`) | `skeleton` |
 | Inline loading indicator | `Spinner` (29 catalog variants + legacy `bars`/`dot-grid`/`dots`; props → `@viraui/react/specs`) | `spinner` |
