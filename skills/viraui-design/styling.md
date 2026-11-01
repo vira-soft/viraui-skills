@@ -119,6 +119,7 @@ Still Vira for Dialog / Popover / Menu / Tooltip / Toast — do not replace thos
 
 - `ButtonLink` / `IconButtonLink` share `--vui-button-*`.
 - Compound hooks sit on the documented part root (e.g. `Dialog.Sheet`).
+- Button family inside a padded `Surface`: prefer `radius="auto"` (concentric `--vui-button-radius-*`) over hand-tuning `--vui-button-radius`. `pill` wins over auto.
 
 ```css
 .primaryAction {
