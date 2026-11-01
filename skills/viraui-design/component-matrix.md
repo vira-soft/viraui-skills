@@ -47,6 +47,7 @@ Ids below are package folder / index ids (co-located exports share a parent fold
 | CSS grid tracks         | `Grid`                                   | `grid`                                                                                                       |
 | Themed panel/card       | `Surface`                                | `surface`                                                                                                    |
 | Break out of padding    | `Bleed`                                  | `bleed`                                                                                                      |
+| Visually hidden, AT-accessible text | `SROnly`                       | `sr-only`                                                                                                    |
 | Column masonry grid     | `Masonry`                                | `masonry`                                                                                                    |
 | Divider                 | `Separator`                              | `separator`                                                                                                  |
 | Shadow/elevation helper | `Elevator`                               | `elevator`                                                                                                   |
