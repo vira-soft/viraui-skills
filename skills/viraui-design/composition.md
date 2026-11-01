@@ -25,6 +25,28 @@ import { Checkbox } from '@viraui/react';
 
 Use `Fieldset` only when a choice group needs shared legend, description, or error. Without shared group copy, `RadioGroup` / `CheckboxGroup` may sit directly in `Field.Root`.
 
+### Custom field labels
+
+`Textfield`, `Textarea`, `Select`, and `Autocomplete` render `label` through internal `FieldLabel` (`Text` `size="s"` `weight="semibold"`). Prefer a string when the label is plain text.
+
+Need a side action, badge, or rich row (e.g. “Forgot password?”)? Pass a ReactNode. Recreate title text that matches the plain label with public `Text` `size="s"` `weight="semibold"`. Extra bits use their own size/tone (link → `size="xs"`). Layout with `Stack` row + `hAlign="space-between"` + cluster gap `s`. Do **not** import `FieldLabel`. No label CSS. Confirm shapes in each surface’s `patterns` / `usage` / `props`.
+
+```tsx
+<Textfield
+  type="password"
+  label={
+    <Stack render={<span />} direction="row" hAlign="space-between" columnGap="s" vAlign="center">
+      <Text size="s" weight="semibold">
+        Password
+      </Text>
+      <Text render={<a href="#forgot" />} size="xs">
+        Forgot password?
+      </Text>
+    </Stack>
+  }
+/>
+```
+
 ## Dialog
 
 Root indent shell is bootstrap — **viraui-setup** [bootstrap.md](../viraui-setup/bootstrap.md) / [frameworks.md](../viraui-setup/frameworks.md). Exact parts → `components/dialog/patterns.xml` + `usage.xml`.
@@ -172,6 +194,7 @@ Both own field and popup chrome. Do not add `Field.Root`. Confirm `Option` / `Gr
 - Invented parts (`Dialog.Body`, `Popover.Arrow`, `showBackdrop`).
 - Double-wrapping Textfield/Select/Autocomplete/OTPField/NumberField in `Field.Root`.
 - Importing `Field` from `@viraui/react`.
+- Importing internal `FieldLabel` or inventing label CSS for rich field labels — use ReactNode `label` + `Text` matching FieldLabel (`s` / `semibold`).
 - Wrapping `Menu` in `Popover`.
 - `ToggleButton` / icon-only controls with `children`.
 - Toast viewport without mapping toasts → `Banner`.

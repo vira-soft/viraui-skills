@@ -20,6 +20,7 @@
 | “Panels need height:100% / block-size:100% CSS”              | **Never** — Stack `fullHeight` + `expandChildren` + stretch align (Stack `patterns.xml`) — [layout.md](layout.md)                        |
 | “Need bottom padding — style paddingBlockEnd”                | **Never** — `vPadding={[0, 'l']}` / `hPadding` tuples on Stack/Surface/Grid — [layout.md](layout.md)                                     |
 | “Need safe center — style justifyContent/alignItems”         | **Never** — Stack `hAlign`/`vAlign` (`safe center` / `safe end`); prefer `safe` on content-position — [layout.md](layout.md)             |
+| “Import FieldLabel / label CSS for forgot-password row”      | ReactNode `label` + `Text` `size="s"` `weight="semibold"` for title — [composition.md](composition.md)                                   |
 | “Bare center is fine — skip safe”                            | Prefer `safe center` / `safe end` for content-position; keep `stretch` / `space-*` bare — [layout.md](layout.md)                         |
 | “Bare Stack/Grid/Surface is omit-defaults”                   | Unset gap/padding = 0 — [layout.md](layout.md)                                                                                           |
 | “Dense UI → use `xs`/`2xs` gaps and padding”                 | Container floor is `m`; `s` = tight cluster, `xs`/`2xs` = optical micro pair only — [layout.md](layout.md)                               |

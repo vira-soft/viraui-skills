@@ -414,6 +414,22 @@
         "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done",
         "Does not claim done with open critical verify findings"
       ]
+    },
+    {
+      "id": 29,
+      "prompt": "Login password Textfield needs a Forgot password? link on the same row as the Password label. Use @viraui/react.",
+      "expected_output": "Load composition.md (via hub). Prefer string label when no extras; here pass ReactNode label \u2014 Stack row space-between with Text size=s weight=semibold for Password (match internal FieldLabel) and Text-as-a size=xs for the link. Open textfield patterns/usage/props. Do not import FieldLabel. No label CSS. Same recipe for Textarea/Select/Autocomplete. Before claiming done: verify.md adversarial pass \u2014 0 critical.",
+      "assertions": [
+        "Loads or cites composition.md (or hub\u2192composition) for custom field labels",
+        "Passes a ReactNode label (not inventing a second label slot or CSS layout on the field root)",
+        "Recreates the title text with Text size=\"s\" weight=\"semibold\" to match FieldLabel",
+        "Uses Text render={<a />} (or equivalent public Text-as-a) for the forgot link \u2014 typically size=\"xs\"",
+        "Does not import FieldLabel from @viraui/react or basic-input",
+        "Does not invent label CSS / className to fake the row",
+        "Opens textfield (or sibling field) specs patterns/usage/props before inventing the pattern",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done",
+        "Does not claim done with open critical verify findings"
+      ]
     }
   ]
 }
