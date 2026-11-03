@@ -434,14 +434,28 @@
     {
       "id": 30,
       "prompt": "Add a simple revenue line chart. App already has ViraUI bootstrap. Prefer design-system look.",
-      "expected_output": "Override via styled prop token strings (stroke/fill/style) on @viraui/charts primitives; consumer props win; no --vui-charts-* layer / ChartRoot theme host; no package LineChart.",
+      "expected_output": "Load charts.md even though user never named @viraui/charts. Open installed @viraui/charts/specs index-first; compose LinePath (+ scales) in app code; override via styled prop token strings; no --vui-charts-* / LineChart product.",
       "assertions": [
-        "Loads or cites charts.md / @viraui/charts/specs (or hub\u2192charts.md)",
+        "Loads or cites charts.md / @viraui/charts/specs (or hub\u2192charts.md) for a generic chart/graph ask",
+        "Opens @viraui/charts/specs index.xml (or dist/specs/index.xml) before inventing chart API",
         "Imports styled primitives from @viraui/charts (e.g. LinePath) \u2014 not a fictional LineChart export",
         "Mentions or installs peer @visx/visx (not a per-package @visx/* peer list)",
         "Overrides via stroke/fill/style props with Vira token strings (e.g. var(--highlight-*))",
         "Does not invent or require a --vui-charts-* CSS hook layer",
         "Does not fork @viraui/charts source for a one-off color"
+      ]
+    },
+    {
+      "id": 41,
+      "prompt": "Visualize monthly sales as a graph on the admin home. App has @viraui/react but package.json has neither @viraui/charts nor @visx/visx.",
+      "expected_output": "Treat as charts task via charts.md. Install @viraui/charts + @visx/visx first (unless consumer named another stack). Then open installed @viraui/charts/specs index → activity-hints → compose pattern. No LineChart product; no monorepo source as authority.",
+      "assertions": [
+        "Recognizes graph / data-viz intent and loads charts.md / hub\u2192charts even without naming @viraui/charts",
+        "Installs @viraui/charts before composing when the package is missing",
+        "Installs @visx/visx as the single visx peer when charts is added",
+        "Opens installed @viraui/charts/specs (index.xml / activity-hints) after install \u2014 not skills encyclopedia as API authority",
+        "Does not use vira-ui monorepo chart source as the consumer API authority",
+        "Does not invent a packaged LineChart / BarChart / AreaChart product"
       ]
     },
     {

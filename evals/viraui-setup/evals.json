@@ -126,6 +126,30 @@
         "Does not invent a fluid/static React prop or data-* on Text/Title",
         "Mentions empty/unset (or brand default) keeps fluid on"
       ]
+    },
+    {
+      "id": 12,
+      "prompt": "Fresh Vite app. Bootstrap ViraUI end-to-end. I have not said anything about charts yet.",
+      "expected_output": "Alongside theme choice, ask early whether the app will use charts / data visualization. Do not auto-install @viraui/charts or @visx/visx until answered. If yes → default install both (unless consumer named another chart stack). If no → skip. Recap table includes a Charts row.",
+      "assertions": [
+        "Asks whether the app will use charts / data viz (or equivalent) during bootstrap — before or with package installs",
+        "Does not install @viraui/charts in the same turn without a charts-intent answer",
+        "Does not install @visx/visx for charts without a charts-intent answer",
+        "When charts intent is yes, default install is @viraui/charts + @visx/visx (not a per-package @visx/* peer list)",
+        "Setup-recap table includes a Charts / data-viz row (installed / skipped / blocked)"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Bootstrap ViraUI. Yes — we will need charts and dashboards with graphs. Use the design-system defaults.",
+      "expected_output": "Install @viraui/charts and peer @visx/visx with the React stack. Point later compose to viraui-design charts.md → @viraui/charts/specs. Do not invent LineChart product or --vui-charts-*. Recap marks Charts installed.",
+      "assertions": [
+        "Installs @viraui/charts",
+        "Installs @visx/visx as the single visx peer (not every @visx/<pkg>)",
+        "Does not invent a packaged LineChart / BarChart product as the setup deliverable",
+        "Routes chart compose to viraui-design / @viraui/charts/specs (or charts.md) rather than treating setup as the API encyclopedia",
+        "Setup-recap shows Charts as installed / done"
+      ]
     }
   ]
 }

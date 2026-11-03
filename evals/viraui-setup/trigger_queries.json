@@ -11,7 +11,10 @@
     "Agents auto-install @viraui/foundation and fontsource packages without asking default Vira theme vs App Studio custom CSS first",
     "Agents finish bootstrap with prose-only dump and no visual setup-recap table of done / skipped / blocked",
     "Agents ignore Tailwind/Bootstrap (or other) preflight/reset when coexisting with ViraUI and keep full framework CSS imports",
-    "Agents drop @viraui/react/preflight.css to keep Tailwind/Bootstrap reset instead of asking and recommending no third-party preflight"
+    "Agents drop @viraui/react/preflight.css to keep Tailwind/Bootstrap reset instead of asking and recommending no third-party preflight",
+    "Agents skip asking whether the app will use charts / data viz during first-time bootstrap",
+    "Agents hear yes for charts but skip installing @viraui/charts + @visx/visx (or invent a per-package @visx/* peer list)",
+    "Agents auto-install @viraui/charts without asking charts intent first"
   ],
   "queries": [
     {
@@ -52,6 +55,18 @@
     },
     {
       "query": "First-time install: @viraui/react peers and bootstrap checklist",
+      "should_trigger": true
+    },
+    {
+      "query": "Bootstrap ViraUI — will we need charts / data viz later?",
+      "should_trigger": true
+    },
+    {
+      "query": "Yes install charts with ViraUI setup — @viraui/charts and @visx/visx",
+      "should_trigger": true
+    },
+    {
+      "query": "Skip charts for now during ViraUI bootstrap",
       "should_trigger": true
     },
     {

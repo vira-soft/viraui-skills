@@ -49,7 +49,11 @@
     "Agents invent package LineChart/BarChart/PieChart/DonutChart instead of composing @viraui/charts primitives in app code",
     "Agents forget @visx/visx peer (or list every @visx/*) when installing @viraui/charts",
     "Agents invent --vui-charts-* / ChartRoot theme layer instead of token strings on styled props",
-    "Agents hard-code chart svg width/height in flex/grid cells instead of ParentSize / useParentSize from @viraui/charts"
+    "Agents hard-code chart svg width/height in flex/grid cells instead of ParentSize / useParentSize from @viraui/charts",
+    "Agents skip charts.md / @viraui/charts/specs when the task is a graph, chart, plot, or data visualization even if the user never names @viraui/charts",
+    "Agents compose charts without installing missing @viraui/charts + @visx/visx first",
+    "Agents discover charts API via rg/ls on dist or *.d.ts before @viraui/charts/specs index.xml",
+    "Agents open vira-ui monorepo chart source or skills encyclopedia instead of installed @viraui/charts/specs"
   ],
   "queries": [
     {
@@ -297,6 +301,26 @@
       "query": "Add hover transition tokens to custom sidebar CSS",
       "should_trigger": false,
       "notes": "Motion ref via viraui-motion after design hub loaded"
+    },
+    {
+      "query": "Add a revenue chart to the analytics dashboard",
+      "should_trigger": true
+    },
+    {
+      "query": "Visualize monthly sales as a graph on the admin home",
+      "should_trigger": true
+    },
+    {
+      "query": "Data visualization for conversion funnel metrics",
+      "should_trigger": true
+    },
+    {
+      "query": "Plot weekly active users over time in this ViraUI app",
+      "should_trigger": true
+    },
+    {
+      "query": "Represent KPI series as a chart beside the stats cards",
+      "should_trigger": true
     },
     {
       "query": "Add a line chart with @viraui/charts LinePath",
