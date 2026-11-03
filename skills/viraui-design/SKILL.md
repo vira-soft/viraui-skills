@@ -3,9 +3,10 @@ name: viraui-design
 description: >-
   Use when building, editing, debugging, or styling any UI in a ViraUI /
   @viraui/react consumer app — forms, overlays, page or shell layout, spacing,
-  typography, icons, responsive or RTL, compounds, or visual polish — even if
-  the user never names Vira, @viraui/react, or this skill. Also use when tempted
-  to invent CSS modules, Tailwind utilities, raw HTML flex/grid, or restyle
+  typography, icons, charts / data viz (@viraui/charts + @visx/visx peer), responsive
+  or RTL, compounds, or visual polish — even if the user never names Vira,
+  @viraui/react, or this skill. Also use when tempted to invent CSS modules,
+  Tailwind utilities, raw HTML flex/grid, packaged LineChart wrappers, or restyle
   controls instead of public Vira props and parts. Load for login/settings/
   dashboard screens, Dialog/Menu/Toast compose, Stack/Surface/Grid/Masonry,
   icon-only controls, missing or unstyled Vira after bootstrap, or props-vs-CSS
@@ -70,6 +71,7 @@ Missing global styles → **viraui-setup** first. Vague intent / anti-pattern ma
 | APG audit / keyboard or SR debug                                    | **viraui-a11y**                                                                                                         |
 | Consumer `data-*` / vibrancy / elevation attrs                      | [custom-attributes.md](custom-attributes.md) → `specs/foundation/attributes.xml`                                        |
 | Icons / glyphs / icon slots (any library)                           | [icons.md](icons.md)                                                                                                    |
+| Charts / data viz / `@viraui/charts` / `@visx/visx` peer / compose LinePath | [charts.md](charts.md) → `@viraui/charts/specs` index-first; no package `LineChart`                                    |
 | Excuses / STOP table                                                | [red-flags.md](red-flags.md)                                                                                            |
 | End of work / before claiming done                                  | [verify.md](verify.md) — ship report required; 0 critical                                                               |
 

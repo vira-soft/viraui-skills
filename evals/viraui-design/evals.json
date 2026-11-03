@@ -349,14 +349,14 @@
     {
       "id": 29,
       "prompt": "Dashboard page with @viraui/react: page shell Stack, two Surface cards (each with Title, description, a few Textfields), and a Grid of stat tiles. Ship the spacing fast.",
-      "expected_output": "Load layout.md density. Scale floor: container gap/padding never below m — page/section rhythm l/xl, panel and field gaps m, card inset m. s only for tight clusters; xs/2xs only optical micro pairs (inline icon↔text, dot↔label), never as container gap/padding. Every layout root gets spacing props; no CSS gap/padding.",
+      "expected_output": "Load layout.md density. Scale floor: container gap/padding never below m \u2014 page/section rhythm l/xl, panel and field gaps m, card inset m. s only for tight clusters; xs/2xs only optical micro pairs (inline icon\u2194text, dot\u2194label), never as container gap/padding. Every layout root gets spacing props; no CSS gap/padding.",
       "assertions": [
         "Uses m or larger for gaps between form fields, between cards/tiles, and between page sections",
         "Uses m or larger for hPadding/vPadding on page shell, Surface cards, and panel roots",
         "Does not use 2xs or xs as a container rowGap/columnGap/hPadding/vPadding on Stack/Grid/Surface/Masonry",
-        "Allows s only for tight in-row clusters and xs/2xs only for optical micro pairs — not as the general layout gap",
+        "Allows s only for tight in-row clusters and xs/2xs only for optical micro pairs \u2014 not as the general layout gap",
         "Does not ship a cramped layout with every gap at s or below just because the brief said 'compact'",
-        "Cites layout.md density/scale floor (or hub → layout) for the token choice",
+        "Cites layout.md density/scale floor (or hub \u2192 layout) for the token choice",
         "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
       ]
     },
@@ -429,6 +429,129 @@
         "Opens textfield (or sibling field) specs patterns/usage/props before inventing the pattern",
         "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done",
         "Does not claim done with open critical verify findings"
+      ]
+    },
+    {
+      "id": 30,
+      "prompt": "Add a simple revenue line chart. App already has ViraUI bootstrap. Prefer design-system look.",
+      "expected_output": "Override via styled prop token strings (stroke/fill/style) on @viraui/charts primitives; consumer props win; no --vui-charts-* layer / ChartRoot theme host; no package LineChart.",
+      "assertions": [
+        "Loads or cites charts.md / @viraui/charts/specs (or hub\u2192charts.md)",
+        "Imports styled primitives from @viraui/charts (e.g. LinePath) \u2014 not a fictional LineChart export",
+        "Mentions or installs peer @visx/visx (not a per-package @visx/* peer list)",
+        "Overrides via stroke/fill/style props with Vira token strings (e.g. var(--highlight-*))",
+        "Does not invent or require a --vui-charts-* CSS hook layer",
+        "Does not fork @viraui/charts source for a one-off color"
+      ]
+    },
+    {
+      "id": 31,
+      "prompt": "Build a weekly bar chart with @viraui/react Stack around it. Also need Grid for layout \u2014 careful with names.",
+      "expected_output": "Alias collisions: Vira Stack/Grid from @viraui/react; visx Stack/Grid from @viraui/charts if used; bar series via Bar + scales from charts; charts.md collision table.",
+      "assertions": [
+        "Uses @viraui/charts for Bar (or Area) composition",
+        "Aliases or separates @viraui/react Stack/Grid from charts visx Stack/Grid when both appear",
+        "Does not treat charts Grid as layout Grid"
+      ]
+    },
+    {
+      "id": 32,
+      "prompt": "Make the chart series acid green and axis magenta without forking the charts package. Keep tooltip defaults.",
+      "expected_output": "Override via styled prop token strings (stroke/fill/style) on @viraui/charts primitives; consumer props win; no --vui-charts-* layer / ChartRoot theme host; no package LineChart.",
+      "assertions": [
+        "Does not fork @viraui/charts source for a one-off color",
+        "Leaves unset surfaces on package defaults (partial override)",
+        "Overrides via stroke/fill/style props with Vira token strings (e.g. var(--highlight-*))",
+        "Does not invent or require a --vui-charts-* CSS hook layer"
+      ]
+    },
+    {
+      "id": 33,
+      "prompt": "The line chart sits in a flexible card and must resize with the parent. Use @viraui/charts.",
+      "expected_output": "Open @viraui/charts/specs (compose-responsive / responsive units) via charts.md router; import ParentSize or useParentSize; size svg from measured width/height; no ResponsiveChart product.",
+      "assertions": [
+        "Loads or cites @viraui/charts/specs (compose-responsive / responsive units) or charts.md \u2192 specs",
+        "Uses ParentSize or useParentSize from @viraui/charts",
+        "Does not hard-code only fixed width/height when the requirement is parent fill",
+        "Does not invent a package ResponsiveChart / LineChart product"
+      ]
+    },
+    {
+      "id": 34,
+      "prompt": "Build a stacked area chart for Mobile vs Desktop monthly traffic with @viraui/charts. Need hover tooltip.",
+      "expected_output": "charts.md \u2192 compose-area-stacked (or compose-area*); AreaStack / AreaClosed + scales from @viraui/charts; no AreaChart product; no --vui-charts-*.",
+      "assertions": [
+        "Loads or cites charts.md / @viraui/charts/specs patterns/compose-area* (or hub\u2192charts.md)",
+        "Uses AreaStack and/or AreaClosed from @viraui/charts \u2014 not a fictional AreaChart export",
+        "Does not invent or require a --vui-charts-* CSS hook layer",
+        "Wires tooltip via charts tooltip helpers (useTooltip / TooltipWithBounds) when hover is required"
+      ]
+    },
+    {
+      "id": 35,
+      "prompt": "Mobile Health-style resting HR line: chart scrolls horizontally, Y axis stays fixed, selected day value shows in a header above the chart (no floating tooltip).",
+      "expected_output": "charts.md Mobile Cartesian + compose-cartesian-mobile / foundation/usage; LinePath + sticky AxisRight sibling + header selection state; sticky touch selection; no MobileChart/TooltipWithBounds for readout; no --vui-charts-*.",
+      "assertions": [
+        "Loads or cites charts.md / @viraui/charts/specs patterns/compose-cartesian-mobile.xml and/or foundation/usage.xml (or hub\u2192charts.md)",
+        "Uses LinePath (and AxisRight) from @viraui/charts \u2014 not a fictional MobileChart export",
+        "Keeps selection readout in a header above the plot \u2014 does not use Tooltip/TooltipWithBounds as the primary mobile readout",
+        "Does not clear touch selection on pointerleave (mouse leave may clear)",
+        "Does not invent or require a --vui-charts-* CSS hook layer"
+      ]
+    },
+    {
+      "id": 36,
+      "prompt": "Phone dashboard needs a daily metric chart with @viraui/charts (could be line, area, or bar). Prefer the mobile-friendly layout.",
+      "expected_output": "Prefer compose-cartesian-mobile for any Cartesian series / foundation usage: header readout, scroll category axis, sticky value axis, less clutter \u2014 not desktop TooltipWithBounds-first.",
+      "assertions": [
+        "Loads or cites compose-cartesian-mobile and/or foundation/usage mobile guidance via charts.md / @viraui/charts/specs",
+        "Applies the same mobile shell to Cartesian charts generally (not line-only)",
+        "Puts primary value readout above the plot (not a floating tooltip as the main mobile UI)",
+        "Does not invent a MobileChart / LineChart / BarChart / AreaChart package product"
+      ]
+    },
+    {
+      "id": 37,
+      "prompt": "Build a browser-share pie chart with @viraui/charts. Hover should show the category and value.",
+      "expected_output": "charts.md → compose-pie; Pie + Group + scaleOrdinal fills from @viraui/charts; useTooltip / TooltipWithBounds; no PieChart product; no --vui-charts-*.",
+      "assertions": [
+        "Loads or cites charts.md / @viraui/charts/specs patterns/compose-pie.xml (or hub→charts.md)",
+        "Uses Pie from @viraui/charts — not a fictional PieChart export",
+        "Does not invent or require a --vui-charts-* CSS hook layer",
+        "Wires tooltip via charts tooltip helpers (useTooltip / TooltipWithBounds) when hover is required"
+      ]
+    },
+    {
+      "id": 38,
+      "prompt": "Need a donut chart with the total visitors in the center, using @viraui/charts.",
+      "expected_output": "charts.md → compose-pie-donut; Pie with innerRadius + center Text; no DonutChart / PieChart product; no --vui-charts-*.",
+      "assertions": [
+        "Loads or cites charts.md / @viraui/charts/specs patterns/compose-pie-donut.xml (or hub→charts.md)",
+        "Uses Pie from @viraui/charts with innerRadius — not a fictional DonutChart export",
+        "Puts total/metric Text in the donut hole (or cites that pattern)",
+        "Does not invent or require a --vui-charts-* CSS hook layer"
+      ]
+    },
+    {
+      "id": 39,
+      "prompt": "Build a monthly visitors radar chart with @viraui/charts. Hover should show the month and series value.",
+      "expected_output": "charts.md → compose-radar; LineRadial webs + Line spokes + series polygon from @viraui/charts; useTooltip / TooltipWithBounds; no RadarChart product; no --vui-charts-*.",
+      "assertions": [
+        "Loads or cites charts.md / @viraui/charts/specs patterns/compose-radar.xml (or hub→charts.md)",
+        "Uses LineRadial / Line / polygon compose from @viraui/charts — not a fictional RadarChart export",
+        "Does not invent or require a --vui-charts-* CSS hook layer",
+        "Wires tooltip via charts tooltip helpers (useTooltip / TooltipWithBounds) when hover is required"
+      ]
+    },
+    {
+      "id": 40,
+      "prompt": "Need a radar chart with circular grid rings (no radial spokes) using @viraui/charts.",
+      "expected_output": "charts.md → compose-radar-grid; concentric Circle rings, omit Line spokes; no RadarChart / PolarGridChart product; no --vui-charts-*.",
+      "assertions": [
+        "Loads or cites charts.md / @viraui/charts/specs patterns/compose-radar-grid.xml (or hub→charts.md)",
+        "Uses Circle (or LineRadial) webs from @viraui/charts — not a fictional RadarChart export",
+        "Omits radial spokes when the request asks for no lines / custom grid",
+        "Does not invent or require a --vui-charts-* CSS hook layer"
       ]
     }
   ]

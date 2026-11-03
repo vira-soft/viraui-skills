@@ -45,7 +45,11 @@
     "Agents ship full-bleed UI paragraphs / skip lineHeight+maxWidth / invent CSS text-wrap instead of wrap (default pretty; balance when even rag) / confuse wrap with whiteSpace \u2014 invent CSS line-height or max-width instead of Text/Title/Prose/Stack props (typography.md)",
     "Agents reuse one fixed reading-column width (e.g. always 65\u201375ch) for every Text/Title size instead of scaling measure with size (smaller \u2192 narrower)",
     "Agents invent style/CSS justifyContent/alignItems (including solely for safe center) on Stack instead of hAlign/vAlign, or ship bare center/end when safe center/safe end is the preferred content-position default",
-    "Agents invent label CSS or import internal FieldLabel when Textfield/Textarea/Select/Autocomplete need a rich label row (forgot-password link, badge) — instead of ReactNode label + Text size=s weight=semibold matching FieldLabel for the title part"
+    "Agents invent label CSS or import internal FieldLabel when Textfield/Textarea/Select/Autocomplete need a rich label row (forgot-password link, badge) \u2014 instead of ReactNode label + Text size=s weight=semibold matching FieldLabel for the title part",
+    "Agents invent package LineChart/BarChart/PieChart/DonutChart instead of composing @viraui/charts primitives in app code",
+    "Agents forget @visx/visx peer (or list every @visx/*) when installing @viraui/charts",
+    "Agents invent --vui-charts-* / ChartRoot theme layer instead of token strings on styled props",
+    "Agents hard-code chart svg width/height in flex/grid cells instead of ParentSize / useParentSize from @viraui/charts"
   ],
   "queries": [
     {
@@ -61,7 +65,7 @@
       "should_trigger": true
     },
     {
-      "query": "Custom field label row on Select — title plus muted Beta badge",
+      "query": "Custom field label row on Select \u2014 title plus muted Beta badge",
       "should_trigger": true
     },
     {
@@ -293,6 +297,54 @@
       "query": "Add hover transition tokens to custom sidebar CSS",
       "should_trigger": false,
       "notes": "Motion ref via viraui-motion after design hub loaded"
+    },
+    {
+      "query": "Add a line chart with @viraui/charts LinePath",
+      "should_trigger": true
+    },
+    {
+      "query": "Compose a bar chart from @visx/visx peer via Vira charts package",
+      "should_trigger": true
+    },
+    {
+      "query": "Override chart series stroke with --vui-charts hooks",
+      "should_trigger": true
+    },
+    {
+      "query": "Ship a packaged LineChart component from @viraui/charts",
+      "should_trigger": true
+    },
+    {
+      "query": "Make the @viraui/charts line chart fill its parent card on resize",
+      "should_trigger": true
+    },
+    {
+      "query": "Compose a stacked area chart with AreaClosed / AreaStack from @viraui/charts",
+      "should_trigger": true
+    },
+    {
+      "query": "Mobile iOS Health style line chart with sticky Y axis and header scrub selection using @viraui/charts",
+      "should_trigger": true
+    },
+    {
+      "query": "Phone dashboard daily metric chart with @viraui/charts — prefer mobile-friendly layout",
+      "should_trigger": true
+    },
+    {
+      "query": "Browser share pie chart with hover tooltip using @viraui/charts",
+      "should_trigger": true
+    },
+    {
+      "query": "Donut chart with center total visitors from @viraui/charts",
+      "should_trigger": true
+    },
+    {
+      "query": "Monthly visitors radar / spider chart with hover tooltip using @viraui/charts",
+      "should_trigger": true
+    },
+    {
+      "query": "Radar chart with circular grid and no radial spokes from @viraui/charts",
+      "should_trigger": true
     }
   ]
 }
