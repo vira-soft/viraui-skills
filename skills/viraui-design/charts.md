@@ -58,7 +58,7 @@ Specs: `foundation/defaults.xml` + domain `props.xml`. Override with the same pr
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | Series stroke/fill                       | `--highlight-blue` (+ translucent fill). `Area`/`AreaClosed`: gradient + top edge by default; stacked = translucent path + `LinePath` |
 | Grid / axis line / ticks                 | `--global-contrast`                                                                                                                   |
-| Axis / legend / annotation chrome labels | muted `oklab(… / 72%)`                                                                                                                |
+| Axis / legend / annotation chrome labels | `--global-muted`                                                                                                                      |
 | Point/series numbers & labels (`Text`)   | `--global-foreground`                                                                                                                 |
 
 Do **not** invent a charts CSS token layer or package composed chart.
