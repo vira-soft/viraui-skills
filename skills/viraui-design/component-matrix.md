@@ -26,6 +26,7 @@ Ids below are package folder / index ids (co-located exports share a parent fold
 | Composable round dial / polar gauge | `Gauge` (+ parts); interactive via `GaugeControl` (linear bars → `Slider`) | `gauge` |
 | Loading placeholder | `Skeleton` (block or `Skeleton.Overlay`) | `skeleton` |
 | Inline loading indicator | `Spinner` (29 catalog variants + legacy `bars`/`dot-grid`/`dots`; props → `@viraui/react/specs`) | `spinner` |
+| Micro two-face size-match morph | `Interpolator` (Button → check / thin progress; compact faces; origins case-by-case; not icon `interpolateIcons`) | `interpolator` |
 
 ## Overlays and notifications
 

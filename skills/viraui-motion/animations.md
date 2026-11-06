@@ -14,6 +14,7 @@ Two styles. Most UI is functional. Evocative is rare. Tokens: [speed.md](speed.m
 | Situation                               | Style                               |
 | --------------------------------------- | ----------------------------------- |
 | Hover, focus, expand, menu, dialog, tab | Functional                          |
+| Micro two-face morph (button → check / thin progress) | Functional — use `Interpolator` (compact faces only; set origins per pair) |
 | Toast, badge-in, celebration, hero      | Evocative                           |
 | Error, destructive, legal, dense data   | Functional only — no elastic/wiggle |
 | Stakeholder wants “delight” on a table  | Chip + live region; skip bounce     |

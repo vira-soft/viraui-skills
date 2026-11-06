@@ -20,6 +20,7 @@ Fetch the pattern URL, not the example-index page. No row = no APG widget patter
 - Prefer this file over [roles.md](roles.md) when the widget is a known Vira component.
 - `LinearProgress`, `Stack`, `Surface`, `Grid`, `Prose`, `SROnly`, and decorative effects have no widget pattern — do not force Accordion/Button/etc. onto them.
 - Decorative effects include `StaticNoise`, `ProgressiveBlur`, `Glow`, `Beam`, `Shimmer`, `Typewriter`, and similar non-widget visuals.
+- `Interpolator` is an effect / composition shell (n/a APG) — inactive face is inert; it does not move focus.
 
 Base: `https://www.w3.org/WAI/ARIA/apg/patterns/<id>/`
 
@@ -52,4 +53,4 @@ Base: `https://www.w3.org/WAI/ARIA/apg/patterns/<id>/`
 | `Fieldset` | Radio Group / Checkbox (group name) | https://www.w3.org/WAI/ARIA/apg/patterns/radio/ |
 | Page landmarks | Landmarks | https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/ |
 
-`LinearProgress` has no APG widget row — determinate vs `value={null}` stays in **viraui-design** [accessibility.md](../viraui-design/accessibility.md). `OTPField` has no APG widget row — first slot uses the field label; later slots use Base UI `Character N of {length}` names (see `components/otp-field/a11y.xml`). `NumberField` has no APG widget row — visible `label` names the control; steppers use Decrement/Increment names; optional label scrub (see `components/number-field/a11y.xml`). Layout (`Stack`, `Surface`, `Grid`, `Prose`, `SROnly`, …), `BreakpointsProvider` / `useBreakpoints`, `DirectionProvider` / `useDirection`, and decorative effects are not APG widgets.
+`LinearProgress` has no APG widget row — determinate vs `value={null}` stays in **viraui-design** [accessibility.md](../viraui-design/accessibility.md). `Interpolator` has no APG widget row — two-face morph shell; faces own their semantics; no auto-focus (`components/interpolator/a11y.xml`). `OTPField` has no APG widget row — first slot uses the field label; later slots use Base UI `Character N of {length}` names (see `components/otp-field/a11y.xml`). `NumberField` has no APG widget row — visible `label` names the control; steppers use Decrement/Increment names; optional label scrub (see `components/number-field/a11y.xml`). Layout (`Stack`, `Surface`, `Grid`, `Prose`, `SROnly`, …), `BreakpointsProvider` / `useBreakpoints`, `DirectionProvider` / `useDirection`, and decorative effects are not APG widgets.
