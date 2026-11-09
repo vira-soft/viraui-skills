@@ -22,7 +22,7 @@ Skill prose is a pointer only — do not invent attributes missing from those un
 | `data-elevation-hover`      | `0`–`4`                          | Hover shadow                                                                                              |
 | `data-elevation-direction`  | `bottom`, `top`, `left`, `right` | Shadow cast direction                                                                                     |
 | `data-grow` / `data-shrink` | `true`, `false`                  | Flex growth/shrink **on that element only**; prefer Stack `expandChildren` first — [layout.md](layout.md) |
-| `data-vibrant`              | presence                         | Theme-gated backdrop vibrancy                                                                             |
+| `data-vibrant`              | presence (any set value)         | Theme-gated backdrop vibrancy; preflight `[data-vibrant]`, not `='true'` only                             |
 | `data-layout-fixed`         | presence on `table`              | `table-layout: fixed` — prefer over hand-rolled CSS                                                       |
 | `data-table-separators`     | presence on `table`              | Hairline between body rows — prefer over hand-rolled `tr` borders                                         |
 
@@ -31,7 +31,7 @@ Skill prose is a pointer only — do not invent attributes missing from those un
 ## React-first patterns
 
 - Elevation on React nodes: prefer `Elevator` / `getElevationProps` — [styling.md](styling.md) + `foundation/elevation.xml`. `Surface` has no `elevation` prop. Raw `data-elevation*` only when those utilities do not fit.
-- `data-vibrant` needs `--effect-vibrancy`. On `Surface`, omit `color` for a page-level frosted shell; pass `color` for a tinted frosted fill. Confirm Surface padding/radius in `components/surface/props.xml`. On `Textfield` / `Textarea` / `Autocomplete` / `Select`, set the attr on the component — chrome fill translucifies to 80% like Surface with color (disabled stays opaque).
+- `data-vibrant` needs `--effect-vibrancy`. React: bare `data-vibrant` or `data-vibrant={true}` both OK (presence); omit when off — do not invent `false`. On `Surface`, omit `color` for a page-level frosted shell; pass `color` for a tinted frosted fill. Confirm Surface padding/radius in `components/surface/props.xml`. On `Textfield` / `Textarea` / `Autocomplete` / `Select`, set the attr on the component — chrome fill translucifies to 80% like Surface with color (disabled stays opaque).
 - `data-elevation*` needs `--effect-shadows` — do not hand-roll `box-shadow`.
 - `data-no-link-style`: every `a:any-link` gets preflight interactive color + always-visible native text-decoration (`--global-link-decoration` / `currentColor`; hover/focus only increases underline offset) unless this attr is present. With the attr the anchor falls back to inherited color and **no decoration** (UA link paint cleared too), so chrome components own their paint. Theme may set `--global-link-decoration: none` to clear the line globally. Class on the anchor does **not** opt out. Prose `Text`/`Title` as `<a>` keep the underline. Chrome roots (`ButtonLink`, `Chip` as link, `Menu.LinkItem`, custom `Surface`/`Stack` as `<a>`) must set the attr (library sets it on shipped chrome links).
 - Tables: preflight already owns collapse, cell padding, thead hairline — [preflight-baseline.md](preflight-baseline.md). Use `data-layout-fixed` / `data-table-separators` instead of inventing `table-layout` or row-border CSS.
