@@ -173,8 +173,9 @@ Do not set `z-index` above `4` unless extremely necessary. In-tree exception: th
 2. Public props that cover the need → use them; omit equals-default. Treat usage **dont** as a hard stop.
 3. Else documented `--vui-*` (correct `shared_contract`).
 4. Else `className` / minimal CSS with theme tokens.
-5. Re-check: no prop reinvented as CSS; no `--__*`, no invented `data-*`, no `z-index` > 4, no hand-rolled shadow.
-6. Motion/reveal/stagger: CSS timeline / sibling / starting-style / interpolate-size / anchor first; JS only if blocked.
+5. **CSS rewrite pass** (hub Step 0): inventory every new declaration → prop/part/`--vui-*`/justify/delete. Mid-draft — do not polish or claim done with replaceable CSS left. Ship-time detail → [verify.md](verify.md).
+6. Re-check: no prop reinvented as CSS; no `--__*`, no invented `data-*`, no `z-index` > 4, no hand-rolled shadow.
+7. Motion/reveal/stagger: CSS timeline / sibling / starting-style / interpolate-size / anchor first; JS only if blocked.
 
 ## Gotchas
 

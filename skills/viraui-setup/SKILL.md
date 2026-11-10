@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: Vira Software
-  version: '2026.11.03'
+  version: '2026.11.09'
 ---
 
 # viraui-setup
@@ -44,7 +44,7 @@ Routine UI compose → **viraui-design**. Chart compose after packages exist →
 | Install packages / first-time bootstrap            | [bootstrap.md](bootstrap.md) + `foundation/bootstrap.xml`, then [theme.md](theme.md)                                                     |
 | Charts / data-viz intent during bootstrap          | [bootstrap.md](bootstrap.md) — **ask** first; yes → `@viraui/charts` + `@visx/visx`; compose → design charts.md → `@viraui/charts/specs` |
 | Install or skip `@viraui/icons` / other icon libs  | [bootstrap.md](bootstrap.md) + bootstrap.xml                                                                                             |
-| Install or refresh agent skills                    | Hub + optional [agents-project-note.md](agents-project-note.md)                                                                          |
+| Install or refresh agent skills                    | Hub + **paste** [agents-project-note.md](agents-project-note.md) into `AGENTS.md` by default                                             |
 | Next.js / Remix / Astro / Vite import sites        | [frameworks.md](frameworks.md)                                                                                                           |
 | Toast / Dialog / Tooltip root providers            | [bootstrap.md](bootstrap.md) + bootstrap.xml `root_providers` + [frameworks.md](frameworks.md)                                           |
 | Default vs App Studio / custom theme               | [theme.md](theme.md) — **ask before** foundation or font installs                                                                        |
@@ -55,7 +55,7 @@ Routine UI compose → **viraui-design**. Chart compose after packages exist →
 
 ## Setup checklist
 
-1. Agent skills: `npx skills add vira-soft/viraui-skills`. Optional [agents-project-note.md](agents-project-note.md).
+1. Agent skills: `npx skills add vira-soft/viraui-skills`. **Paste** [agents-project-note.md](agents-project-note.md) into consumer `AGENTS.md` (default belt — CSS rewrite gate without naming viraui-design).
 2. Install `@viraui/react` + peers (`react`, `react-dom`, `@base-ui/react`). `@viraui/icons` optional.
 3. **Ask charts intent** (early) — yes → default `@viraui/charts` + `@visx/visx`; no → skip; unanswered → blocked. Detail → [bootstrap.md](bootstrap.md). Later compose → design [charts.md](../viraui-design/charts.md) → `@viraui/charts/specs`.
 4. **Ask** default foundation vs App Studio `theme.css` — no foundation/fonts until answered — [theme.md](theme.md).

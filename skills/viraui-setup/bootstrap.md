@@ -66,7 +66,7 @@ Same pack for Cursor, Claude Code, Codex, Gemini, and other Agent Skills hosts �
 
 Do **not** use deprecated npm `@viraui/skills` / tarball install paths.
 
-Optional belt: paste the portable project note into consumer `AGENTS.md` (or host-equivalent) — [agents-project-note.md](agents-project-note.md). Primary enforcement stays in skill descriptions + hubs; do not rely on Cursor-only rules.
+**Default on skills install/refresh:** paste the portable project note into consumer `AGENTS.md` (or host-equivalent) — [agents-project-note.md](agents-project-note.md). Carries the mid-draft CSS rewrite gate when the agent never names viraui-design. Primary enforcement stays in skill descriptions + hubs; do not rely on Cursor-only rules.
 
 ## Packages (summary)
 

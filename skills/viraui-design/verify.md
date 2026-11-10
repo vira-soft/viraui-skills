@@ -8,11 +8,34 @@ Compose-time loops in sibling refs stay in place. This file = **ship-time** gate
 
 ## Hard gate
 
-1. Copy the checklist below into the working notes.
-2. Mark each item against the **final** output (not the plan).
-3. Any fail = critical → fix → re-run this file from the top.
-4. **Emit the ship report** (below) in the **final reply**. Silent mental checklist = fail.
-5. Claim done only at **0 critical** with `adversarial verify: pass`.
+1. Run the **CSS rewrite inventory** (below) on the **final** diff first.
+2. Copy the checklist below into the working notes.
+3. Mark each item against the **final** output (not the plan).
+4. Any fail = critical → fix → re-run this file from the top.
+5. **Emit the ship report** (below) in the **final reply**. Silent mental checklist = fail.
+6. Claim done only at **0 critical** with `adversarial verify: pass`.
+7. Never hand off with “looks fine — swap CSS for props later.”
+
+## CSS rewrite inventory (required)
+
+Before the rest of the checklist: scan **every** new CSS module rule, Tailwind utility, and visual `style` key in the final diff (on or around Vira roots).
+
+For each declaration, write one line:
+
+| Declaration                           | Maps to                          | Action                       |
+| ------------------------------------- | -------------------------------- | ---------------------------- |
+| e.g. `gap: 1rem`                      | Stack `rowGap` / `columnGap`     | **delete** CSS; use prop     |
+| e.g. `letter-spacing`                 | Text `tracking`                  | **delete** CSS; use prop     |
+| e.g. page backdrop blur               | app chrome (system does not own) | keep — justify               |
+| e.g. mock-matched Button radius tweak | consumer **expressly asked**     | keep — cite ask; units first |
+
+Rules:
+
+- Public prop / part / layout pattern covers it → **delete** CSS; apply the prop/part. Leftover = **critical**.
+- Documented `--vui-*` covers it → set the hook; drop reinvented raw CSS.
+- Else keep only as **app chrome** or **explicit consumer ask** — name which in the ship report.
+- Empty inventory (`none`) is fine when no custom CSS was added.
+- Skipping this table (mental skim) = fail — same as skipping the ship report.
 
 ## Checklist
 
@@ -59,6 +82,7 @@ Depth → [responsive.md](responsive.md).
 
 ### Styling / attributes — useless custom CSS = critical
 
+- [ ] **CSS rewrite inventory** completed for the final diff (table above) — not a mental skim.
 - [ ] **No useless custom CSS** on Vira roots: every new module/utility either (a) sets a documented `--vui-*` after units proved the gap, (b) is **app chrome** the system does not own, or (c) is an override the consumer **expressly asked** for. Otherwise delete and use props.
 - [ ] Reinvented props-as-CSS count = **0** (gap/padding/width/height/letter-spacing/text-transform/line-height/max-width/list-style/…).
 - [ ] No invented `--vui-*`; no consumer `--__*`. Confirm `shared_contract` before any public CSS hook.
@@ -117,7 +141,8 @@ Copy and fill. Omit = fail (do not claim done).
 ## Adversarial verify
 
 - specs/units: …
-- custom CSS on Vira roots: none | list + why (app chrome / explicit ask only)
+- CSS rewrite inventory: none | declaration → prop/part/--vui-*/justify/delete (every new CSS/utility/style)
+- custom CSS on Vira roots kept: none | list + why (app chrome / explicit ask only)
 - reinvented props-as-CSS: 0
 - compose a11y (accessibility.md): pass | findings…
 - motion tokens if custom CSS: … / n/a
@@ -127,6 +152,6 @@ Copy and fill. Omit = fail (do not claim done).
 
 ## Pass criteria
 
-- **Pass:** ship report present + `adversarial verify: pass` (0 critical).
+- **Pass:** ship report present (with rewrite inventory) + `adversarial verify: pass` (0 critical).
 - **Fail:** list each critical finding + the fix applied; re-run until pass.
-- **Never** claim done, ship, or hand off with open critical items or without the ship report.
+- **Never** claim done, ship, or hand off with open critical items, replaceable CSS left for a user second pass, or without the ship report.

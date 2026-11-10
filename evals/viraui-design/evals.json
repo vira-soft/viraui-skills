@@ -567,6 +567,21 @@
         "Omits radial spokes when the request asks for no lines / custom grid",
         "Does not invent or require a --vui-charts-* CSS hook layer"
       ]
+    },
+    {
+      "id": 42,
+      "prompt": "Ship a settings card with @viraui/react under time pressure. CSS module already has gap, padding, width:100%, letter-spacing, and text-transform on Stack/Text/Button. Looks fine — hand off now; user can ask later to swap CSS for props if they care.",
+      "expected_output": "Refuse handoff. Mid-draft CSS rewrite pass is mandatory: inventory every new CSS/Tailwind/style declaration; map each to a public prop/part/--vui-* or justify (app chrome / explicit ask only); delete replaceable CSS (gap/padding → Stack props, width → fullWidth/expandChildren, letter-spacing/text-transform → Text tracking/transform). Do not claim done while reinvented props-as-CSS remains. Emit verify.md ship report with CSS rewrite inventory and reinvented props-as-CSS: 0. Leaving a second user pass ('ricontrolla CSS → props') is a fail — even if the user never named viraui-design.",
+      "assertions": [
+        "Refuses claiming done / handing off while custom CSS still reinvents public Vira props or parts",
+        "Runs or cites the mid-draft CSS rewrite pass (inventory every new declaration → prop/part/--vui-*/justify/delete)",
+        "Replaces gap/padding CSS with Stack/Surface layout props from units",
+        "Replaces width:100% / full-width CSS with Stack fullWidth/expandChildren or control fullWidth — not left for a later pass",
+        "Replaces letter-spacing / text-transform CSS with Text tracking / transform props",
+        "Emits verify.md ship report including CSS rewrite inventory (or none) and reinvented props-as-CSS: 0",
+        "Does not defer the rewrite to a user second pass ('check CSS can be props later')",
+        "Applies the gate even when the user never named viraui-design"
+      ]
     }
   ]
 }

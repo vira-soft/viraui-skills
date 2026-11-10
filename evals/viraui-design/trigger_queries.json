@@ -2,6 +2,7 @@
   "skill_name": "viraui-design",
   "red_baseline_failures": [
     "Agents claim UI done without emitting verify.md ship report (CSS inventory + compose a11y + adversarial verify: pass)",
+    "Agents finish a first UI pass with custom CSS that public Vira props/parts already cover, then wait for the user to ask a second pass to swap CSS for props — instead of running the mid-draft CSS rewrite pass and blocking done until reinvented props-as-CSS is 0",
     "Agents skip skill on generic UI intents (settings/login/dashboard) that never name Vira or this skill",
     "Agents skip skill when user never says 'viraui-design' despite @viraui/react UI work",
     "Agents follow description workflow summary instead of reading hub router",
