@@ -37,6 +37,9 @@ These cues used to live in the hub `description` (≤1024 discovery budget). The
 | Stack `direction` for RTL; DirectionProvider without `dir` on `html`         | [responsive.md](responsive.md)                                                                                |
 | Desktop-first `max-width` media / ad-hoc `matchMedia` / JS layout FOUC       | [responsive.md](responsive.md) — CSS first; same em map as `useBreakpoints`                                   |
 | Hover / overlay / press CSS without motion tokens                            | **viraui-motion**                                                                                             |
+| Drag / swipe / sheet feel / mobile PWA gesture lag                           | **viraui-motion** → `gestures.md`                                                                             |
+| Animation jank / dropped frames / `transition: all`                          | **viraui-motion** → `performance.md`                                                                          |
+| Stagger / multi-element entrance feels mechanical or slow                    | **viraui-motion** → `choreography.md`                                                                         |
 | Stress-test / worst-case data / Demo·Worst harness / overflow from data      | **viraui-breakui** (not this skill’s compose path)                                                            |
 | Show N directions / explore variants / prototype picker (explicit ask)       | **viraui-explore** (explicit only — not ambient compose)                                                      |
 | Packaged `LineChart` / `BarChart` / `PieChart` / invent `--vui-charts-*`     | [charts.md](charts.md) → `@viraui/charts/specs`; compose primitives                                           |

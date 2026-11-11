@@ -5,7 +5,9 @@
     "Agents use raw 200ms / ease instead of --duration-* / --easing-* tokens",
     "Agents omit prefers-reduced-motion overrides",
     "Agents load entire motion folder instead of hub + one ref",
-    "Agents skip motion when transition/hover/overlay symptoms match because user never said viraui-design"
+    "Agents skip motion when transition/hover/overlay symptoms match because user never said viraui-design",
+    "Agents reach for Framer/Vaul/Sonner as default for Vira sheets or gestures",
+    "Agents keep 'gentler' motion under prefers-reduced-motion instead of transition/animation none"
   ],
   "queries": [
     {
@@ -13,11 +15,11 @@
       "should_trigger": true
     },
     {
-      "query": "Toast slide-in feels wrong \u2014 which duration token?",
+      "query": "Toast slide-in feels wrong — which duration token?",
       "should_trigger": true
     },
     {
-      "query": "Panel expand animation \u2014 respect prefers-reduced-motion",
+      "query": "Panel expand animation — respect prefers-reduced-motion",
       "should_trigger": true
     },
     {
@@ -25,7 +27,7 @@
       "should_trigger": true
     },
     {
-      "query": "viraui-design composing checkout \u2014 add hover lift on custom promo card",
+      "query": "viraui-design composing checkout — add hover lift on custom promo card",
       "should_trigger": true
     },
     {
@@ -33,11 +35,11 @@
       "should_trigger": true
     },
     {
-      "query": "Debug janky Dialog open \u2014 should I use --easing-entrance?",
+      "query": "Debug janky Dialog open — should I use --easing-entrance?",
       "should_trigger": true
     },
     {
-      "query": "prefers-reduced-motion \u2014 disable my panel expand animation",
+      "query": "prefers-reduced-motion — disable my panel expand animation",
       "should_trigger": true
     },
     {
@@ -57,9 +59,49 @@
       "should_trigger": true
     },
     {
-      "query": "Skip motion on custom CSS \u2014 Vira components already animate",
+      "query": "Skip motion on custom CSS — Vira components already animate",
       "should_trigger": true,
-      "notes": "Anti-pattern scenario \u2014 skill must reject skip"
+      "notes": "Anti-pattern scenario — skill must reject skip"
+    },
+    {
+      "query": "Sheet drag feels disconnected from finger on mobile PWA",
+      "should_trigger": true
+    },
+    {
+      "query": "Swipe to dismiss toast — track vs release timing",
+      "should_trigger": true
+    },
+    {
+      "query": "Animation drops frames on mid-range phone — which properties?",
+      "should_trigger": true
+    },
+    {
+      "query": "Stagger list entrance on settings panel — choreograph Lead vs Support",
+      "should_trigger": true
+    },
+    {
+      "query": "Build a Dialog.Sheet open/close transition from scratch with Vira tokens",
+      "should_trigger": true
+    },
+    {
+      "query": "What's it called when a popover grows from the trigger button?",
+      "should_trigger": true
+    },
+    {
+      "query": "What could be animated on this checkout screen — and what should not?",
+      "should_trigger": true
+    },
+    {
+      "query": "Audit existing motion in the dashboard CSS modules",
+      "should_trigger": true
+    },
+    {
+      "query": "Review this PR's hover and overlay animation changes",
+      "should_trigger": true
+    },
+    {
+      "query": "App feels over-animated — remove motion that shouldn't exist",
+      "should_trigger": true
     },
     {
       "query": "Bootstrap @viraui/react in Remix root",
@@ -84,12 +126,12 @@
     {
       "query": "npm publish @viraui/skills tarball",
       "should_trigger": false,
-      "notes": "Deprecated npm package / release train \u2014 not motion"
+      "notes": "Deprecated npm package / release train — not motion"
     },
     {
       "query": "Stack gap token for form layout",
       "should_trigger": false,
-      "notes": "viraui-design layout \u2014 no motion symptom"
+      "notes": "viraui-design layout — no motion symptom"
     },
     {
       "query": "aria-label on IconButton",
@@ -109,7 +151,17 @@
     {
       "query": "Read all viraui-motion refs before any UI task",
       "should_trigger": false,
-      "notes": "Skill forbids loading whole folder \u2014 hub + one ref only"
+      "notes": "Skill forbids loading whole folder — hub + one ref only"
+    },
+    {
+      "query": "Stress-test form with worst-case names and overflow",
+      "should_trigger": false,
+      "notes": "viraui-breakui"
+    },
+    {
+      "query": "Show three divergent layout variants behind a picker",
+      "should_trigger": false,
+      "notes": "viraui-explore — explicit explore, not motion"
     }
   ]
 }

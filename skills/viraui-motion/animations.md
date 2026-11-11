@@ -58,7 +58,18 @@ Two styles. Most UI is functional. Evocative is rare. Tokens: [speed.md](speed.m
 
 Still pair with non-motion meaning (**viraui-design** [accessibility.md](../viraui-design/accessibility.md)).
 
-Scroll reveal, stagger, discrete enter, size-to-auto, custom anchor chrome → prefer modern CSS over JS — **viraui-design** [styling.md](../viraui-design/styling.md). This file picks **style** (functional vs evocative); styling.md picks **engine**.
+Scroll reveal, stagger, discrete enter, size-to-auto, custom anchor chrome → prefer modern CSS over JS — **viraui-design** [styling.md](../viraui-design/styling.md). This file picks **style** (functional vs evocative); styling.md picks **engine**. Multi-element intent → [choreography.md](choreography.md). End-to-end build → [build.md](build.md).
+
+## Recipe pointers
+
+| Surface                            | Style                       | Next                                            |
+| ---------------------------------- | --------------------------- | ----------------------------------------------- |
+| Menu / Select / Autocomplete popup | Functional                  | Sample above + [speed.md](speed.md)             |
+| Tabs / Accordion indicator         | Functional                  | Sample above                                    |
+| Dialog / Popover `Sheet` travel    | Functional                  | Specs + `--duration-normal` enter, shorter exit |
+| Toast / celebration banner         | Evocative (rare)            | Sample above; pair with non-motion meaning      |
+| Pressable micro feedback           | Functional or light elastic | `--duration-instant`; dense UI → no elastic     |
+| Drag / swipe dismiss               | —                           | [gestures.md](gestures.md)                      |
 
 ## Gotchas
 

@@ -12,14 +12,14 @@ npx skills add vira-soft/viraui-skills
 
 Each skill is a thin `SKILL.md` action hub plus sibling reference markdown files. Skills are **routers**: they teach index-first discovery against the installed package — they do not embed component encyclopedias.
 
-| Skill            | Action      | Purpose                                                                                            |
-| ---------------- | ----------- | -------------------------------------------------------------------------------------------------- |
-| `viraui-setup`   | Setup       | Bootstrap imports, theme CSS, tokens, preflight, `@viraui/foundation` presets, framework entry     |
-| `viraui-design`  | Consume     | Index-first compose via `@viraui/react/specs/*`, layout discipline, consumer `data-*` pointers     |
-| `viraui-motion`  | Motion      | Duration/easing tokens, functional vs evocative motion, reduced-motion — Vira parts and custom CSS |
-| `viraui-a11y`    | APG audit   | Structured APG validation when the user asks for an a11y audit or keyboard/SR debug                |
-| `viraui-breakui` | Data stress | Worst-case realistic data, Demo/Worst harness, edge-case overflow reports — not ordinary compose   |
-| `viraui-explore` | Explore     | Explicit only — divergent Vira-native variants behind a picker; riff/keep promote                  |
+| Skill            | Action      | Purpose                                                                                                                  |
+| ---------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `viraui-setup`   | Setup       | Bootstrap imports, theme CSS, tokens, preflight, `@viraui/foundation` presets, framework entry                           |
+| `viraui-design`  | Consume     | Index-first compose via `@viraui/react/specs/*`, layout discipline, consumer `data-*` pointers                           |
+| `viraui-motion`  | Motion      | Tokens, functional vs evocative, gestures/PWA, choreography, perf, build/audit/review/remove — Vira parts and custom CSS |
+| `viraui-a11y`    | APG audit   | Structured APG validation when the user asks for an a11y audit or keyboard/SR debug                                      |
+| `viraui-breakui` | Data stress | Worst-case realistic data, Demo/Worst harness, edge-case overflow reports — not ordinary compose                         |
+| `viraui-explore` | Explore     | Explicit only — divergent Vira-native variants behind a picker; riff/keep promote                                        |
 
 After your app installs `@viraui/react`, agents read package specs from `node_modules`:
 
