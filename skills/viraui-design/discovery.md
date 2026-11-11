@@ -23,15 +23,15 @@ On disk: `node_modules/@viraui/react/dist/specs/…`. Package export: `@viraui/r
 
 ## Activity playbooks
 
-| Activity                         | Load sequence (stop when sufficient)                                                                                                     |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Choose a component               | `index.xml` (+ hints) → matrix pointer optional → **not** every props.xml                                                                |
-| Implement component Y            | index → `components/<id>/` meta → props → **usage (do/dont)** → if `meta` has `base_ui`, open that Base UI API → a11y/patterns as needed |
-| Compound overlay / form tree     | [composition.md](composition.md) → specs `patterns`/`usage`/`props`                                                                      |
-| Foundation attrs / vibrancy      | index → `foundation/attributes.xml` (+ toggles / elevation as needed)                                                                    |
-| Layout spacing / density         | [layout.md](layout.md) → specs `patterns/compose-layout-first` (+ related patterns) → confirm props in stack/surface/grid/masonry units  |
-| Mobile-first / breakpoints / RTL | [responsive.md](responsive.md) → specs `breakpoints` + `direction-provider` units                                                        |
-| Charts / graph / plot / data viz | [charts.md](charts.md) → install if missing → `@viraui/charts/specs/index.xml` (+ compose patterns) — not `@viraui/react` folders        |
+| Activity                                                   | Load sequence (stop when sufficient)                                                                                                     |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Choose a component                                         | `index.xml` (+ hints) → matrix pointer optional → **not** every props.xml                                                                |
+| Implement component Y                                      | index → `components/<id>/` meta → props → **usage (do/dont)** → if `meta` has `base_ui`, open that Base UI API → a11y/patterns as needed |
+| Compound overlay / form tree                               | [composition.md](composition.md) → specs `patterns`/`usage`/`props`                                                                      |
+| Foundation attrs / vibrancy                                | index → `foundation/attributes.xml` (+ toggles / elevation as needed)                                                                    |
+| Layout spacing / density                                   | [layout.md](layout.md) → specs `patterns/compose-layout-first` (+ related patterns) → confirm props in stack/surface/grid/masonry units  |
+| Mobile-first / `@media` / `@container` / breakpoints / RTL | [responsive.md](responsive.md) → specs `breakpoints` + `direction-provider` units                                                        |
+| Charts / graph / plot / data viz                           | [charts.md](charts.md) → install if missing → `@viraui/charts/specs/index.xml` (+ compose patterns) — not `@viraui/react` folders        |
 
 ## Layout discipline
 

@@ -16,7 +16,7 @@ description: >-
 license: MIT
 metadata:
   author: Vira Software
-  version: '2026.11.09'
+  version: '2026.11.11'
 ---
 
 # viraui-design
@@ -63,7 +63,7 @@ Build from Vira **parts + public props**. Index → units before JSX/CSS. Prefer
 | Intent → component id                                               | [component-matrix.md](component-matrix.md) — confirm in units                        |
 | Forms, Dialog, Popover, Menu, Toast, compounds, custom field labels | [composition.md](composition.md) → specs `patterns`/`usage`/`props`                  |
 | Layout / density / Stack·Grid·Masonry / prefer-`safe`               | [layout.md](layout.md)                                                               |
-| Mobile-first / `@media` / `useBreakpoints` / RTL                    | [responsive.md](responsive.md)                                                       |
+| Mobile-first / `@media` / `@container` / `useBreakpoints` / RTL     | [responsive.md](responsive.md)                                                       |
 | Props, `--vui-*`, elevation, motion **engine**                      | [styling.md](styling.md)                                                             |
 | Text measure / leading / `wrap` / `whiteSpace` / align              | [typography.md](typography.md)                                                       |
 | Bare HTML lists / prose / tables / link chrome                      | [preflight-baseline.md](preflight-baseline.md)                                       |

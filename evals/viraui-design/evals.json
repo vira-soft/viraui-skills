@@ -96,10 +96,10 @@
     },
     {
       "id": 7,
-      "prompt": "Swap two @viraui/react Stack layouts when the viewport is wide. Use the library breakpoint helper.",
-      "expected_output": "Open specs index \u2192 breakpoints units; wrap with BreakpointsProvider in a Client Component; read useBreakpoints from @viraui/react; do not invent token breakpoints or call the hook outside the provider; overlay rootProviders stay Dialog/Tooltip/Toast.",
+      "prompt": "Swap two different @viraui/react Stack trees (different children) when the viewport is wide. Use the library breakpoint helper.",
+      "expected_output": "Different React trees = structure swap \u2192 BreakpointsProvider + useBreakpoints (Client Component). Open specs index \u2192 breakpoints units. Do not invent token breakpoints or call the hook outside the provider; overlay rootProviders stay Dialog/Tooltip/Toast. Pure flex-direction / CSS-only layout would have used @media/@container with the same em map instead \u2014 this prompt needs JS because the trees differ.",
       "assertions": [
-        "Uses BreakpointsProvider and useBreakpoints from @viraui/react",
+        "Uses BreakpointsProvider and useBreakpoints from @viraui/react for different React trees / structure swap",
         "Does not call useBreakpoints outside BreakpointsProvider",
         "Does not add BreakpointsProvider to the mandatory overlay Dialog/Tooltip/Toast shell as required bootstrap",
         "Does not read theme tokens for breakpoint widths",
@@ -186,15 +186,15 @@
     },
     {
       "id": 14,
-      "prompt": "Responsive settings shell with @viraui/react: column Stack on narrow viewports, row Stack with sidebar when wide. Also tighten Surface padding only in CSS above the medium breakpoint. Ship desktop-first max-width media queries with 768px / 1024px.",
-      "expected_output": "Mobile-first always. Markup/prop branching \u2192 BreakpointsProvider + useBreakpoints (specs breakpoints units); base = narrow layout, enhance when flag true. CSS-only padding \u2192 @media (min-width: \u2026) using the same em lengths as the provider map (custom breakpoints prop if set, else hook defaults) \u2014 not invented px / max-width desktop-first. Read responsive.md. Before done: verify.md \u2014 0 critical.",
+      "prompt": "Responsive settings shell with @viraui/react: column on narrow, row with sidebar when wide (same children, flex axis only). Also tighten Surface padding only in CSS above the medium breakpoint. Prefer useBreakpoints for the flex swap. Ship desktop-first max-width media queries with 768px / 1024px.",
+      "expected_output": "Mobile-first always. Layout that can stay one React tree (flex axis, padding, visibility, columns) \u2192 CSS @media / @container first (anti-FOUC) \u2014 refuse useBreakpoints for that flex swap. Lengths MUST match the active BreakpointsProvider / useBreakpoints map (custom breakpoints prop if set, else hook defaults) \u2014 not invented px / max-width desktop-first / theme tokens. useBreakpoints only when structure or Vira props must change. Read responsive.md. Before done: verify.md \u2014 0 critical.",
       "assertions": [
         "Loads or cites responsive.md (or hub \u2192 responsive) for viewport discipline",
-        "Uses BreakpointsProvider + useBreakpoints for Stack flex direction / markup swap \u2014 not window.matchMedia or inventing a parallel breakpoint system",
-        "Composes mobile-first (narrow base, enhance at min-width / true flags) \u2014 refuses desktop-first max-width as the primary pattern",
-        "CSS-only Surface padding media query uses the same em breakpoint lengths as the active useBreakpoints map (provider override or defaults)",
+        "Prefers CSS @media / @container for the flex-axis / layout switch (same tree) \u2014 refuses useBreakpoints / matchMedia for that FOUC-prone layout path",
+        "Composes mobile-first (narrow base, enhance at min-width) \u2014 refuses desktop-first max-width as the primary pattern",
+        "CSS @media / @container lengths match the active useBreakpoints / BreakpointsProvider map (provider override or defaults) \u2014 same em strings",
         "Does not invent 768px/1024px (or other px) breakpoints when the BreakpointsProvider map already defines thresholds",
-        "Opens breakpoints specs units for provider/hook API",
+        "Opens breakpoints specs units when citing the shared map / provider defaults",
         "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
       ]
     },

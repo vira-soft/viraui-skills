@@ -320,4 +320,4 @@ CSS module on `styles.Shell` may set `min-block-size` / scroll — **not** `disp
 - Skipping Grid/Masonry spacing because Stack/Surface already have gaps.
 - `Surface elevation={…}` → wrap with `Elevator` ([styling.md](styling.md)).
 
-Viewport / mobile-first / `useBreakpoints` / aligned `@media` / RTL `DirectionProvider` → [responsive.md](responsive.md). Discovery / index-first → [discovery.md](discovery.md). Visual overrides → [styling.md](styling.md).
+Viewport / mobile-first / `@media` / `@container` (shared em map) / `useBreakpoints` (structure/props) / RTL `DirectionProvider` → [responsive.md](responsive.md). Discovery / index-first → [discovery.md](discovery.md). Visual overrides → [styling.md](styling.md).

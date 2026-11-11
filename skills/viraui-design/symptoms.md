@@ -10,7 +10,7 @@ These cues used to live in the hub `description` (≤1024 discovery budget). The
 - Forms, overlays (Dialog, Popover, Menu, Toast), compounds
 - Page / shell layout, sidebar + main, settings / login / dashboard / checkout screens
 - Spacing, density, typography, icons, elevation, Surface vibrancy
-- Responsive (mobile-first, `useBreakpoints`, `@media`) or RTL
+- Responsive (mobile-first, `@media` / `@container` first, `useBreakpoints` for structure/props) or RTL
 - Public props, `--vui-*`, consumer `data-*`
 - Charts / graphs / plots / data visualization / KPI series / “visualize metrics” / “represent data” — even without naming `@viraui/charts` → [charts.md](charts.md)
 - Missing / unstyled Vira after bootstrap → route **viraui-setup**, do not invent per-component CSS
@@ -35,7 +35,7 @@ These cues used to live in the hub `description` (≤1024 discovery budget). The
 | Icon-only via `children` on IconButton / ToggleButton                        | [icons.md](icons.md) + [accessibility.md](accessibility.md)                                                   |
 | Title `size` as heading level; dates/results as plain Text span              | [accessibility.md](accessibility.md) — `render` hosts (`h*`, `time`/`output`/`p`, …)                          |
 | Stack `direction` for RTL; DirectionProvider without `dir` on `html`         | [responsive.md](responsive.md)                                                                                |
-| Desktop-first `max-width` media / ad-hoc `matchMedia`                        | [responsive.md](responsive.md)                                                                                |
+| Desktop-first `max-width` media / ad-hoc `matchMedia` / JS layout FOUC       | [responsive.md](responsive.md) — CSS first; same em map as `useBreakpoints`                                   |
 | Hover / overlay / press CSS without motion tokens                            | **viraui-motion**                                                                                             |
 | Packaged `LineChart` / `BarChart` / `PieChart` / invent `--vui-charts-*`     | [charts.md](charts.md) → `@viraui/charts/specs`; compose primitives                                           |
 | Chart / graph / data viz without opening charts specs                        | [charts.md](charts.md) — install `@viraui/charts` + `@visx/visx` if missing, then index-first                 |

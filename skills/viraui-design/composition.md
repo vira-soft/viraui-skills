@@ -6,7 +6,7 @@ Canonical **shapes** only. Complete props/defaults → specs `components/<id>/` 
 
 Lower-risk compounds (`Accordion`, `Disclosure`, `Grid`, `Masonry`, `Skeleton`, `Tabs`, `Tooltip`, `Gauge`): follow that surface’s units (`Tooltip.Provider` for shared delay; grouped adjacent triggers → `Tooltip.createHandle` + payload so Content morphs instead of close/reopen flash; `Skeleton.Overlay` for child-sized placeholders; `Disclosure` = `Trigger` + `Panel` for one section — not Accordion; `Gauge` = round domain root + SVG parts, optional `GaugeControl` wrapper — linear ranges stay on `Slider`). Overlay enter/exit motion → **viraui-motion**.
 
-`BreakpointsProvider` / `DirectionProvider` are **opt-in**, not part of the Dialog/Tooltip/Toast overlay shell. Full discipline (mobile-first map, RTL + `dir` on `html`, Stack flex vs LTR/RTL) → [responsive.md](responsive.md) → specs `breakpoints` / `direction-provider` units.
+`BreakpointsProvider` / `DirectionProvider` are **opt-in**, not part of the Dialog/Tooltip/Toast overlay shell. Full discipline (CSS `@media`/`@container` first + shared em map, `useBreakpoints` for structure/props, RTL + `dir` on `html`, Stack flex vs LTR/RTL) → [responsive.md](responsive.md) → specs `breakpoints` / `direction-provider` units.
 
 ## Field ownership
 

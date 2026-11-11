@@ -111,7 +111,7 @@ Whether to animate, functional vs evocative, tokens, reduced-motion → **viraui
 }
 ```
 
-Still Vira for Dialog / Popover / Menu / Tooltip / Toast — do not replace those with raw `popover` + anchor CSS. Anchor / starting-style patterns are for **custom** consumer chrome when Vira has no part. Container queries (`@container`) for CSS layout switches; viewport React/prop branches, aligned `@media`, and RTL direction → [responsive.md](responsive.md) (specs `breakpoints` / `direction-provider` units).
+Still Vira for Dialog / Popover / Menu / Tooltip / Toast — do not replace those with raw `popover` + anchor CSS. Anchor / starting-style patterns are for **custom** consumer chrome when Vira has no part. Responsive layout → CSS `@media` / `@container` first (same em map as `useBreakpoints`); structure/prop branches + RTL → [responsive.md](responsive.md) (specs `breakpoints` / `direction-provider` units).
 
 ## CSS hooks
 

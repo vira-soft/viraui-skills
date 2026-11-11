@@ -1,6 +1,6 @@
 # Responsive + direction
 
-**When to read:** viewport / breakpoint UI (`useBreakpoints`, aligned `@media`) **or** reading direction / RTL (`DirectionProvider`, `useDirection`, `dir` on `html`).
+**When to read:** viewport / container / breakpoint UI (`@media`, `@container`, aligned `useBreakpoints`) **or** reading direction / RTL (`DirectionProvider`, `useDirection`, `dir` on `html`).
 
 Exact provider/hook API → specs `components/breakpoints/` and `components/direction-provider/` units. This page is **discipline only**.
 
@@ -11,7 +11,7 @@ Exact provider/hook API → specs `components/breakpoints/` and `components/dire
 | `direction` | `Stack` (layout)    | `row` / `column` / … | Flex main axis — **not** RTL               |
 | `direction` | `DirectionProvider` | `ltr` / `rtl`        | Reading direction for Base UI–backed trees |
 
-Do **not** set `Stack direction="rtl"`. Flex swap at a breakpoint = `Stack direction={isWide ? 'row' : 'column'}` under `useBreakpoints`.
+Do **not** set `Stack direction="rtl"`. Same-tree flex axis swap at a breakpoint = CSS `@media` / `@container` (below). Different React trees or Vira **props** by viewport = `useBreakpoints`.
 
 ---
 
@@ -19,32 +19,72 @@ Do **not** set `Stack direction="rtl"`. Flex swap at a breakpoint = `Stack direc
 
 ## Hard rule: mobile-first
 
-Always author the **narrow** layout as the base. Enhance at larger viewports (`min-width` / `useBreakpoints` flags becoming `true`). Do **not** ship desktop-first (`max-width` as the primary branch) unless the product already owns that pattern and the user insists.
+Always author the **narrow** layout as the base. Enhance at larger viewports / containers (`min-width` / `min-width` container queries). Do **not** ship desktop-first (`max-width` as the primary branch) unless the product already owns that pattern and the user insists.
 
 ```text
 Base = mobile / default props / default CSS
   → at breakpoint N: add or change only what wide needs
 ```
 
-## Choose the engine
+## Hard rule: one shared map
+
+`@media`, `@container`, and `useBreakpoints` share **one** threshold map — the active `BreakpointsProvider` `breakpoints` prop, or the hook defaults when unset. Copy those **exact** CSS lengths (prefer `em` as shipped). Do **not** invent a parallel system (`768px` / `1024px`, theme token widths, ad-hoc `matchMedia` hooks).
+
+Defaults (em, mobile-first min-width) when the app did not override: `extra-small` 30em, `small` 48em, `medium` 60em, `large` 80em, `extra-large` 100em. Confirm in specs units for the installed version. If the app set `breakpoints` on the provider, CSS **must** use **those** strings — not the skill defaults.
+
+## Choose the engine (CSS first — anti-FOUC)
 
 ```text
-Need different React trees, hide/show parts, or change Vira **props** by viewport?
+Layout / style only (flex axis, columns, gap via class, visibility, padding) —
+same React tree, no Vira prop swap?
+  yes → CSS @media (viewport) or @container (parent size)
+        lengths = active useBreakpoints / BreakpointsProvider map
+        Prefer this so layout does not wait on hydration (FOUC).
+
+Need different React trees, hide/show distinct parts, or change Vira **props**
+by viewport?
   yes → BreakpointsProvider + useBreakpoints()  (Client Component)
-  no — only CSS values change (padding, gap via custom class, visibility, columns in CSS)?
-  yes → CSS @media (min-width: …) — same lengths as the active breakpoint map
+
 Container-sized layout (not viewport)?
-  → @container — not useBreakpoints
+  → @container — still same em map; not useBreakpoints
 ```
 
-Do **not** invent a parallel system (`window.matchMedia` in ad-hoc hooks, hard-coded `768px` / `1024px`, theme token widths as breakpoints). One map owns the product thresholds.
+`useBreakpoints` is **not** the default layout engine. JS after paint can flash the wrong layout. Reach for the hook only when structure or React props must change.
 
-## `useBreakpoints` (markup / props)
+## CSS `@media` / `@container` (primary)
+
+When the React tree and Vira props stay the same:
+
+1. Read the active map — app `BreakpointsProvider` `breakpoints` if set, else hook defaults above (or specs units).
+2. Write mobile-first **`min-width`** `@media` and/or `@container` queries with those **exact** lengths.
+3. Documented exception to “props before CSS”: responsive **layout** values that would FOUC under hydration (e.g. flex-direction, grid columns, show/hide via CSS) may live in `@media` / `@container`. Still do **not** reinvent letter-spacing / tracking / non-responsive spacing props as CSS.
+
+```css
+/* Matches default `medium` — or copy the app override string verbatim */
+@media (min-width: 60em) {
+  .shell {
+    flex-direction: row; /* narrow base stays column in the module */
+  }
+}
+
+/* Parent must establish a containment context */
+.panel {
+  container-type: inline-size;
+}
+
+@container (min-width: 60em) {
+  .panelBody {
+    /* same medium threshold as useBreakpoints('medium') */
+  }
+}
+```
+
+## `useBreakpoints` (structure / props only)
 
 1. Open specs index → `breakpoints` units (`meta` → `props` → `usage`).
 2. Wrap the tree that calls the hook in `BreakpointsProvider` inside a Client Component (`'use client'`). Not a Server Component module. Overlay bootstrap (`Dialog` / `Tooltip` / `Toast`) stays separate — do not treat this provider as mandatory root chrome.
 3. Prefer `useBreakpoints('small')` (one boolean) when only one flag matters.
-4. Compose mobile-first: default JSX = narrow; when the flag is true, swap Stack flex direction / density / children.
+4. Compose mobile-first: default JSX = narrow; when the flag is true, swap **trees**, density / other Vira props, or children that CSS cannot express.
 
 ```tsx
 'use client';
@@ -54,11 +94,8 @@ import { BreakpointsProvider, Stack, useBreakpoints } from '@viraui/react';
 function SettingsShell() {
   const isMedium = useBreakpoints('medium');
 
-  return (
-    <Stack direction={isMedium ? 'row' : 'column'} columnGap="m" rowGap="m" expandChildren>
-      {/* narrow = column; medium+ = row */}
-    </Stack>
-  );
+  // Different children / props — not a pure flex-direction swap
+  return isMedium ? <WideSettings /> : <NarrowSettings />;
 }
 
 export function SettingsPage() {
@@ -70,31 +107,14 @@ export function SettingsPage() {
 }
 ```
 
-Custom map: `breakpoints` on the provider **replaces** the whole default map (no sparse merge). Defaults (em, mobile-first min-width): `extra-small` 30em, `small` 48em, `medium` 60em, `large` 80em, `extra-large` 100em. Confirm in units for the installed version.
-
-## CSS `@media` (style-only)
-
-When React tree and props stay the same:
-
-1. Read the active map — app `BreakpointsProvider` `breakpoints` prop if set, else the hook defaults above.
-2. Write **`min-width`** queries with those **exact** CSS lengths (prefer `em` as shipped).
-3. Do not invent px aliases that drift from the map.
-
-```css
-/* Matches default `medium` — or copy the app override string verbatim */
-@media (min-width: 60em) {
-  .panel {
-    /* only CSS that props cannot express at this breakpoint */
-  }
-}
-```
-
-If the app overrides the provider map, CSS must use **those** lengths — not the skill defaults.
+Custom map: `breakpoints` on the provider **replaces** the whole default map (no sparse merge). Align every `@media` / `@container` length to that map.
 
 ## Breakpoint gotchas
 
+- CSS-first for layout; `useBreakpoints` only for structure / React props.
+- `@media` / `@container` lengths ≠ active map (drift, px aliases, theme tokens).
 - mobile-first `min-width` as the main responsive strategy.
-- `letter-spacing` / layout props / spacing reinvented in CSS when a public prop + `useBreakpoints` can set them per breakpoint.
+- `letter-spacing` / non-responsive spacing reinvented in CSS when a public prop covers it.
 - Ad-hoc `matchMedia` / `768px` beside an existing `BreakpointsProvider` map.
 - Calling `useBreakpoints` outside the provider.
 - Putting the provider in a Server Component file.

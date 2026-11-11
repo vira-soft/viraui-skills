@@ -27,8 +27,9 @@
 | “Plain `div`/`header` + display:flex”                        | Flex framing = `Stack`; tag via `render`                                                                                                 |
 | “CSS grid / columns instead of Grid/Masonry”                 | Tracks → `Grid`; ragged pack → `Masonry`                                                                                                 |
 | “Desktop-first max-width media”                              | Mobile-first — [responsive.md](responsive.md)                                                                                            |
-| “768px media beside BreakpointsProvider”                     | Same em map as provider / defaults                                                                                                       |
-| “matchMedia hook instead of useBreakpoints”                  | Markup/prop branches → `useBreakpoints`                                                                                                  |
+| “useBreakpoints for flex-direction / CSS-only layout”        | `@media` / `@container` first (anti-FOUC); same em map — [responsive.md](responsive.md)                                                  |
+| “768px media beside BreakpointsProvider”                     | Same em map as `useBreakpoints` / provider / defaults                                                                                    |
+| “matchMedia hook instead of useBreakpoints”                  | Structure/prop branches → `useBreakpoints`; layout CSS → shared map                                                                      |
 | “DirectionProvider alone = RTL” / “Stack direction=rtl”      | Provider + `dir` on `html`; Stack `direction` = flex only — [responsive.md](responsive.md)                                               |
 | “Import @base-ui/react/direction-provider”                   | Re-export from `@viraui/react`                                                                                                           |
 | “Unstyled — import component CSS”                            | **viraui-setup**                                                                                                                         |
