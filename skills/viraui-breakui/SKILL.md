@@ -76,7 +76,7 @@ Compose/API/layout → **viraui-design**. This skill owns the break workflow and
 
 ## Out of scope
 
-Monorepo component implementation, redesign / multi-variant explore, taste critique, motion review, inventing Vira APIs.
+Monorepo component implementation, redesign / multi-variant explore (**viraui-explore**), taste critique, motion review, inventing Vira APIs.
 
 ## Next skill
 

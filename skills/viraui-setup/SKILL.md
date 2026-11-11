@@ -35,7 +35,7 @@ Durable bootstrap facts → `@viraui/react/specs/foundation/bootstrap.xml`. This
 
 ## When not to load
 
-Routine UI compose → **viraui-design**. Chart compose after packages exist → **viraui-design** [charts.md](../viraui-design/charts.md). APG → **viraui-a11y**. Motion → **viraui-motion**. Data stress / worst-case → **viraui-breakui**. Unrelated skills.sh search → skip.
+Routine UI compose → **viraui-design**. Chart compose after packages exist → **viraui-design** [charts.md](../viraui-design/charts.md). APG → **viraui-a11y**. Motion → **viraui-motion**. Data stress / worst-case → **viraui-breakui**. Divergent variants / picker → **viraui-explore** (explicit). Unrelated skills.sh search → skip.
 
 ## Action router
 

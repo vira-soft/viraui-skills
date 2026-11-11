@@ -19,6 +19,7 @@ Each skill is a thin `SKILL.md` action hub plus sibling reference markdown files
 | `viraui-motion`  | Motion      | Duration/easing tokens, functional vs evocative motion, reduced-motion — Vira parts and custom CSS |
 | `viraui-a11y`    | APG audit   | Structured APG validation when the user asks for an a11y audit or keyboard/SR debug                |
 | `viraui-breakui` | Data stress | Worst-case realistic data, Demo/Worst harness, edge-case overflow reports — not ordinary compose   |
+| `viraui-explore` | Explore     | Explicit only — divergent Vira-native variants behind a picker; riff/keep promote                  |
 
 After your app installs `@viraui/react`, agents read package specs from `node_modules`:
 

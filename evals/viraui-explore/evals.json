@@ -1,0 +1,39 @@
+{
+  "skill_name": "viraui-explore",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Explore three directions for our pricing card. Use the product theme. Put them behind a picker so I can flip live.",
+      "expected_output": "Load viraui-explore (explicit). Scope one piece; recon Vira tokens/Stack; name 3 axes before code; isolated /prototypes harness; picker verbatim from picker.md; variants use @viraui/react + theme tokens; instant variant swap; stop with tradeoff table for user choice.",
+      "assertions": [
+        "Does not edit production routes before promote",
+        "Requires named axis per variant and rejects tint-only divergence",
+        "Uses picker.md verbatim chrome (not project tokens on picker)",
+        "Variant swap is instant; picker highlight may slide",
+        "Variants built with Vira components/tokens via viraui-design",
+        "Stops for user choice before promote"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Keep Editorial and integrate it. Leave the picker.",
+      "expected_output": "Promote path from promote.md: move winner into app tree following project conventions; keep prototype surface because user asked; hand off to viraui-design verify.md; motion quality via viraui-motion if entrances ship.",
+      "assertions": [
+        "Promotes only the chosen variant into production paths",
+        "Keeps harness when user said leave the picker",
+        "Routes post-promote ship gate to viraui-design verify.md",
+        "Does not invent Vira APIs during promote"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm building a settings form — should you auto-load viraui-explore and show three layouts?",
+      "expected_output": "No. disable-model-invocation / explicit explore only. Ordinary compose → viraui-design. Load viraui-explore only when user asks for directions/variants/picker.",
+      "assertions": [
+        "Declines auto-load on ordinary compose",
+        "Points to viraui-design for normal UI build",
+        "Names explicit explore/variant/picker ask as the trigger"
+      ]
+    }
+  ]
+}

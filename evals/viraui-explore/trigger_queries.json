@@ -1,0 +1,86 @@
+{
+  "skill_name": "viraui-explore",
+  "red_baseline_failures": [
+    "Agents auto-load on ordinary compose without explicit explore/variant/picker ask",
+    "Agents restyle the picker with project tokens or theme colors",
+    "Agents animate variant swap instead of instant switch",
+    "Agents edit production routes during exploration before promote",
+    "Agents ship three tints of the same layout as 'divergent' variants"
+  ],
+  "queries": [
+    {
+      "query": "Explore 3 directions for this pricing card behind a picker",
+      "should_trigger": true
+    },
+    {
+      "query": "Show me divergent variants of the toast — I want to flip through them",
+      "should_trigger": true
+    },
+    {
+      "query": "viraui-explore: hold-to-delete button x5",
+      "should_trigger": true
+    },
+    {
+      "query": "Build a prototype picker for empty-state options",
+      "should_trigger": true
+    },
+    {
+      "query": "Riff Quiet — new round around that direction",
+      "should_trigger": true,
+      "notes": "Invocation variant after an explore run"
+    },
+    {
+      "query": "Keep Editorial and promote it into the app",
+      "should_trigger": true,
+      "notes": "Promote phase of explore"
+    },
+    {
+      "query": "Design exploration: three genuinely different settings sheets",
+      "should_trigger": true
+    },
+    {
+      "query": "Leave the picker after keep Dense",
+      "should_trigger": true
+    },
+    {
+      "query": "Build a new Card grid layout with Stack",
+      "should_trigger": false,
+      "notes": "Ordinary compose — viraui-design"
+    },
+    {
+      "query": "Stress-test this list with worst-case data",
+      "should_trigger": false,
+      "notes": "viraui-breakui"
+    },
+    {
+      "query": "Add hover fade with --duration-fast",
+      "should_trigger": false,
+      "notes": "viraui-motion"
+    },
+    {
+      "query": "Audit this Dialog for APG compliance",
+      "should_trigger": false,
+      "notes": "viraui-a11y"
+    },
+    {
+      "query": "Install theme and preflight in Next.js",
+      "should_trigger": false,
+      "notes": "viraui-setup"
+    },
+    {
+      "query": "Fix the spacing on this form — use Stack gap m",
+      "should_trigger": false,
+      "notes": "Compose edit, not explore"
+    },
+    {
+      "query": "CSS rewrite pass on this screen",
+      "should_trigger": false,
+      "notes": "viraui-design verify/rewrite"
+    },
+    {
+      "query": "Update component-matrix for a new Chip",
+      "should_trigger": false,
+      "notes": "Monorepo surface sync"
+    }
+  ]
+}
