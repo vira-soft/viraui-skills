@@ -1,8 +1,8 @@
-**When to read:** Audit existing motion in a consumer app and prioritize fixes. Report in chat (optional user-asked markdown artifact). Do **not** invent a `plans/` tree unless the user asks.
+**When to read:** Audit existing motion in consumer app and prioritize fixes. Report in chat (optional user-asked markdown artifact). Do **not** invent `plans/` tree unless user asks.
 
 # Improve
 
-Read-only until the user asks to apply fixes. Cite [principles.md](principles.md), [speed.md](speed.md), [timing.md](timing.md), [performance.md](performance.md), [gestures.md](gestures.md), [choreography.md](choreography.md) — do not restate full token tables here.
+Read-only until user asks to apply fixes. Cite [principles.md](principles.md), [speed.md](speed.md), [timing.md](timing.md), [performance.md](performance.md), [gestures.md](gestures.md), [choreography.md](choreography.md) — do not restate full token tables here.
 
 ## Recon (Vira consumer)
 
@@ -13,16 +13,16 @@ Read-only until the user asks to apply fixes. Cite [principles.md](principles.md
 
 ## Audit categories
 
-| #   | Category            | Hunt                                                       | Target                                                        |
+| # | Category | Hunt | Target |
 | --- | ------------------- | ---------------------------------------------------------- | ------------------------------------------------------------- |
-| 1   | Purpose & frequency | Keyboard / 100+/day motion; decorative list hover          | Delete or [remove.md](remove.md) gate                         |
-| 2   | Duration & easing   | Raw ms, `ease-in`, parallel `--ease-*` forks               | [speed.md](speed.md) / [timing.md](timing.md)                 |
-| 3   | Physicality         | `scale(0)`; wrong transform-origin on trigger popups       | Scale ≥ ~0.9; origin at trigger; dialogs centered             |
-| 4   | Interruptibility    | `@keyframes` on toasts/toggles/drags                       | Transitions / retargetable motion; [gestures.md](gestures.md) |
-| 5   | Performance         | `transition: all`; layout props; parent CSS-var transforms | [performance.md](performance.md)                              |
-| 6   | Choreography        | Parent enter + child stagger; metronome delays             | [choreography.md](choreography.md)                            |
-| 7   | Reduced motion      | Missing kill / JS ignores `matchMedia`                     | [principles.md](principles.md) — `none`, not gentler          |
-| 8   | Hover / touch       | Hover without fine-pointer gate; tiny hit targets          | Gate + 44×44 on gesture controls                              |
+| 1 | Purpose & frequency | Keyboard / 100+/day motion; decorative list hover | Delete or [remove.md](remove.md) gate |
+| 2 | Duration & easing | Raw ms, `ease-in`, parallel `--ease-*` forks | [speed.md](speed.md) / [timing.md](timing.md) |
+| 3 | Physicality | `scale(0)`; wrong transform-origin on trigger popups | Scale ≥ ~0.9; origin at trigger; dialogs centered |
+| 4 | Interruptibility | `@keyframes` on toasts/toggles/drags | Transitions / retargetable motion; [gestures.md](gestures.md) |
+| 5 | Performance | `transition: all`; layout props; parent CSS-var transforms | [performance.md](performance.md) |
+| 6 | Choreography | Parent enter + child stagger; metronome delays | [choreography.md](choreography.md) |
+| 7 | Reduced motion | Missing kill / JS ignores `matchMedia` | [principles.md](principles.md) — `none`, not gentler |
+| 8 | Hover / touch | Hover without fine-pointer gate; tiny hit targets | Gate + 44×44 on gesture controls |
 
 ## Output
 
@@ -37,12 +37,12 @@ Self-contained enough that another agent can patch without re-auditing. When app
 
 ## Gotchas
 
-- Replacing broken motion with a second token system → defect.
+- Replacing broken motion with second token system → defect.
 - “Upgrade to Motion 14” as default fix → CSS/WAAPI + Vira first.
-- Do not load the whole motion folder — this ref + one cited sibling if needed.
+- Do not load whole motion folder — this ref + one cited sibling if needed.
 
 ## Validation
 
 - Findings cite concrete files/selectors
-- Every fix points at a Vira token or sibling ref
+- Every fix points at Vira token or sibling ref
 - No forced plans directory

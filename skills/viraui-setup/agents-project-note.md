@@ -1,8 +1,8 @@
 # Project agent note (portable)
 
-**When to read:** after installing publishable skills from `vira-soft/viraui-skills`. Paste this into consumer `AGENTS.md` (or host-equivalent) by **default** on skills install so the CSS→props gate fires even when the agent never opens **viraui-design** by name.
+**Read when:** after install publishable skills from `vira-soft/viraui-skills`. Paste into consumer `AGENTS.md` (or host-equivalent) by **default** on skills install so CSS→props gate fires even when agent never opens **viraui-design** by name.
 
-Primary triggers remain skill `description` fields + hub gates. This note is the host-agnostic belt — do **not** invent Cursor-only `.cursor/rules` as the source of truth. Mirror this note into a host-native format only if needed.
+Primary triggers stay skill `description` fields + hub gates. This note is host-agnostic belt — do **not** invent Cursor-only `.cursor/rules` as source of truth. Mirror this note into host-native format only if needed.
 
 ## Install skills (same source, all hosts)
 
@@ -12,7 +12,7 @@ npx skills add vira-soft/viraui-skills
 
 ## Copy into consumer `AGENTS.md` (or host-equivalent)
 
-Paste near the top of the project agent instructions file (default on skills install / refresh):
+Paste near top of project agent instructions file (default on skills install / refresh):
 
 ```markdown
 ## ViraUI (agent skills)
@@ -31,4 +31,4 @@ This app uses `@viraui/react`. Publishable skills install via:
 - **Before claiming UI done:** CSS rewrite leftovers = 0, then follow viraui-design `verify.md` — emit the adversarial ship report (CSS rewrite inventory, reinvented props-as-CSS: 0, compose a11y, `adversarial verify: pass`). Do not hand off with open criticals.
 ```
 
-Same wording for every host. No per-host skill forks.
+Same wording every host. No per-host skill forks.

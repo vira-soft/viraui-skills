@@ -25,14 +25,14 @@ Thin router for `@viraui/react` (+ charts → `@viraui/charts`). When UI/task fi
 
 ## Step 0 — props before CSS + CSS rewrite pass (hard)
 
-Before any new `.module.css`, visual `className`, Tailwind utility, or visual `style` on a **Vira root**:
+Before any new `.module.css`, visual `className`, Tailwind utility, or visual `style` on **Vira root**:
 
 1. Open that surface’s `props.xml` **and** `usage.xml` (index → units).
-2. If a public prop, part, or Stack/layout pattern covers it → **use it**. Stop. No className.
-3. Else if a public `--vui-*` covers it → set the hook.
-4. Else: app chrome the system does not own, **or** consumer **expressly asked** for an override → minimal CSS for that ask only.
+2. If public prop, part, or Stack/layout pattern covers it → **use it**. Stop. No className.
+3. Else if public `--vui-*` covers it → set hook.
+4. Else: app chrome system does not own, **or** consumer **expressly asked** for override → minimal CSS for that ask only.
 
-**CSS rewrite pass (mid-draft, mandatory):** after any new CSS/utility/`style` lands on or around Vira roots — stop polish. Inventory every new declaration → map to prop / part / `--vui-*` / justify (app chrome | explicit ask) / **delete**. Replaceable leftovers = critical. Do **not** finish, ship, or hand off while reinvented props-as-CSS remains. “User can ask later to swap CSS for props” = fail. Same gate when the user never named this skill.
+**CSS rewrite pass (mid-draft, mandatory):** after any new CSS/utility/`style` lands on or around Vira roots — stop polish. Inventory every new declaration → map to prop/part/`--vui-*`/justify (app chrome | explicit ask)/**delete**. Replaceable leftovers = critical. Do **not** finish, ship, or hand off while reinvented props-as-CSS remains. “User can ask later to swap CSS for props” = fail. Same gate when user never named this skill.
 
 Unsolicited reshape CSS on Vira roots = protocol fail. Detail → [styling.md](styling.md), [layout.md](layout.md), [verify.md](verify.md).
 
@@ -42,47 +42,47 @@ Build from Vira **parts + public props**. Index → units before JSX/CSS. Prefer
 
 ## Mandatory load
 
-| Signal                                                                       | Action                                                                                               |
+| Signal | Action |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Any `@viraui/react` compose / edit / debug / style                           | Read this hub first                                                                                  |
-| User never said “viraui-design”                                              | Still load — description is discovery only                                                           |
-| Any UI CSS / Tailwind / visual `style` edit                                  | **CSS rewrite pass** (Step 0) before polish or done — even without naming this skill                 |
-| Chart / graph / plot / data viz / KPI series / pie·donut·radar·bar·line·area | [charts.md](charts.md) → install `@viraui/charts` + `@visx/visx` if missing → `@viraui/charts/specs` |
-| Screen compose (forms, shell, overlays, chrome)                              | Also [accessibility.md](accessibility.md)                                                            |
-| Transitions / hover-press / overlay motion CSS                               | **viraui-motion** hub + one ref                                                                      |
-| Missing global styles                                                        | **viraui-setup** before CSS workarounds                                                              |
-| Explicit APG audit / SR-keyboard debug                                       | **viraui-a11y**                                                                                      |
-| After JSX/CSS — before claiming done                                         | CSS rewrite 0 leftovers → **Read [verify.md](verify.md)**; emit ship report                          |
+| Any `@viraui/react` compose/edit/debug/style | Read this hub first |
+| User never said “viraui-design” | Still load — description is discovery only |
+| Any UI CSS/Tailwind/visual `style` edit | **CSS rewrite pass** (Step 0) before polish or done — even without naming this skill |
+| Chart/graph/plot/data viz/KPI series/pie·donut·radar·bar·line·area | [charts.md](charts.md) → install `@viraui/charts` + `@visx/visx` if missing → `@viraui/charts/specs` |
+| Screen compose (forms, shell, overlays, chrome) | Also [accessibility.md](accessibility.md) |
+| Transitions/hover-press/overlay motion CSS | **viraui-motion** hub + one ref |
+| Missing global styles | **viraui-setup** before CSS workarounds |
+| Explicit APG audit/SR-keyboard debug | **viraui-a11y** |
+| After JSX/CSS — before claiming done | CSS rewrite 0 leftovers → **Read [verify.md](verify.md)**; emit ship report |
 
 ## Action router
 
-| Need                                                                | Read                                                                                 |
+| Need | Read |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Vague intent / anti-pattern                                         | [symptoms.md](symptoms.md)                                                           |
-| Choose component / inspect API                                      | [discovery.md](discovery.md) → specs index + units                                   |
-| Intent → component id                                               | [component-matrix.md](component-matrix.md) — confirm in units                        |
-| Forms, Dialog, Popover, Menu, Toast, compounds, custom field labels | [composition.md](composition.md) → specs `patterns`/`usage`/`props`                  |
-| Layout / density / Stack·Grid·Masonry / prefer-`safe`               | [layout.md](layout.md)                                                               |
-| Mobile-first / `@media` / `@container` / `useBreakpoints` / RTL     | [responsive.md](responsive.md)                                                       |
-| Props, `--vui-*`, elevation, motion **engine**                      | [styling.md](styling.md)                                                             |
-| Text measure / leading / `wrap` / `whiteSpace` / align              | [typography.md](typography.md)                                                       |
-| Bare HTML lists / prose / tables / link chrome                      | [preflight-baseline.md](preflight-baseline.md)                                       |
-| Compose-time a11y (not full audit)                                  | [accessibility.md](accessibility.md)                                                 |
-| Motion tokens / reduced-motion                                      | **viraui-motion**; engine → [styling.md](styling.md)                                 |
-| APG audit / keyboard or SR debug                                    | **viraui-a11y**                                                                      |
-| Consumer `data-*` / vibrancy / elevation                            | [custom-attributes.md](custom-attributes.md)                                         |
-| Icons / glyph slots                                                 | [icons.md](icons.md)                                                                 |
-| Charts / graph / plot / data viz / `@viraui/charts`                 | [charts.md](charts.md) → install if missing → `@viraui/charts/specs`; no `LineChart` |
-| Excuses / STOP                                                      | [red-flags.md](red-flags.md)                                                         |
-| End of work                                                         | [verify.md](verify.md) — rewrite inventory + ship report; 0 critical                 |
+| Vague intent/anti-pattern | [symptoms.md](symptoms.md) |
+| Choose component/inspect API | [discovery.md](discovery.md) → specs index + units |
+| Intent → component id | [component-matrix.md](component-matrix.md) — confirm in units |
+| Forms, Dialog, Popover, Menu, Toast, compounds, custom field labels | [composition.md](composition.md) → specs `patterns`/`usage`/`props` |
+| Layout/density/Stack·Grid·Masonry/prefer-`safe` | [layout.md](layout.md) |
+| Mobile-first/`@media`/`@container`/`useBreakpoints`/RTL | [responsive.md](responsive.md) |
+| Props, `--vui-*`, elevation, motion **engine** | [styling.md](styling.md) |
+| Text measure/leading/`wrap`/`whiteSpace`/align | [typography.md](typography.md) |
+| Bare HTML lists/prose/tables/link chrome | [preflight-baseline.md](preflight-baseline.md) |
+| Compose-time a11y (not full audit) | [accessibility.md](accessibility.md) |
+| Motion tokens/reduced-motion | **viraui-motion**; engine → [styling.md](styling.md) |
+| APG audit/keyboard or SR debug | **viraui-a11y** |
+| Consumer `data-*`/vibrancy/elevation | [custom-attributes.md](custom-attributes.md) |
+| Icons/glyph slots | [icons.md](icons.md) |
+| Charts/graph/plot/data viz/`@viraui/charts` | [charts.md](charts.md) → install if missing → `@viraui/charts/specs`; no `LineChart` |
+| Excuses/STOP | [red-flags.md](red-flags.md) |
+| End of work | [verify.md](verify.md) — rewrite inventory + ship report; 0 critical |
 
 ## Authority (in order)
 
 1. **Package specs** — `index.xml` + `activity-hints.xml` + scoped units (`@viraui/react/specs` UI; `@viraui/charts/specs` charts).
 2. **Base UI API** — when `meta.xml` has `<base_ui href>`, after Vira props. Still unsure → ask.
-3. **Types / source** — verify after units. Charts: upstream visx docs after units.
+3. **Types/source** — verify after units. Charts: upstream visx docs after units.
 4. **Stories** — examples only.
-5. **Skills** — routers only; never a second props encyclopedia.
+5. **Skills** — routers only; never second props encyclopedia.
 
 ## Filesystem recipe
 
@@ -90,7 +90,7 @@ Build from Vira **parts + public props**. Index → units before JSX/CSS. Prefer
 
 ## FORBIDDEN discovery
 
-No `ls` / `rg` / `grep` on `dist/components/**` or `*.d.ts` **before** specs index + target units. No monorepo clone / skills prose as charts API when `@viraui/charts` is installed.
+No `ls`/`rg`/`grep` on `dist/components/**` or `*.d.ts` **before** specs index + target units. No monorepo clone/skills prose as charts API when `@viraui/charts` is installed.
 
 ## Consumer contract
 

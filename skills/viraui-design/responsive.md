@@ -2,16 +2,16 @@
 
 **When to read:** viewport / container / breakpoint UI (`@media`, `@container`, aligned `useBreakpoints`) **or** reading direction / RTL (`DirectionProvider`, `useDirection`, `dir` on `html`).
 
-Exact provider/hook API → specs `components/breakpoints/` and `components/direction-provider/` units. This page is **discipline only**.
+Exact provider/hook API → specs `components/breakpoints/` + `components/direction-provider/` units. Page = **discipline only**.
 
 ## Two different `direction`s
 
-| Word        | Surface             | Values               | Meaning                                    |
-| ----------- | ------------------- | -------------------- | ------------------------------------------ |
-| `direction` | `Stack` (layout)    | `row` / `column` / … | Flex main axis — **not** RTL               |
-| `direction` | `DirectionProvider` | `ltr` / `rtl`        | Reading direction for Base UI–backed trees |
+| Word | Surface | Values | Meaning |
+| --- | --- | --- | --- |
+| `direction` | `Stack` (layout) | `row` / `column` / … | Flex main axis — **not** RTL |
+| `direction` | `DirectionProvider` | `ltr` / `rtl` | Reading direction for Base UI–backed trees |
 
-Do **not** set `Stack direction="rtl"`. Same-tree flex axis swap at a breakpoint = CSS `@media` / `@container` (below). Different React trees or Vira **props** by viewport = `useBreakpoints`.
+Do **not** set `Stack direction="rtl"`. Same-tree flex axis swap at breakpoint = CSS `@media` / `@container` (below). Different React trees or Vira **props** by viewport = `useBreakpoints`.
 
 ---
 
@@ -19,7 +19,7 @@ Do **not** set `Stack direction="rtl"`. Same-tree flex axis swap at a breakpoint
 
 ## Hard rule: mobile-first
 
-Always author the **narrow** layout as the base. Enhance at larger viewports / containers (`min-width` / `min-width` container queries). Do **not** ship desktop-first (`max-width` as the primary branch) unless the product already owns that pattern and the user insists.
+Always author **narrow** layout as base. Enhance at larger viewports / containers (`min-width` / `min-width` container queries). Do **not** ship desktop-first (`max-width` as primary branch) unless product already owns that pattern and user insists.
 
 ```text
 Base = mobile / default props / default CSS
@@ -28,9 +28,9 @@ Base = mobile / default props / default CSS
 
 ## Hard rule: one shared map
 
-`@media`, `@container`, and `useBreakpoints` share **one** threshold map — the active `BreakpointsProvider` `breakpoints` prop, or the hook defaults when unset. Copy those **exact** CSS lengths (prefer `em` as shipped). Do **not** invent a parallel system (`768px` / `1024px`, theme token widths, ad-hoc `matchMedia` hooks).
+`@media`, `@container`, `useBreakpoints` share **one** threshold map — active `BreakpointsProvider` `breakpoints` prop, or hook defaults when unset. Copy those **exact** CSS lengths (prefer `em` as shipped). Do **not** invent parallel system (`768px` / `1024px`, theme token widths, ad-hoc `matchMedia` hooks).
 
-Defaults (em, mobile-first min-width) when the app did not override: `extra-small` 30em, `small` 48em, `medium` 60em, `large` 80em, `extra-large` 100em. Confirm in specs units for the installed version. If the app set `breakpoints` on the provider, CSS **must** use **those** strings — not the skill defaults.
+Defaults (em, mobile-first min-width) when app did not override: `extra-small` 30em, `small` 48em, `medium` 60em, `large` 80em, `extra-large` 100em. Confirm in specs units for installed version. If app set `breakpoints` on provider, CSS **must** use **those** strings — not skill defaults.
 
 ## Choose the engine (CSS first — anti-FOUC)
 
@@ -49,13 +49,13 @@ Container-sized layout (not viewport)?
   → @container — still same em map; not useBreakpoints
 ```
 
-`useBreakpoints` is **not** the default layout engine. JS after paint can flash the wrong layout. Reach for the hook only when structure or React props must change.
+`useBreakpoints` **not** default layout engine. JS after paint can flash wrong layout. Reach for hook only when structure or React props must change.
 
 ## CSS `@media` / `@container` (primary)
 
-When the React tree and Vira props stay the same:
+When React tree + Vira props stay same:
 
-1. Read the active map — app `BreakpointsProvider` `breakpoints` if set, else hook defaults above (or specs units).
+1. Read active map — app `BreakpointsProvider` `breakpoints` if set, else hook defaults above (or specs units).
 2. Write mobile-first **`min-width`** `@media` and/or `@container` queries with those **exact** lengths.
 3. Documented exception to “props before CSS”: responsive **layout** values that would FOUC under hydration (e.g. flex-direction, grid columns, show/hide via CSS) may live in `@media` / `@container`. Still do **not** reinvent letter-spacing / tracking / non-responsive spacing props as CSS.
 
@@ -82,9 +82,9 @@ When the React tree and Vira props stay the same:
 ## `useBreakpoints` (structure / props only)
 
 1. Open specs index → `breakpoints` units (`meta` → `props` → `usage`).
-2. Wrap the tree that calls the hook in `BreakpointsProvider` inside a Client Component (`'use client'`). Not a Server Component module. Overlay bootstrap (`Dialog` / `Tooltip` / `Toast`) stays separate — do not treat this provider as mandatory root chrome.
+2. Wrap tree that calls hook in `BreakpointsProvider` inside Client Component (`'use client'`). Not Server Component module. Overlay bootstrap (`Dialog` / `Tooltip` / `Toast`) stays separate — don't treat provider as mandatory root chrome.
 3. Prefer `useBreakpoints('small')` (one boolean) when only one flag matters.
-4. Compose mobile-first: default JSX = narrow; when the flag is true, swap **trees**, density / other Vira props, or children that CSS cannot express.
+4. Compose mobile-first: default JSX = narrow; when flag true, swap **trees**, density / other Vira props, or children CSS cannot express.
 
 ```tsx
 'use client';
@@ -107,18 +107,18 @@ export function SettingsPage() {
 }
 ```
 
-Custom map: `breakpoints` on the provider **replaces** the whole default map (no sparse merge). Align every `@media` / `@container` length to that map.
+Custom map: `breakpoints` on provider **replaces** whole default map (no sparse merge). Align every `@media` / `@container` length to that map.
 
 ## Breakpoint gotchas
 
 - CSS-first for layout; `useBreakpoints` only for structure / React props.
 - `@media` / `@container` lengths ≠ active map (drift, px aliases, theme tokens).
-- mobile-first `min-width` as the main responsive strategy.
-- `letter-spacing` / non-responsive spacing reinvented in CSS when a public prop covers it.
-- Ad-hoc `matchMedia` / `768px` beside an existing `BreakpointsProvider` map.
-- Calling `useBreakpoints` outside the provider.
-- Putting the provider in a Server Component file.
-- Using theme design tokens as breakpoint widths (not the contract).
+- mobile-first `min-width` as main responsive strategy.
+- `letter-spacing` / non-responsive spacing reinvented in CSS when public prop covers it.
+- Ad-hoc `matchMedia` / `768px` beside existing `BreakpointsProvider` map.
+- Calling `useBreakpoints` outside provider.
+- Putting provider in Server Component file.
+- Using theme design tokens as breakpoint widths (not contract).
 
 ---
 
@@ -130,13 +130,13 @@ Authority: specs `direction-provider` units + https://base-ui.com/react/utils/di
 
 ## Hard rule: provider + document `dir`
 
-`DirectionProvider` feeds **Base UI context only**. It does **not** set HTML `dir` or CSS `direction`.
+`DirectionProvider` feeds **Base UI context only**. Does **not** set HTML `dir` or CSS `direction`.
 
 For RTL:
 
-1. `DirectionProvider direction="rtl"` around the tree that needs flipped Base UI behavior (menus, selects, sliders, …).
-2. `dir="rtl"` on a **portal ancestor** — usually `<html>` — so body-mounted popups inherit CSS direction.
-3. Import from `@viraui/react` — never `@base-ui/react/direction-provider` when Vira already re-exports it.
+1. `DirectionProvider direction="rtl"` around tree needing flipped Base UI behavior (menus, selects, sliders, …).
+2. `dir="rtl"` on **portal ancestor** — usually `<html>` — so body-mounted popups inherit CSS direction.
+3. Import from `@viraui/react` — never `@base-ui/react/direction-provider` when Vira already re-exports.
 
 ```tsx
 // app root (Client) — pair with <html dir="rtl"> (or lang-appropriate)
@@ -147,7 +147,7 @@ import { DirectionProvider, Slider } from '@viraui/react';
 </DirectionProvider>;
 ```
 
-Subtree demo (still need `dir` on an ancestor that covers portals for real apps):
+Subtree demo (still need `dir` on ancestor covering portals for real apps):
 
 ```tsx
 <div dir="rtl">
@@ -157,7 +157,7 @@ Subtree demo (still need `dir` on an ancestor that covers portals for real apps)
 
 ## `useDirection`
 
-Use when a portaled component must read context direction without relying on DOM `dir`. Confirm in units.
+Use when portaled component must read context direction without relying on DOM `dir`. Confirm in units.
 
 ```tsx
 const direction = useDirection(); // 'ltr' | 'rtl'
@@ -166,7 +166,7 @@ const direction = useDirection(); // 'ltr' | 'rtl'
 ## Direction gotchas
 
 - Provider alone (no `dir` on `html` / portal ancestor) — popups stay LTR in CSS.
-- `dir="rtl"` only on a local wrapper when portals mount on `document.body`.
+- `dir="rtl"` only on local wrapper when portals mount on `document.body`.
 - Importing Base UI path instead of `@viraui/react`.
 - Treating DirectionProvider as required bootstrap.
 - Confusing Stack flex `direction` with LTR/RTL.

@@ -20,7 +20,7 @@ metadata:
 
 # viraui-setup
 
-Consumer bootstrap for `@viraui/react`. Load when setup, theme, preflight, or root-provider symptoms match — **not** for routine UI compose (that is **viraui-design**). Portable across Agent Skills hosts via `npx skills add vira-soft/viraui-skills`.
+Consumer bootstrap for `@viraui/react`. Load when setup, theme, preflight, or root-provider symptoms match — **not** for routine UI compose (→ **viraui-design**). Portable across Agent Skills hosts via `npx skills add vira-soft/viraui-skills`.
 
 Durable bootstrap facts → `@viraui/react/specs/foundation/bootstrap.xml`. This hub = thin checklist + router.
 
@@ -31,7 +31,7 @@ Durable bootstrap facts → `@viraui/react/specs/foundation/bootstrap.xml`. This
 - Default foundation vs App Studio / custom `theme.css`; foundation preset choice
 - Bootstrap `data-*`, overlay providers missing, CSS-framework reset coexistence
 - Whether `@viraui/icons` is required vs another icon library
-- Whether the app will use charts / data viz (`@viraui/charts` + `@visx/visx`)
+- Whether app will use charts / data viz (`@viraui/charts` + `@visx/visx`)
 
 ## When not to load
 
@@ -39,19 +39,19 @@ Routine UI compose → **viraui-design**. Chart compose after packages exist →
 
 ## Action router
 
-| User intent                                        | Read                                                                                                                                     |
+| User intent | Read |
 | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Install packages / first-time bootstrap            | [bootstrap.md](bootstrap.md) + `foundation/bootstrap.xml`, then [theme.md](theme.md)                                                     |
-| Charts / data-viz intent during bootstrap          | [bootstrap.md](bootstrap.md) — **ask** first; yes → `@viraui/charts` + `@visx/visx`; compose → design charts.md → `@viraui/charts/specs` |
-| Install or skip `@viraui/icons` / other icon libs  | [bootstrap.md](bootstrap.md) + bootstrap.xml                                                                                             |
-| Install or refresh agent skills                    | Hub + **paste** [agents-project-note.md](agents-project-note.md) into `AGENTS.md` by default                                             |
-| Next.js / Remix / Astro / Vite import sites        | [frameworks.md](frameworks.md)                                                                                                           |
-| Toast / Dialog / Tooltip root providers            | [bootstrap.md](bootstrap.md) + bootstrap.xml `root_providers` + [frameworks.md](frameworks.md)                                           |
-| Default vs App Studio / custom theme               | [theme.md](theme.md) — **ask before** foundation or font installs                                                                        |
-| Custom theme or token overrides                    | [theme.md](theme.md)                                                                                                                     |
-| Foundation preset or brand export                  | [foundation-exports.md](foundation-exports.md) (only after default answer)                                                               |
-| Preflight and consumer `data-*` bootstrap          | [preflight.md](preflight.md) — compose → **viraui-design** [custom-attributes.md](../viraui-design/custom-attributes.md)                 |
-| Tailwind / Bootstrap / other CSS reset coexistence | [css-framework-coexistence.md](css-framework-coexistence.md) — warn, ask, omit third-party preflight                                     |
+| Install packages / first-time bootstrap | [bootstrap.md](bootstrap.md) + `foundation/bootstrap.xml`, then [theme.md](theme.md) |
+| Charts / data-viz intent during bootstrap | [bootstrap.md](bootstrap.md) — **ask** first; yes → `@viraui/charts` + `@visx/visx`; compose → design charts.md → `@viraui/charts/specs` |
+| Install or skip `@viraui/icons` / other icon libs | [bootstrap.md](bootstrap.md) + bootstrap.xml |
+| Install or refresh agent skills | Hub + **paste** [agents-project-note.md](agents-project-note.md) into `AGENTS.md` by default |
+| Next.js / Remix / Astro / Vite import sites | [frameworks.md](frameworks.md) |
+| Toast / Dialog / Tooltip root providers | [bootstrap.md](bootstrap.md) + bootstrap.xml `root_providers` + [frameworks.md](frameworks.md) |
+| Default vs App Studio / custom theme | [theme.md](theme.md) — **ask before** foundation or font installs |
+| Custom theme or token overrides | [theme.md](theme.md) |
+| Foundation preset or brand export | [foundation-exports.md](foundation-exports.md) (only after default answer) |
+| Preflight and consumer `data-*` bootstrap | [preflight.md](preflight.md) — compose → **viraui-design** [custom-attributes.md](../viraui-design/custom-attributes.md) |
+| Tailwind / Bootstrap / other CSS reset coexistence | [css-framework-coexistence.md](css-framework-coexistence.md) — warn, ask, omit third-party preflight |
 
 ## Setup checklist
 
@@ -74,18 +74,18 @@ After `@viraui/react` is installed: `PROTOCOL.md`, `index.xml`, `foundation/boot
 
 ## Red flags — STOP
 
-| Excuse                                    | Reality                                                                             |
+| Excuse | Reality |
 | ----------------------------------------- | ----------------------------------------------------------------------------------- |
-| “Install foundation + fonts by default”   | Ask default vs App Studio first                                                     |
-| “`@import` preflight in global.css”       | JS side-effect imports in app root only                                             |
-| “Toast Provider on this page”             | Overlay providers once at root                                                      |
-| “Unstyled — import Button CSS”            | Fix theme → fonts → preflight first                                                 |
-| “Keep full Tailwind/Bootstrap preflight”  | Warn + ask; prefer omit third-party reset                                           |
-| “Drop Vira preflight for Tailwind”        | Keep Vira preflight                                                                 |
-| “Form task — always load setup”           | Bootstrapped → **viraui-design**                                                    |
-| “Must install `@viraui/icons`”            | Optional; any ReactNode in slots                                                    |
+| “Install foundation + fonts by default” | Ask default vs App Studio first |
+| “`@import` preflight in global.css” | JS side-effect imports in app root only |
+| “Toast Provider on this page” | Overlay providers once at root |
+| “Unstyled — import Button CSS” | Fix theme → fonts → preflight first |
+| “Keep full Tailwind/Bootstrap preflight” | Warn + ask; prefer omit third-party reset |
+| “Drop Vira preflight for Tailwind” | Keep Vira preflight |
+| “Form task — always load setup” | Bootstrapped → **viraui-design** |
+| “Must install `@viraui/icons`” | Optional; any ReactNode in slots |
 | “Skip charts ask” / “every `@visx/<pkg>`” | Ask early; yes → `@viraui/charts` + `@visx/visx` only; compose via design charts.md |
-| “Guess Remix entry” / “prose-only done”   | [frameworks.md](frameworks.md) + bootstrap.xml; end with setup-recap table          |
+| “Guess Remix entry” / “prose-only done” | [frameworks.md](frameworks.md) + bootstrap.xml; end with setup-recap table |
 
 ## Out of scope
 
@@ -93,7 +93,7 @@ Monorepo component authoring, Vira repo CSS Modules, Storybook, workspace-only p
 
 ## Done — setup recap (required)
 
-When bootstrap / fix work **finishes**, or when the agent **stops mid-checklist**, end with a **visual recap** — not prose-only.
+When bootstrap / fix work **finishes**, or when agent **stops mid-checklist**, end with **visual recap** — not prose-only.
 
 ```markdown
 ## Setup recap

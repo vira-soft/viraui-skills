@@ -1,12 +1,12 @@
 # The Picker
 
-**When to read:** building or wiring the harness chrome. Appearance is **not** a design decision — copy markup, CSS, and wiring below verbatim. Only variant names and count change per run. Never restyle with project tokens, fonts, or colors.
+**When to read:** build/wire harness chrome. Appearance **not** design decision — copy markup/CSS/wiring below verbatim. Only variant names + count change per run. Never restyle w/ project tokens, fonts, colors.
 
-It is a floating dark pill, bottom-center. Dark glass works on light or dark pages — not theme-aware.
+Floating dark pill, bottom-center. Dark glass works on light/dark pages — not theme-aware.
 
 ## Markup
 
-The sliding highlight span first, one button per variant, a hairline divider, then the replay button (only when at least one variant has motion to re-trigger):
+Sliding highlight span first, one button per variant, hairline divider, then replay button (only when ≥1 variant has motion to re-trigger):
 
 ```html
 <nav class="proto-picker" aria-label="Prototype variants">
@@ -19,7 +19,7 @@ The sliding highlight span first, one button per variant, a hairline divider, th
 </nav>
 ```
 
-In a framework, keep the class names and structure; only the rendering syntax changes.
+In framework: keep class names + structure; only rendering syntax changes.
 
 ## Styles
 
@@ -125,23 +125,23 @@ In a framework, keep the class names and structure; only the rendering syntax ch
 
 ## Rules
 
-- **Verbatim.** These values are the spec. No project fonts, no brand colors, no theme switching, no extra shadows or borders.
-- **The highlight slides; the variant swap stays instant.** The active pill animates between buttons (250ms, strong ease-out) as spatial feedback on the picker itself — but the variant being previewed still switches with no transition. The `width` transition is a deliberate exception to the transform/opacity rule: the element is 28px tall, absolutely positioned, and has no layout dependents, so the paint cost is negligible.
-- **One allowed modification:** if a variant occupies the bottom-center of the screen (a toast stack, a bottom sheet, a dock), set `data-position="top"` so the picker never covers the work. Nothing else about it may move or change.
-- **Replay is conditional.** Render the replay button and its divider only when at least one variant has an entrance or state animation worth re-triggering; a static comparison gets a shorter pill.
+- **Verbatim.** These values = spec. No project fonts, brand colors, theme switching, extra shadows/borders.
+- **The highlight slides; the variant swap stays instant.** Active pill animates between buttons (250ms, strong ease-out) as picker spatial feedback — previewed variant still switches w/ no transition. `width` transition = deliberate exception to transform/opacity rule: element 28px tall, absolutely positioned, no layout dependents → paint cost negligible.
+- **One allowed modification:** if variant occupies bottom-center (toast stack, bottom sheet, dock), set `data-position="top"` so picker never covers work. Nothing else may move/change.
+- **Replay is conditional.** Render replay button + divider only when ≥1 variant has entrance/state animation worth re-triggering; static comparison → shorter pill.
 
 ## Behavior contract
 
-The contract is fixed regardless of how the harness renders:
+Contract fixed regardless of harness render:
 
-- Number keys `1–N` and `←`/`→` switch variants; `R` replays. Ignore key events when focus is in an input, textarea, select, or contenteditable, or when a modifier is held.
-- Clicking an item switches to it; exactly one item carries `data-active` and `aria-current="true"` at all times, and the highlight slides to it.
-- Selection persists across reload via a URL param (`?v=2`), falling back to variant 1. The highlight takes its initial position without animating (`data-ready` is added after first paint).
-- Switching re-mounts the variant (so entrance animations re-run); the replay key re-mounts without switching.
+- Number keys `1–N` + `←`/`→` switch variants; `R` replays. Ignore key events when focus in input, textarea, select, or contenteditable, or modifier held.
+- Click item → switch; exactly one item carries `data-active` + `aria-current="true"` always; highlight slides to it.
+- Selection persists across reload via URL param (`?v=2`), fallback variant 1. Highlight initial position w/o animating (`data-ready` added after first paint).
+- Switching re-mounts variant (entrance animations re-run); replay key re-mounts w/o switching.
 
 ## Reference wiring
 
-Verbatim for the standalone-HTML branch; in a framework, keep the same behavior but express it idiomatically (state instead of `innerHTML`, a keyed re-mount instead of `requestAnimationFrame`, refs + a layout effect for the highlight measurement).
+Verbatim for standalone-HTML branch; in framework keep same behavior, express idiomatically (state instead of `innerHTML`, keyed re-mount instead of `requestAnimationFrame`, refs + layout effect for highlight measurement).
 
 ```js
 // `variants` is an array of render functions, one per variant, in picker order.

@@ -1,23 +1,23 @@
-**When to read:** Naming a motion effect from a vague description (“what’s it called when…”). Not for building — then [build.md](build.md).
+**Read when:** Naming motion effect from vague description (“what’s it called when…”). Not for building — then [build.md](build.md).
 
 # Vocabulary
 
-Return the best glossary term first; 1–2 alternates if close. Keep answers short. After naming, point builders to the matching motion router row (tokens still [speed.md](speed.md) / [timing.md](timing.md)).
+Return best glossary term first; 1–2 alternates if close. Keep answers short. After naming, point builders to matching motion router row (tokens still [speed.md](speed.md) / [timing.md](timing.md)).
 
 ## Entrances & exits
 
-- **Fade in / Fade out** — Opacity appear or disappear.
-- **Slide in** — Enter by sliding from an edge.
-- **Scale in** — Grow from smaller to full size, often with fade.
-- **Pop in** — Appear with slight overshoot.
-- **Reveal** — Uncover via clip-path or mask.
-- **Enter / Exit** — Motion when added to or removed from the tree.
+- **Fade in / Fade out** — Opacity appear/disappear.
+- **Slide in** — Enter sliding from edge.
+- **Scale in** — Grow smaller→full, often + fade.
+- **Pop in** — Appear w/ slight overshoot.
+- **Reveal** — Uncover via clip-path/mask.
+- **Enter / Exit** — Motion when added/removed from tree.
 
 ## Sequencing
 
-- **Stagger** — Cascade with small delays between items → [choreography.md](choreography.md).
+- **Stagger** — Cascade w/ small delays between items → [choreography.md](choreography.md).
 - **Orchestration** — Coordinated multi-element timing.
-- **Delay / Duration / Fill mode / Keyframes / Interpolation** — Timing primitives; Vira durations are `--duration-*`.
+- **Delay / Duration / Fill mode / Keyframes / Interpolation** — Timing primitives; Vira durations = `--duration-*`.
 - **Stepped animation** — Discrete steps (e.g. countdown).
 
 ## Transforms
@@ -29,12 +29,12 @@ Return the best glossary term first; 1–2 alternates if close. Keep answers sho
 
 ## State & navigation
 
-- **Crossfade** — Out + in in the same spot.
-- **Morph** — One shape becomes another.
-- **Shared element transition** — Element travels and transforms across states.
-- **Layout animation** — Size/position change animates instead of snapping.
+- **Crossfade** — Out + in same spot.
+- **Morph** — One shape → another.
+- **Shared element transition** — Element travels + transforms across states.
+- **Layout animation** — Size/position animates instead of snap.
 - **Accordion / Collapse** — Height expand/collapse.
-- **Direction-aware transition** — Forward vs back slide direction.
+- **Direction-aware transition** — Forward vs back slide.
 
 ## Scroll
 
@@ -44,23 +44,23 @@ Return the best glossary term first; 1–2 alternates if close. Keep answers sho
 
 - **Hover effect / Press feedback / Hold to confirm / Drag / Drag to reorder / Swipe to dismiss / Rubber-banding** → [gestures.md](gestures.md) when pointer-driven.
 - **Shake / Wiggle** — Error jitter; Vira: `--easing-wiggle` only when appropriate ([animations.md](animations.md)).
-- **Ripple** — Expanding tap confirmation (rare in Vira product UI).
+- **Ripple** — Expanding tap confirm (rare in Vira product UI).
 
 ## Easing language → tokens
 
-| Spoken                 | Prefer                                      |
+| Spoken | Prefer |
 | ---------------------- | ------------------------------------------- |
-| Ease-out entrance/exit | `--easing-entrance` / `--easing-exit`       |
-| On-screen move         | `--easing-standard`                         |
-| Elastic / overshoot    | `--easing-elastic` (evocative / press only) |
-| Wiggle                 | `--easing-wiggle`                           |
-| Linear                 | Constant motion only (spinners, hold fill)  |
+| Ease-out entrance/exit | `--easing-entrance` / `--easing-exit` |
+| On-screen move | `--easing-standard` |
+| Elastic / overshoot | `--easing-elastic` (evocative / press only) |
+| Wiggle | `--easing-wiggle` |
+| Linear | Constant motion only (spinners, hold fill) |
 
 Do not invent parallel `--ease-*` forks. Authority: [timing.md](timing.md).
 
 ## Spring language
 
-Springs are physics metaphors. On ViraUI screens prefer token CSS/WAAPI; gesture release may need velocity-aware settle ([gestures.md](gestures.md)) without mandating a spring library.
+Springs = physics metaphors. On ViraUI screens prefer token CSS/WAAPI; gesture release may need velocity-aware settle ([gestures.md](gestures.md)) without mandating spring library.
 
 ## Performance words
 
@@ -72,8 +72,8 @@ Springs are physics metaphors. On ViraUI screens prefer token CSS/WAAPI; gesture
 
 ## Gotchas
 
-- Naming ≠ implementing; after the term, stop unless asked to build.
-- Do not load the whole motion folder.
+- Naming ≠ implementing; after term, stop unless asked to build.
+- Do not load whole motion folder.
 
 ## Validation
 

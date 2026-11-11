@@ -1,8 +1,8 @@
-**When to read:** Review a diff / PR that adds or changes motion.
+**When to read:** Review diff / PR that adds or changes motion.
 
 # Review
 
-Diff review, not a full codebase audit ([improve.md](improve.md)). Standards cite sibling refs — do not paste duplicate cubic-bezier / ms tables.
+Diff review, not full codebase audit ([improve.md](improve.md)). Standards cite sibling refs — do not paste duplicate cubic-bezier / ms tables.
 
 ## Standards (pass/fail)
 
@@ -15,17 +15,17 @@ Diff review, not a full codebase audit ([improve.md](improve.md)). Standards cit
 7. **Interruptibility** — No keyframes on rapid/reversible or gesture surfaces ([gestures.md](gestures.md)).
 8. **Choreography** — No dual entrance; no high-frequency stagger ([choreography.md](choreography.md)).
 9. **Hover gate** — Fine-pointer media for hover-only effects.
-10. **Whole interface** — Custom CSS in the diff obeys the same contract as Vira parts.
+10. **Whole interface** — Custom CSS in diff obeys same contract as Vira parts.
 
 ## Escalation
 
-| Finding                                       | Action                                   |
+| Finding | Action |
 | --------------------------------------------- | ---------------------------------------- |
-| Missing reduced-motion / raw ms on shipped UI | **Block**                                |
-| `transition: all` / layout thrash on hot path | **Block**                                |
-| Evocative on dense/error UI                   | **Block** or require functional retarget |
-| Missing hover gate / weak origin              | **Should fix**                           |
-| Naming / comment clarity                      | **Nice**                                 |
+| Missing reduced-motion / raw ms on shipped UI | **Block** |
+| `transition: all` / layout thrash on hot path | **Block** |
+| Evocative on dense/error UI | **Block** or require functional retarget |
+| Missing hover gate / weak origin | **Should fix** |
+| Naming / comment clarity | **Nice** |
 
 Remedial order: delete unjustified motion → token swap → property/engine fix → choreography cut.
 
@@ -36,15 +36,15 @@ Remedial order: delete unjustified motion → token swap → property/engine fix
 | ------ | ---- | ---------- | ---- |
 ```
 
-End with **Block** or **Approve** (Approve only if zero Blocks). Optional Before|After for the worst offender.
+End with **Block** or **Approve** (Approve only if zero Blocks). Optional Before|After for worst offender.
 
 ## Gotchas
 
 - Approving Framer/Vaul defaults on Vira screens → fail; require tokens + design-spec overlays.
 - Loading every motion ref to review one hover → fail; hub + this ref (+ one cited sibling).
-- Do not re-audit unrelated files (that is [improve.md](improve.md)).
+- Do not re-audit unrelated files (→ [improve.md](improve.md)).
 
 ## Validation
 
-- Every Block cites a standard number
-- Token guidance points at speed/timing, not invented curves
+- Every Block cites standard number
+- Token guidance → speed/timing, not invented curves

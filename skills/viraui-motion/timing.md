@@ -2,17 +2,17 @@
 
 # Timing
 
-Easing = speed over the duration. **Never invent curves.** Durations: [speed.md](speed.md).
+Easing = speed over duration. **Never invent curves.** Durations: [speed.md](speed.md).
 
-| Token               | Kind         | When                                                              |
+| Token | Kind | When |
 | ------------------- | ------------ | ----------------------------------------------------------------- |
-| `--easing-standard` | cubic-bezier | Default state change: hover, indicator, accordion, position       |
-| `--easing-entrance` | cubic-bezier | Incoming: modal, popover, menu, toast-in, user-triggered reveal   |
-| `--easing-exit`     | cubic-bezier | Leaving: dismiss, collapse, close — pairs with a shorter duration |
-| `--easing-elastic`  | `linear()`   | Playful overshoot: press, toast. Not errors or data tables        |
-| `--easing-wiggle`   | `linear()`   | Attention wiggle. Rare. Never looping on content                  |
+| `--easing-standard` | cubic-bezier | Default state change: hover, indicator, accordion, position |
+| `--easing-entrance` | cubic-bezier | Incoming: modal, popover, menu, toast-in, user-triggered reveal |
+| `--easing-exit` | cubic-bezier | Leaving: dismiss, collapse, close — pairs with shorter duration |
+| `--easing-elastic` | `linear()` | Playful overshoot: press, toast. Not errors/data tables |
+| `--easing-wiggle` | `linear()` | Attention wiggle. Rare. Never loop on content |
 
-Do not paste `linear()` stop lists into app CSS. Call the var. Theme CSS already has the graphs.
+Do not paste `linear()` stop lists into app CSS. Call var. Theme CSS already has graphs.
 
 ## Checklist
 
@@ -44,20 +44,20 @@ Do not paste `linear()` stop lists into app CSS. Call the var. Theme CSS already
 }
 ```
 
-CSS is enough for UI enter/exit/hover. Do not add Framer Motion or GSAP for standard feedback.
+CSS enough for UI enter/exit/hover. Do not add Framer Motion/GSAP for standard feedback.
 
 ## Gotchas
 
 - **Tokens only** — no `ease`, `ease-in-out`, homemade `cubic-bezier`, or invented `--spring`.
-- Entrance curve on a dismiss = wrong; use `--easing-exit`.
+- Entrance curve on dismiss = wrong; use `--easing-exit`.
 - Elastic on validation errors or dense tables = wrong ([animations.md](animations.md)).
 - “CSS cannot do physics” → `--easing-elastic` already does; no JS spring runtime for that.
 - **Do not skip custom CSS** — same easing table for consumer chrome.
-- **Do not load the whole motion folder** — this file + [speed.md](speed.md) when both needed; skip [animations.md](animations.md) if style already chosen.
+- **Do not load whole motion folder** — this file + [speed.md](speed.md) when both needed; skip [animations.md](animations.md) if style already chosen.
 - **`prefers-reduced-motion`** still required ([principles.md](principles.md)).
 
 ## Validation
 
-- Every easing is a `--easing-*` or `tokens.easing.*`
+- Every easing is `--easing-*` or `tokens.easing.*`
 - Exit uses `--easing-exit` (not entrance)
 - No elastic/wiggle on error/destructive/dense data

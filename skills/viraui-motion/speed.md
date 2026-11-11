@@ -4,15 +4,15 @@
 
 Duration = how long. Pair with [timing.md](timing.md) for easing. **Never hardcode `ms`/`s`.**
 
-Theme scale (CSS vars on the loaded theme; same strings in preset JSON):
+Theme scale (CSS vars on loaded theme; same strings in preset JSON):
 
-| Token                | Nested JSON (`duration.*`) | Use                                                        |
+| Token | Nested JSON (`duration.*`) | Use |
 | -------------------- | -------------------------- | ---------------------------------------------------------- |
-| `--duration-instant` | `"0.10s"`                  | Press, menu/select popup, small nudges                     |
-| `--duration-fast`    | `"0.20s"`                  | Default functional: hover, disclosure, tabs, most overlays |
-| `--duration-normal`  | `"0.30s"`                  | Larger overlay travel (dialog sheet)                       |
-| `--duration-slow`    | `"0.60s"`                  | Evocative enter (toast)                                    |
-| `--duration-slowest` | `"1.00s"`                  | Decorative loops (shimmer) only                            |
+| `--duration-instant` | `"0.10s"` | Press, menu/select popup, small nudges |
+| `--duration-fast` | `"0.20s"` | Default functional: hover, disclosure, tabs, most overlays |
+| `--duration-normal` | `"0.30s"` | Larger overlay travel (dialog sheet) |
+| `--duration-slow` | `"0.60s"` | Evocative enter (toast) |
+| `--duration-slowest` | `"1.00s"` | Decorative loops (shimmer) only |
 
 ## Checklist
 
@@ -24,13 +24,13 @@ Theme scale (CSS vars on the loaded theme; same strings in preset JSON):
 
 ## Defaults
 
-| Move                           | Duration                                |
+| Move | Duration |
 | ------------------------------ | --------------------------------------- |
-| Hover / indicator / disclosure | `--duration-fast`                       |
-| Press / small popup            | `--duration-instant`                    |
-| Dialog sheet travel            | `--duration-normal` enter; shorter exit |
-| Toast evocative                | `--duration-slow`                       |
-| Shimmer loop                   | `--duration-slowest` only               |
+| Hover / indicator / disclosure | `--duration-fast` |
+| Press / small popup | `--duration-instant` |
+| Dialog sheet travel | `--duration-normal` enter; shorter exit |
+| Toast evocative | `--duration-slow` |
+| Shimmer loop | `--duration-slowest` only |
 
 ```css
 .sheet {
@@ -61,7 +61,7 @@ Prefer CSS `transition` with `var(--duration-*)`. If JS must time:
 2. Custom theme: `getComputedStyle(el).getPropertyValue('--duration-fast')`.
 3. Never invent 180 / 200 / 480.
 
-JSON values are CSS times (`"0.20s"`), not milliseconds.
+JSON values = CSS times (`"0.20s"`), not milliseconds.
 
 ```ts
 import tokens from '@viraui/foundation/vira/nested';
@@ -75,7 +75,7 @@ const fastMs = cssTimeToMs(tokens.duration.fast);
 const easing = tokens.easing.standard;
 ```
 
-Match the loaded CSS brand (`vira-condensed` / `sunburst` / `cinder` → that `/nested` path). Flat `@viraui/foundation/vira/json` uses `'duration-fast'`. Export map: **viraui-setup** `foundation-exports.md`.
+Match loaded CSS brand (`vira-condensed` / `sunburst` / `cinder` → that `/nested` path). Flat `@viraui/foundation/vira/json` uses `'duration-fast'`. Export map: **viraui-setup** `foundation-exports.md`.
 
 ## Gotchas
 
@@ -84,11 +84,11 @@ Match the loaded CSS brand (`vira-condensed` / `sunburst` / `cinder` → that `/
 - Same duration for modal enter and exit = wrong (exits shorter).
 - `--duration-slowest` on hover = wrong.
 - **Do not skip custom CSS** — same table applies to consumer chrome.
-- **Do not load the whole motion folder** — need easing next? Open [timing.md](timing.md) only.
+- **Do not load whole motion folder** — need easing next? Open [timing.md](timing.md) only.
 - Copying numeric scales from other design systems = wrong.
 
 ## Validation
 
-- Every duration is a `--duration-*` or `tokens.duration.*`
-- Exit ≤ enter for the same surface
+- Every duration is `--duration-*` or `tokens.duration.*`
+- Exit ≤ enter for same surface
 - Reduced-motion honored ([principles.md](principles.md))

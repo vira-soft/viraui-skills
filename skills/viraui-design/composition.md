@@ -2,15 +2,15 @@
 
 **When to read:** Field ownership, Dialog / Popover / Menu / Toast / ToggleGroup / Select / Autocomplete / OTPField / NumberField trees, or any compound assembly before inventing parts.
 
-Canonical **shapes** only. Complete props/defaults → specs `components/<id>/` (`meta` → `props` → `usage` → `patterns`) + types verify. Prefer high-level parts (`Sheet`, `Popup`, `Banner`) over reimplementing Portal/Positioner.
+Canonical **shapes** only. Full props/defaults → specs `components/<id>/` (`meta` → `props` → `usage` → `patterns`) + types verify. Prefer high-level parts (`Sheet`, `Popup`, `Banner`) over reimplementing Portal/Positioner.
 
-Lower-risk compounds (`Accordion`, `Disclosure`, `Grid`, `Masonry`, `Skeleton`, `Tabs`, `Tooltip`, `Gauge`): follow that surface’s units (`Tooltip.Provider` for shared delay; grouped adjacent triggers → `Tooltip.createHandle` + payload so Content morphs instead of close/reopen flash; `Skeleton.Overlay` for child-sized placeholders; `Disclosure` = `Trigger` + `Panel` for one section — not Accordion; `Gauge` = round domain root + SVG parts, optional `GaugeControl` wrapper — linear ranges stay on `Slider`). Overlay enter/exit motion → **viraui-motion**.
+Lower-risk (`Accordion`, `Disclosure`, `Grid`, `Masonry`, `Skeleton`, `Tabs`, `Tooltip`, `Gauge`): follow surface units (`Tooltip.Provider` shared delay; grouped adjacent triggers → `Tooltip.createHandle` + payload so Content morphs, no close/reopen flash; `Skeleton.Overlay` child-sized placeholders; `Disclosure` = `Trigger` + `Panel` one section — not Accordion; `Gauge` = round domain root + SVG parts, optional `GaugeControl` — linear ranges stay `Slider`). Overlay enter/exit → **viraui-motion**.
 
-`BreakpointsProvider` / `DirectionProvider` are **opt-in**, not part of the Dialog/Tooltip/Toast overlay shell. Full discipline (CSS `@media`/`@container` first + shared em map, `useBreakpoints` for structure/props, RTL + `dir` on `html`, Stack flex vs LTR/RTL) → [responsive.md](responsive.md) → specs `breakpoints` / `direction-provider` units.
+`BreakpointsProvider` / `DirectionProvider` **opt-in**, not Dialog/Tooltip/Toast overlay shell. Discipline (CSS `@media`/`@container` first + shared em map, `useBreakpoints` structure/props, RTL + `dir` on `html`, Stack flex vs LTR/RTL) → [responsive.md](responsive.md) → specs `breakpoints` / `direction-provider` units.
 
 ## Field ownership
 
-`Field` from `@base-ui/react`, not `@viraui/react`. `Textfield` (unless `controlOnly`), `Textarea`, `Select`, `Autocomplete`, `OTPField`, `NumberField` already own `Field.Root` — never double-wrap.
+`Field` from `@base-ui/react`, not `@viraui/react`. `Textfield` (unless `controlOnly`), `Textarea`, `Select`, `Autocomplete`, `OTPField`, `NumberField` own `Field.Root` — never double-wrap.
 
 Standalone `Checkbox` validation needs Base UI Field:
 
@@ -23,13 +23,13 @@ import { Checkbox } from '@viraui/react';
 </Field.Root>;
 ```
 
-Use `Fieldset` only when a choice group needs shared legend, description, or error. Without shared group copy, `RadioGroup` / `CheckboxGroup` may sit directly in `Field.Root`.
+`Fieldset` only when choice group needs shared legend, description, or error. No shared group copy → `RadioGroup` / `CheckboxGroup` may sit in `Field.Root` directly.
 
 ### Custom field labels
 
-`Textfield`, `Textarea`, `Select`, and `Autocomplete` render `label` through internal `FieldLabel` (`Text` `size="s"` `weight="semibold"`). Prefer a string when the label is plain text.
+`Textfield`, `Textarea`, `Select`, `Autocomplete` render `label` via internal `FieldLabel` (`Text` `size="s"` `weight="semibold"`). Prefer string for plain text.
 
-Need a side action, badge, or rich row (e.g. “Forgot password?”)? Pass a ReactNode. Recreate title text that matches the plain label with public `Text` `size="s"` `weight="semibold"`. Extra bits use their own size/tone (link → `size="xs"`). Layout with `Stack` row + `hAlign="space-between"` + cluster gap `s`. Do **not** import `FieldLabel`. No label CSS. Confirm shapes in each surface’s `patterns` / `usage` / `props`.
+Side action / badge / rich row (e.g. “Forgot password?”)? Pass ReactNode. Match plain-label title with public `Text` `size="s"` `weight="semibold"`. Extra bits own size/tone (link → `size="xs"`). Layout: `Stack` row + `hAlign="space-between"` + cluster gap `s`. Do **not** import `FieldLabel`. No label CSS. Confirm in surface `patterns` / `usage` / `props`.
 
 ```tsx
 <Textfield
@@ -49,7 +49,7 @@ Need a side action, badge, or rich row (e.g. “Forgot password?”)? Pass a Rea
 
 ## Dialog
 
-Root indent shell is bootstrap — **viraui-setup** [bootstrap.md](../viraui-setup/bootstrap.md) / [frameworks.md](../viraui-setup/frameworks.md). Exact parts → `components/dialog/patterns.xml` + `usage.xml`.
+Root indent shell = bootstrap — **viraui-setup** [bootstrap.md](../viraui-setup/bootstrap.md) / [frameworks.md](../viraui-setup/frameworks.md). Exact parts → `components/dialog/patterns.xml` + `usage.xml`.
 
 ```tsx
 <Dialog.Provider>
@@ -68,7 +68,7 @@ Root indent shell is bootstrap — **viraui-setup** [bootstrap.md](../viraui-set
 </Dialog.Provider>
 ```
 
-Indent parts optional. Without the effect: `Dialog`, `Trigger`, required-title `Sheet`, optional `Close`. Nested `Dialog` inside `Sheet` supports drill-down. Non-modal: confirm props in units (no invented `showBackdrop`).
+Indent optional. Without effect: `Dialog`, `Trigger`, required-title `Sheet`, optional `Close`. Nested `Dialog` inside `Sheet` = drill-down. Non-modal: confirm props in units (no invented `showBackdrop`).
 
 ## Popover
 
@@ -84,7 +84,7 @@ Styled sheet:
 </Popover>
 ```
 
-Unstyled sheet owns chrome and must compose accessible heading — see `components/popover` units. Detached/multiple triggers: `Popover.createHandle()` when documented. Do not invent non-public parts (e.g. `Popover.Arrow`).
+Unstyled sheet owns chrome + accessible heading — `components/popover` units. Detached/multiple triggers: `Popover.createHandle()` when documented. Don't invent non-public parts (e.g. `Popover.Arrow`).
 
 ## Menu
 
@@ -100,11 +100,11 @@ Unstyled sheet owns chrome and must compose accessible heading — see `componen
 </Menu>
 ```
 
-Do not wrap `Menu` in `Popover` — Menu owns portal, positioning, and keyboard behavior. Confirm part names in `components/menu` units.
+Don't wrap `Menu` in `Popover` — Menu owns portal, positioning, keyboard. Confirm parts in `components/menu` units.
 
 ## Toast
 
-Root `Toast.Provider` + viewport mapping is bootstrap — **viraui-setup**. Manager / Banner mapping shapes:
+Root `Toast.Provider` + viewport mapping = bootstrap — **viraui-setup**. Manager / Banner shapes:
 
 ```tsx
 const toastManager = Toast.createToastManager();
@@ -130,7 +130,7 @@ function ToastRegion() {
 toastManager.add({ title: 'Saved', description: 'Changes stored.' });
 ```
 
-Anchored / action children → confirm in `components/toast` units. Viewport alone does not render notifications — map manager toasts to `Toast.Banner`.
+Anchored / action children → `components/toast` units. Viewport alone renders nothing — map manager toasts → `Toast.Banner`.
 
 ## ToggleGroup
 
@@ -141,11 +141,11 @@ Anchored / action children → confirm in `components/toast` units. Viewport alo
 </ToggleGroup>
 ```
 
-Every item needs distinct `value`, icon slot, and accessible name. Never pass `ToggleButton` children.
+Each item: distinct `value`, icon slot, accessible name. Never `ToggleButton` children.
 
 ## OTPField
 
-Compound `OTPField` / `Input` / `Separator` (no public `.Root`). One Field for label/helper. List exactly `length` Inputs — OTPField does not auto-spawn slots. Default slots compose Textfield `controlOnly`; host is always native `input` (no Input `render`). Group with Stack + `Separator`. Equal-grow via `fullWidth`. Invalid+dirty (and `onValueInvalid`) play a built-in one-shot slot wiggle — keep error copy. Confirm remaining-slot names in `components/otp-field` units.
+Compound `OTPField` / `Input` / `Separator` (no public `.Root`). One Field for label/helper. Exactly `length` Inputs — no auto-spawn. Default slots = Textfield `controlOnly`; host always native `input` (no Input `render`). Group via Stack + `Separator`. Equal-grow via `fullWidth`. Invalid+dirty (and `onValueInvalid`) = built-in one-shot slot wiggle — keep error copy. Remaining-slot names → `components/otp-field` units.
 
 ```tsx
 <OTPField length={6} label="Verification code">
@@ -160,7 +160,7 @@ Compound `OTPField` / `Input` / `Separator` (no public `.Root`). One Field for l
 
 ## NumberField
 
-Single public `NumberField` (no `.Root` / `.Input`). Owns Base UI value/bounds/`name`, Field chrome, steppers, scrub, width. Do not export Group/Decrement/Increment/ScrubArea. Confirm placement / scrub / `fullWidth` (input grows, steppers compact) in `components/number-field` units.
+Single public `NumberField` (no `.Root` / `.Input`). Owns Base UI value/bounds/`name`, Field chrome, steppers, scrub, width. Don't export Group/Decrement/Increment/ScrubArea. Placement / scrub / `fullWidth` (input grows, steppers compact) → `components/number-field` units.
 
 ```tsx
 <NumberField defaultValue={100} name="amount" label="Amount" description="Local currency." />
@@ -168,7 +168,7 @@ Single public `NumberField` (no `.Root` / `.Input`). Owns Base UI value/bounds/`
 
 ## Select and Autocomplete
 
-Both own field and popup chrome. Do not add `Field.Root`. Confirm `Option` / `Group` / `Item` / `empty` / `modal` in units — do not invent parts.
+Both own field + popup chrome. Don't add `Field.Root`. Confirm `Option` / `Group` / `Item` / `empty` / `modal` in units — don't invent parts.
 
 ```tsx
 <Select label="Status">
@@ -182,19 +182,19 @@ Both own field and popup chrome. Do not add `Field.Root`. Confirm `Option` / `Gr
 
 ## Validation loop
 
-1. Open specs `patterns` / `usage` + types for the compound.
-2. Diff planned parts against units — stop on undocumented names.
-3. If `meta` has `<base_ui>` → open that Base UI API for pass-through (Vira may wrap/regroup parts) — [discovery.md](discovery.md). Still unsure → ask.
+1. Open specs `patterns` / `usage` + types for compound.
+2. Diff planned parts vs units — stop on undocumented names.
+3. `meta` has `<base_ui>` → open Base UI API for pass-through (Vira may wrap/regroup) — [discovery.md](discovery.md). Unsure → ask.
 4. Confirm Field ownership (no double-wrap; Base UI `Field` when required).
 5. Confirm overlay titles / names; omit dup widget ARIA — [accessibility.md](accessibility.md).
-6. Motion on enter/exit → **viraui-motion** hub + one ref.
+6. Enter/exit motion → **viraui-motion** hub + one ref.
 
 ## Gotchas
 
 - Invented parts (`Dialog.Body`, `Popover.Arrow`, `showBackdrop`).
 - Double-wrapping Textfield/Select/Autocomplete/OTPField/NumberField in `Field.Root`.
 - Importing `Field` from `@viraui/react`.
-- Importing internal `FieldLabel` or inventing label CSS for rich field labels — use ReactNode `label` + `Text` matching FieldLabel (`s` / `semibold`).
+- Importing internal `FieldLabel` or inventing label CSS for rich labels — ReactNode `label` + `Text` matching FieldLabel (`s` / `semibold`).
 - Wrapping `Menu` in `Popover`.
 - `ToggleButton` / icon-only controls with `children`.
 - Toast viewport without mapping toasts → `Banner`.

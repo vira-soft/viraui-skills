@@ -7,8 +7,8 @@
 Same bootstrap everywhere:
 
 1. JS side-effect imports: **theme → fonts → preflight** (then app CSS)
-2. Mount `ViraProviders` once around the app tree (shell below; confirm in specs)
-3. Never bootstrap via CSS `@import` in a global stylesheet
+2. Mount `ViraProviders` once around app tree (shell below; confirm in specs)
+3. Never bootstrap via CSS `@import` in global stylesheet
 
 Authority: `@viraui/react/specs/foundation/bootstrap.xml` → Next.js / provider sections.
 
@@ -37,7 +37,7 @@ Match font packages to `--font-family-*` / Studio `@font-face` fontsource ids �
 
 ## Overlay shell (`ViraProviders`)
 
-Confirm the exact tree in `foundation/bootstrap.xml`. Minimal consumer wrapper:
+Confirm exact tree in `foundation/bootstrap.xml`. Minimal consumer wrapper:
 
 ```tsx
 import { Dialog, Toast, Tooltip } from '@viraui/react';
@@ -78,12 +78,12 @@ export function ViraProviders({ children }: { children: React.ReactNode }) {
 
 ## Next.js (App Router) — default
 
-| Rule      | Detail                                                                                                                                                     |
+| Rule | Detail |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CSS entry | `app/layout.tsx` (Server Component OK)                                                                                                                     |
-| Providers | Client module wrapping `{children}` — not the layout module itself. Overlay shell above; add `BreakpointsProvider` / `DirectionProvider` only when needed. |
-| Forbidden | `@import '@viraui/*'` or font-package `@import` in `app/globals.css`                                                                                       |
-| Modes     | `data-mode` on `<html>` when using light/dark/inverted                                                                                                     |
+| CSS entry | `app/layout.tsx` (Server Component OK) |
+| Providers | Client module wrapping `{children}` — not layout module itself. Overlay shell above; add `BreakpointsProvider` / `DirectionProvider` only when needed. |
+| Forbidden | `@import '@viraui/*'` or font-package `@import` in `app/globals.css` |
+| Modes | `data-mode` on `<html>` when using light/dark/inverted |
 
 ```tsx
 // app/layout.tsx — default theme path (after theme-choice ask)
@@ -109,31 +109,31 @@ Studio custom: replace foundation + default fonts with `./vira-theme.css` and de
 
 ## Remix
 
-| Rule      | Detail                                                      |
+| Rule | Detail |
 | --------- | ----------------------------------------------------------- |
-| Entry     | `app/root.tsx` (or framework-equivalent root)               |
-| CSS       | Same side-effect imports at top of root, before outlet      |
+| Entry | `app/root.tsx` (or framework-equivalent root) |
+| CSS | Same side-effect imports at top of root, before outlet |
 | Providers | Wrap `<Outlet />` (no `'use client'` unless setup needs it) |
-| Links     | Theme/preflight via JS imports — not `<link>` for bootstrap |
+| Links | Theme/preflight via JS imports — not `<link>` for bootstrap |
 
 ## Astro
 
-| Rule      | Detail                                                                                  |
+| Rule | Detail |
 | --------- | --------------------------------------------------------------------------------------- |
-| CSS       | Root layout frontmatter once (`Layout.astro`)                                           |
+| CSS | Root layout frontmatter once (`Layout.astro`) |
 | Providers | React island that **owns** overlays (`client:load`). Context does **not** cross islands |
-| Islands   | Nested `client:*` = separate trees — repeat shell inside each overlay-consuming island  |
+| Islands | Nested `client:*` = separate trees — repeat shell inside each overlay-consuming island |
 
-Prefer one island for the Vira UI tree (providers + pages).
+Prefer one island for Vira UI tree (providers + pages).
 
 ## Vite / CRA
 
-| Rule  | Detail                                                                   |
+| Rule | Detail |
 | ----- | ------------------------------------------------------------------------ |
-| Entry | `src/main.tsx` or `src/index.tsx`                                        |
-| CSS   | Bootstrap imports before `createRoot`                                    |
-| Tree  | Wrap `<App />` in `ViraProviders`                                        |
-| HMR   | Keep side-effect CSS in entry; do not duplicate bootstrap in lazy chunks |
+| Entry | `src/main.tsx` or `src/index.tsx` |
+| CSS | Bootstrap imports before `createRoot` |
+| Tree | Wrap `<App />` in `ViraProviders` |
+| HMR | Keep side-effect CSS in entry; do not duplicate bootstrap in lazy chunks |
 
 ```tsx
 createRoot(document.getElementById('root')!).render(
@@ -151,24 +151,24 @@ createRoot(document.getElementById('root')!).render(
 - Toggle `data-mode` on `html`, `body`, or wrapper — details [preflight.md](preflight.md)
 - Brand swap = replace theme CSS file; independent from `data-mode` ([theme.md](theme.md))
 - `toastManager.add` needs root `Toast.Provider` + mapped viewport (shell above / bootstrap.xml)
-- Tailwind / Bootstrap / other CSS resets in the same app → [css-framework-coexistence.md](css-framework-coexistence.md)
+- Tailwind / Bootstrap / other CSS resets in same app → [css-framework-coexistence.md](css-framework-coexistence.md)
 
 ## Gotchas
 
-| Mistake                                         | Fix                                            |
+| Mistake | Fix |
 | ----------------------------------------------- | ---------------------------------------------- |
-| Next.js bootstrap in `globals.css` `@import`    | Move Vira/font imports to `app/layout.tsx`     |
-| Providers exported from Server Component layout | Separate `'use client'` wrapper                |
-| Astro: providers on layout, overlays in island  | Same island owns providers + overlay consumers |
-| Remix: theme via `<link>` only                  | JS side-effect imports in root                 |
-| Duplicate bootstrap in route/lazy chunks        | One root entry only                            |
-| Guessing entry paths                            | This file + `foundation/bootstrap.xml`         |
-| Full `@import "tailwindcss"` + Vira preflight   | Theme+utilities only; see coexistence ref      |
+| Next.js bootstrap in `globals.css` `@import` | Move Vira/font imports to `app/layout.tsx` |
+| Providers exported from Server Component layout | Separate `'use client'` wrapper |
+| Astro: providers on layout, overlays in island | Same island owns providers + overlay consumers |
+| Remix: theme via `<link>` only | JS side-effect imports in root |
+| Duplicate bootstrap in route/lazy chunks | One root entry only |
+| Guessing entry paths | This file + `foundation/bootstrap.xml` |
+| Full `@import "tailwindcss"` + Vira preflight | Theme+utilities only; see coexistence ref |
 
 ## Stop — validate
 
-- [ ] Theme/fonts/preflight import from the framework root entry above
+- [ ] Theme/fonts/preflight import from framework root entry above
 - [ ] No `@viraui/*` in stylesheet `@import`
-- [ ] One `ViraProviders` wraps the tree that uses overlays
+- [ ] One `ViraProviders` wraps tree that uses overlays
 - [ ] `data-mode` present when product uses explicit modes
 - [ ] Conflicting CSS-framework preflight handled (warn → ask → omit)

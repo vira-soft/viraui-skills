@@ -19,7 +19,7 @@ metadata:
 
 Motion is **product, not polish**. Same tokens for `@viraui/react` **and** custom consumer CSS. Portable across Agent Skills hosts (Cursor, Claude Code, Codex, Gemini, …).
 
-Load this hub when motion symptoms match (see description). Read **one** sibling ref from the router — not the whole folder.
+Load this hub when motion symptoms match (see description). Read **one** sibling ref from router — not whole folder.
 
 This skill does **not** replace **viraui-design** for component choice or API. Compose/API → design; motion tokens/principles → here. **viraui-design** also routes here when composing screens with transitions.
 
@@ -29,8 +29,8 @@ This skill does **not** replace **viraui-design** for component choice or API. C
 - Token choice (`--duration-*`, `--easing-*`) or `prefers-reduced-motion` behavior
 - Replacing raw `ms`, `ease`, or animation libraries on UI feedback
 - Drag / swipe / sheet feel, mobile or PWA touch, jank, stagger/choreography
-- Audit, review, remove, or find motion opportunities; name a motion effect
-- **viraui-design** is composing a screen and motion applies (add/skip/debug)
+- Audit, review, remove, or find motion opportunities; name motion effect
+- **viraui-design** is composing screen and motion applies (add/skip/debug)
 
 ## When not to load
 
@@ -43,29 +43,29 @@ This skill does **not** replace **viraui-design** for component choice or API. C
 
 ## Action router
 
-| Need                                          | Read                                 |
+| Need | Read |
 | --------------------------------------------- | ------------------------------------ |
-| Whether to animate; reduced-motion; frequency | [principles.md](principles.md)       |
-| Functional vs evocative                       | [animations.md](animations.md)       |
-| Duration, exits, distance                     | [speed.md](speed.md)                 |
-| Which easing                                  | [timing.md](timing.md)               |
-| Touch / drag / swipe / mobile PWA             | [gestures.md](gestures.md)           |
-| Jank / compositing / expensive props          | [performance.md](performance.md)     |
-| Multi-element sequence / stagger intent       | [choreography.md](choreography.md)   |
-| Build one interaction end-to-end              | [build.md](build.md)                 |
-| Name the motion pattern                       | [vocabulary.md](vocabulary.md)       |
-| Hunt where motion helps                       | [opportunities.md](opportunities.md) |
-| Audit existing motion                         | [improve.md](improve.md)             |
-| Review a motion diff                          | [review.md](review.md)               |
-| Delete / reduce motion                        | [remove.md](remove.md)               |
+| Whether to animate; reduced-motion; frequency | [principles.md](principles.md) |
+| Functional vs evocative | [animations.md](animations.md) |
+| Duration, exits, distance | [speed.md](speed.md) |
+| Which easing | [timing.md](timing.md) |
+| Touch / drag / swipe / mobile PWA | [gestures.md](gestures.md) |
+| Jank / compositing / expensive props | [performance.md](performance.md) |
+| Multi-element sequence / stagger intent | [choreography.md](choreography.md) |
+| Build one interaction end-to-end | [build.md](build.md) |
+| Name motion pattern | [vocabulary.md](vocabulary.md) |
+| Hunt where motion helps | [opportunities.md](opportunities.md) |
+| Audit existing motion | [improve.md](improve.md) |
+| Review motion diff | [review.md](review.md) |
+| Delete / reduce motion | [remove.md](remove.md) |
 
 ## Motion contract
 
-1. **Whole interface** — “Vira already animates” is not an exemption for custom CSS.
+1. **Whole interface** — “Vira already animates” ≠ exemption for custom CSS.
 2. Hover, press, focus, expand/collapse, overlay open/close → **functional** motion unless `prefers-reduced-motion: reduce`.
 3. Tokens only, e.g. `transition: transform var(--duration-fast) var(--easing-standard);`
-   Duration: `--duration-instant` \| `--duration-fast` \| `--duration-normal` \| `--duration-slow` \| `--duration-slowest`.
-   Easing: `--easing-standard` \| `--easing-entrance` \| `--easing-exit` \| `--easing-elastic` \| `--easing-wiggle`.
+ Duration: `--duration-instant` \| `--duration-fast` \| `--duration-normal` \| `--duration-slow` \| `--duration-slowest`.
+ Easing: `--easing-standard` \| `--easing-entrance` \| `--easing-exit` \| `--easing-elastic` \| `--easing-wiggle`.
 4. Every animation you add includes `@media (prefers-reduced-motion: reduce) { transition: none; }` (or equivalent). Motion never carries meaning alone.
 5. Keyboard / 100+/day surfaces → no enter/exit motion ([principles.md](principles.md)).
 6. Prefer `@viraui/react` overlays over hand-rolled drawers; no Vaul/Framer/Sonner as required defaults.
@@ -76,15 +76,15 @@ Theme group `motion` in `@viraui/react/specs/foundation/theme-topics.xml`. Full 
 
 ## Red flags — STOP
 
-| Excuse                                   | Reality                                                      |
+| Excuse | Reality |
 | ---------------------------------------- | ------------------------------------------------------------ |
-| “Polish / next sprint / skip custom CSS” | Functional motion required                                   |
-| “200ms ease-in-out is fine”              | `--duration-*` + `--easing-*`                                |
-| “Framer/GSAP/Vaul for hover or sheets”   | Token CSS + Vira parts unless explicitly out of scope        |
-| “IO / Framer for scroll reveal”          | CSS timelines first — **viraui-design** hub motion pointers  |
-| “Gentler motion under reduced-motion”    | Kill transitions/animations — [principles.md](principles.md) |
-| “Read all motion refs first”             | Hub + one ref from router                                    |
-| “Only load if user said viraui-motion”   | Description symptoms are enough — load on match              |
+| “Polish / next sprint / skip custom CSS” | Functional motion required |
+| “200ms ease-in-out is fine” | `--duration-*` + `--easing-*` |
+| “Framer/GSAP/Vaul for hover or sheets” | Token CSS + Vira parts unless explicitly out of scope |
+| “IO / Framer for scroll reveal” | CSS timelines first — **viraui-design** hub motion pointers |
+| “Gentler motion under reduced-motion” | Kill transitions/animations — [principles.md](principles.md) |
+| “Read all motion refs first” | Hub + one ref from router |
+| “Only load if user said viraui-motion” | Description symptoms enough — load on match |
 
 ## Rationalization counters
 

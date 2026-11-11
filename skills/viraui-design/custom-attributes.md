@@ -10,31 +10,31 @@ Stable hooks apps set for mode, layout, elevation, vibrancy, and link opt-out. P
 2. `@viraui/react/specs/foundation/attributes.xml` (source: `packages/react/src/core/specs/attributes.xml`)
 3. Related: `foundation/elevation.xml`, `foundation/toggles.xml`
 
-Skill prose is a pointer only — do not invent attributes missing from those units.
+Skill prose is pointer only — do not invent attributes missing from those units.
 
 ## Quick map (confirm in attributes.xml)
 
-| Attribute                   | Typical values                   | Use                                                                                                       |
+| Attribute | Typical values | Use |
 | --------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `data-mode`                 | `light`, `dark`, `inverted`      | Scope runtime color scheme                                                                                |
-| `data-no-link-style`        | presence                         | Opt out of preflight link chrome on an anchor (only opt-out; class does **not** suppress)                 |
-| `data-elevation`            | `0`–`4`                          | Resting shadow on raw DOM                                                                                 |
-| `data-elevation-hover`      | `0`–`4`                          | Hover shadow                                                                                              |
-| `data-elevation-direction`  | `bottom`, `top`, `left`, `right` | Shadow cast direction                                                                                     |
-| `data-grow` / `data-shrink` | `true`, `false`                  | Flex growth/shrink **on that element only**; prefer Stack `expandChildren` first — [layout.md](layout.md) |
-| `data-vibrant`              | presence (any set value)         | Theme-gated backdrop vibrancy; preflight `[data-vibrant]`, not `='true'` only                             |
-| `data-layout-fixed`         | presence on `table`              | `table-layout: fixed` — prefer over hand-rolled CSS                                                       |
-| `data-table-separators`     | presence on `table`              | Hairline between body rows — prefer over hand-rolled `tr` borders                                         |
+| `data-mode` | `light`, `dark`, `inverted` | Scope runtime color scheme |
+| `data-no-link-style` | presence | Opt out of preflight link chrome on anchor (only opt-out; class does **not** suppress) |
+| `data-elevation` | `0`–`4` | Resting shadow on raw DOM |
+| `data-elevation-hover` | `0`–`4` | Hover shadow |
+| `data-elevation-direction` | `bottom`, `top`, `left`, `right` | Shadow cast direction |
+| `data-grow`/`data-shrink` | `true`, `false` | Flex growth/shrink **on that element only**; prefer Stack `expandChildren` first — [layout.md](layout.md) |
+| `data-vibrant` | presence (any set value) | Theme-gated backdrop vibrancy; preflight `[data-vibrant]`, not `='true'` only |
+| `data-layout-fixed` | presence on `table` | `table-layout: fixed` — prefer over hand-rolled CSS |
+| `data-table-separators` | presence on `table` | Hairline between body rows — prefer over hand-rolled `tr` borders |
 
-**Default:** omit an attribute when default behavior is already correct. `data-mode="auto"` is app-owned — **not** implemented by preflight.
+**Default:** omit attribute when default behavior is already correct. `data-mode="auto"` is app-owned — **not** implemented by preflight.
 
 ## React-first patterns
 
-- Elevation on React nodes: prefer `Elevator` / `getElevationProps` — [styling.md](styling.md) + `foundation/elevation.xml`. `Surface` has no `elevation` prop. Raw `data-elevation*` only when those utilities do not fit.
-- `data-vibrant` needs `--effect-vibrancy`. React: bare `data-vibrant` or `data-vibrant={true}` both OK (presence); omit when off — do not invent `false`. On `Surface`, omit `color` for a page-level frosted shell; pass `color` for a tinted frosted fill. Confirm Surface padding/radius in `components/surface/props.xml`. On `Textfield` / `Textarea` / `Autocomplete` / `Select`, set the attr on the component — chrome fill translucifies to 80% like Surface with color (disabled stays opaque).
+- Elevation on React nodes: prefer `Elevator`/`getElevationProps` — [styling.md](styling.md) + `foundation/elevation.xml`. `Surface` has no `elevation` prop. Raw `data-elevation*` only when those utilities do not fit.
+- `data-vibrant` needs `--effect-vibrancy`. React: bare `data-vibrant` or `data-vibrant={true}` both OK (presence); omit when off — do not invent `false`. On `Surface`, omit `color` for page-level frosted shell; pass `color` for tinted frosted fill. Confirm Surface padding/radius in `components/surface/props.xml`. On `Textfield`/`Textarea`/`Autocomplete`/`Select`, set attr on component — chrome fill translucifies to 80% like Surface with color (disabled stays opaque).
 - `data-elevation*` needs `--effect-shadows` — do not hand-roll `box-shadow`.
-- `data-no-link-style`: every `a:any-link` gets preflight interactive color + always-visible native text-decoration (`--global-link-decoration` / `currentColor`; hover/focus only increases underline offset) unless this attr is present. With the attr the anchor falls back to inherited color and **no decoration** (UA link paint cleared too), so chrome components own their paint. Theme may set `--global-link-decoration: none` to clear the line globally. Class on the anchor does **not** opt out. Prose `Text`/`Title` as `<a>` keep the underline. Chrome roots (`ButtonLink`, `Chip` as link, `Menu.LinkItem`, custom `Surface`/`Stack` as `<a>`) must set the attr (library sets it on shipped chrome links).
-- Tables: preflight already owns collapse, cell padding, thead hairline — [preflight-baseline.md](preflight-baseline.md). Use `data-layout-fixed` / `data-table-separators` instead of inventing `table-layout` or row-border CSS.
+- `data-no-link-style`: every `a:any-link` gets preflight interactive color + always-visible native text-decoration (`--global-link-decoration`/`currentColor`; hover/focus only increases underline offset) unless this attr is present. With attr anchor falls back to inherited color and **no decoration** (UA link paint cleared too), so chrome components own their paint. Theme may set `--global-link-decoration: none` to clear line globally. Class on anchor does **not** opt out. Prose `Text`/`Title` as `<a>` keep underline. Chrome roots (`ButtonLink`, `Chip` as link, `Menu.LinkItem`, custom `Surface`/`Stack` as `<a>`) must set attr (library sets it on shipped chrome links).
+- Tables: preflight already owns collapse, cell padding, thead hairline — [preflight-baseline.md](preflight-baseline.md). Use `data-layout-fixed`/`data-table-separators` instead of inventing `table-layout` or row-border CSS.
 
 Per-component state attributes are separate contracts — only hooks documented in that component’s specs units.
 
@@ -42,9 +42,9 @@ Per-component state attributes are separate contracts — only hooks documented 
 
 - [ ] Attribute exists in published `foundation/attributes.xml`
 - [ ] Equals-default attributes omitted
-- [ ] Elevation on React nodes prefers `Elevator` / `getElevationProps`
-- [ ] Theme effect tokens present when using elevation / vibrancy hooks
-- [ ] No invented `data-*` for mode / shadow / flex / vibrancy / table layout-separators
+- [ ] Elevation on React nodes prefers `Elevator`/`getElevationProps`
+- [ ] Theme effect tokens present when using elevation/vibrancy hooks
+- [ ] No invented `data-*` for mode/shadow/flex/vibrancy/table layout-separators
 
 ## Machine paths
 

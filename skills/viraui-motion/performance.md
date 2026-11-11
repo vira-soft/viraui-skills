@@ -6,34 +6,34 @@ Question is “does each frame finish in time?” — not easing taste ([timing.
 
 ## Checklist
 
-1. Name the cause before changing code — never “added `will-change`, seems smoother”.
-2. Default animate **`transform` + `opacity`**. Other properties need a reason.
+1. Name cause before changing code — never “added `will-change`, seems smoother”.
+2. Default animate **`transform` + `opacity`**. Other properties need reason.
 3. Never `transition: all` — list exact properties.
-4. Do not conclude “fine” from a fast laptop — mid-range phone / 120Hz is the bar.
-5. Tokens still apply — [speed.md](speed.md) / [timing.md](timing.md); raw ms is not a perf fix.
+4. Do not conclude “fine” from fast laptop — mid-range phone / 120Hz is bar.
+5. Tokens still apply — [speed.md](speed.md) / [timing.md](timing.md); raw ms ≠ perf fix.
 
 ## Symptom → cause
 
-| Problem                             | First fix                                                                           |
+| Problem | First fix |
 | ----------------------------------- | ----------------------------------------------------------------------------------- |
-| Stutters while moving               | Prefer `translate` / `scale` / `opacity` over `width` / `height` / `top` / `margin` |
-| Choppy shadow                       | Prefer `filter: drop-shadow()` over animating `box-shadow`                          |
-| Jank only under load / navigation   | Move predetermined motion to CSS or WAAPI (off main-thread when possible)           |
-| React hand-rolled loop drops frames | Write `ref.current.style`, not React state per frame                                |
-| Drag slower as list grows           | Stop driving child transforms via inheritable CSS vars on a parent                  |
-| Blur lag (esp. Safari)              | Keep animated `blur()` small; prefer fade                                           |
-| Extra properties animate            | Replace `transition: all`                                                           |
-| 1px jump when motion starts/ends    | `will-change: transform` **last**, only after you see the jump                      |
+| Stutters while moving | Prefer `translate` / `scale` / `opacity` over `width` / `height` / `top` / `margin` |
+| Choppy shadow | Prefer `filter: drop-shadow()` over animating `box-shadow` |
+| Jank only under load / navigation | Move predetermined motion to CSS or WAAPI (off main-thread when possible) |
+| React hand-rolled loop drops frames | Write `ref.current.style`, not React state per frame |
+| Drag slower as list grows | Stop driving child transforms via inheritable CSS vars on parent |
+| Blur lag (esp. Safari) | Keep animated `blur()` small; prefer fade |
+| Extra properties animate | Replace `transition: all` |
+| 1px jump when motion starts/ends | `will-change: transform` **last**, only after you see jump |
 
 ## Property tiers
 
-| Tier      | Examples                                                          | Cost               |
+| Tier | Examples | Cost |
 | --------- | ----------------------------------------------------------------- | ------------------ |
-| Composite | `transform`, `opacity` (and some `filter` / `clip-path` — verify) | Cheapest           |
-| Paint     | `box-shadow`, `border-radius`, `color`                            | Redraw each frame  |
-| Layout    | `width`, `height`, `padding`, `margin`, `top`, `left`             | Relayout neighbors |
+| Composite | `transform`, `opacity` (and some `filter` / `clip-path` — verify) | Cheapest |
+| Paint | `box-shadow`, `border-radius`, `color` | Redraw each frame |
+| Layout | `width`, `height`, `padding`, `margin`, `top`, `left` | Relayout neighbors |
 
-Swap down: grow with `scale()`, move with `translate()`, show/hide with `opacity`. Accordion height is a documented exception when no transform equivalent — still prefer modern size animation paths in **viraui-design** [styling.md](../viraui-design/styling.md).
+Swap down: grow with `scale()`, move with `translate()`, show/hide with `opacity`. Accordion height is documented exception when no transform equivalent — still prefer modern size animation paths in **viraui-design** [styling.md](../viraui-design/styling.md).
 
 ## Frame budget
 
@@ -41,18 +41,18 @@ Swap down: grow with `scale()`, move with `translate()`, show/hide with `opacity
 
 ## `will-change`
 
-Last resort after property choice and main-thread diagnosis. Promote only the animating element; remove when idle if the layer is long-lived and costly.
+Last resort after property choice and main-thread diagnosis. Promote only animating element; remove when idle if layer is long-lived and costly.
 
 ## Gotchas
 
 - Framer / GSAP / Motion version drama as first answer → wrong; CSS/WAAPI + tokens first.
 - Inherited CSS custom props driving many children’s transforms → list lag.
 - `will-change` sprayed on every card → memory / layer tax.
-- Do not load the whole motion folder.
+- Do not load whole motion folder.
 
 ## Validation
 
 - Cause named; property tier justified
 - No `transition: all`
-- Gesture track still writes transform on the element ([gestures.md](gestures.md))
+- Gesture track still writes transform on element ([gestures.md](gestures.md))
 - Reduced-motion path unchanged ([principles.md](principles.md))

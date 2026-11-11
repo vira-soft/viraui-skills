@@ -1,46 +1,46 @@
-**When to read:** Deciding whether to animate, skip, or honor `prefers-reduced-motion` on a composed screen.
+**When to read:** Deciding whether to animate, skip, or honor `prefers-reduced-motion` on composed screen.
 
 # Principles
 
-Motion supports the task. Same tokens for `@viraui/react` **and** custom consumer CSS. Load from **viraui-design** compose — hub + **one** motion ref, not the whole folder.
+Motion supports task. Same tokens for `@viraui/react` **and** custom consumer CSS. Load from **viraui-design** compose — hub + **one** motion ref, not whole folder.
 
 ## Checklist
 
 Before any animation:
 
-| Check      | Fail = skip or simplify                         |
+| Check | Fail = skip or simplify |
 | ---------- | ----------------------------------------------- |
-| Frequency  | 100+/day or keyboard-initiated? → **no motion** |
-| Purpose    | Necessary, or decoration?                       |
-| Value      | Helps orientation, feedback, or continuity?     |
-| Efficiency | Stalls the task or hurts performance?           |
+| Frequency | 100+/day or keyboard-initiated? → **no motion** |
+| Purpose | Necessary, or decoration? |
+| Value | Helps orientation, feedback, or continuity? |
+| Efficiency | Stalls task or hurts performance? |
 
 Frequency gate:
 
-| Frequency                             | Decision                                        |
+| Frequency | Decision |
 | ------------------------------------- | ----------------------------------------------- |
-| 100+/day (shortcuts, command palette) | No enter/exit motion                            |
-| Tens/day (hover, list nav)            | Near-imperceptible tokens or nothing            |
-| Occasional (modals, sheets, toasts)   | Standard functional tokens                      |
-| Rare / first-time                     | Delight budget — [animations.md](animations.md) |
+| 100+/day (shortcuts, command palette) | No enter/exit motion |
+| Tens/day (hover, list nav) | Near-imperceptible tokens or nothing |
+| Occasional (modals, sheets, toasts) | Standard functional tokens |
+| Rare / first-time | Delight budget — [animations.md](animations.md) |
 
 Then:
 
 1. Functional hover/press/focus/expand/overlay → animate with tokens unless reduced-motion.
 2. Pair motion with text, chip, focus, or `aria-*` — never meaning by motion alone (see **viraui-design** [accessibility.md](../viraui-design/accessibility.md)).
-3. Every authored animation includes a reduced-motion path (or relies on preflight kill — see below).
+3. Every authored animation includes reduced-motion path (or relies on preflight kill — see below).
 4. Building end-to-end → [build.md](build.md). Subtracting excess → [remove.md](remove.md).
 
 ## Defaults
 
-| Situation                         | Default                                                                            |
+| Situation | Default |
 | --------------------------------- | ---------------------------------------------------------------------------------- |
-| Hover, press, expand, overlay     | Functional tokens (`--duration-fast` / instant)                                    |
-| Toast / celebration               | Evocative — [animations.md](animations.md)                                         |
-| Error, destructive, dense data    | Functional only — no elastic/wiggle                                                |
-| Keyboard / 100+/day chrome        | Instant state — no enter/exit animation                                            |
-| Custom sidebar / card / table CSS | Same contract as Vira components                                                   |
-| Duration / easing                 | `--duration-*` / `--easing-*` only — [speed.md](speed.md) / [timing.md](timing.md) |
+| Hover, press, expand, overlay | Functional tokens (`--duration-fast` / instant) |
+| Toast / celebration | Evocative — [animations.md](animations.md) |
+| Error, destructive, dense data | Functional only — no elastic/wiggle |
+| Keyboard / 100+/day chrome | Instant state — no enter/exit animation |
+| Custom sidebar / card / table CSS | Same contract as Vira components |
+| Duration / easing | `--duration-*` / `--easing-*` only — [speed.md](speed.md) / [timing.md](timing.md) |
 
 ## Reduced motion
 
@@ -65,9 +65,9 @@ Vestibular-safe: pointer-drag 1:1 (`transition-duration: 0s` while dragging) —
 
 - **Tokens only** — no raw `ms`, `ease`, Framer/GSAP for standard UI feedback.
 - **`prefers-reduced-motion` is non-negotiable** — preflight covers kill; still handle JS and final-state overrides. Do **not** keep “gentler” bounce under reduce.
-- **Do not skip custom CSS** — “Vira already animates” is not an exemption for consumer chrome.
-- **Do not load the whole motion folder** — hub router → one sibling ref.
-- Instant show/hide is still a motion choice; expand/collapse gets functional tokens unless reduced-motion or frequency gate fails.
+- **Do not skip custom CSS** — “Vira already animates” ≠ exemption for consumer chrome.
+- **Do not load whole motion folder** — hub router → one sibling ref.
+- Instant show/hide is still motion choice; expand/collapse gets functional tokens unless reduced-motion or frequency gate fails.
 - Elastic/wiggle = brand personality on press/toast — not errors or data tables.
 
 ## Validation
@@ -76,6 +76,6 @@ Stop if:
 
 - Hardcoded `200ms` / `ease-in-out` / invented `--spring`
 - Custom CSS left unanimated “for later” while Vira parts move
-- Motion is the only “saved” / “new” signal
+- Motion is only “saved” / “new” signal
 - Keyboard / 100+/day chrome still has enter/exit motion
 - All motion refs loaded “to be safe”

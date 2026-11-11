@@ -1,51 +1,51 @@
 # Discovery symptoms (load cues)
 
-**When to read:** after the hub loads, to map vague user intents / anti-patterns onto the action router — not a second props encyclopedia.
+**When to read:** after hub loads, to map vague user intents/anti-patterns onto action router — not second props encyclopedia.
 
-These cues used to live in the hub `description` (≤1024 discovery budget). They stay **here** so nothing useful is dropped.
+These cues used to live in hub `description` (≤1024 discovery budget). They stay **here** so nothing useful is dropped.
 
 ## User intents that mean this skill
 
-- Build / edit / debug / style UI in a ViraUI / `@viraui/react` consumer app
+- Build/edit/debug/style UI in ViraUI/`@viraui/react` consumer app
 - Forms, overlays (Dialog, Popover, Menu, Toast), compounds
-- Page / shell layout, sidebar + main, settings / login / dashboard / checkout screens
+- Page/shell layout, sidebar + main, settings/login/dashboard/checkout screens
 - Spacing, density, typography, icons, elevation, Surface vibrancy
-- Responsive (mobile-first, `@media` / `@container` first, `useBreakpoints` for structure/props) or RTL
+- Responsive (mobile-first, `@media`/`@container` first, `useBreakpoints` for structure/props) or RTL
 - Public props, `--vui-*`, consumer `data-*`
-- Charts / graphs / plots / data visualization / KPI series / “visualize metrics” / “represent data” — even without naming `@viraui/charts` → [charts.md](charts.md)
-- Missing / unstyled Vira after bootstrap → route **viraui-setup**, do not invent per-component CSS
-- User never named “viraui-design” / Vira / `@viraui` — still this skill when the app is ViraUI
+- Charts/graphs/plots/data visualization/KPI series/“visualize metrics”/“represent data” — even without naming `@viraui/charts` → [charts.md](charts.md)
+- Missing/unstyled Vira after bootstrap → route **viraui-setup**, do not invent per-component CSS
+- User never named “viraui-design”/Vira/`@viraui` — still this skill when app is ViraUI
 
 ## Anti-patterns that must trigger this skill
 
-| Temptation                                                                   | Route                                                                                                         |
+| Temptation | Route |
 | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Raw HTML `div`/`header` + `display:flex` / `display:grid` / CSS columns      | [layout.md](layout.md) — Stack / Grid / Masonry                                                               |
-| CSS / Tailwind `gap` / `padding` on Stack / Surface / Grid / Masonry / Bleed | [layout.md](layout.md) — public spacing props                                                                 |
-| `style` / CSS `paddingBlock*` / `paddingInline*` / one-side padding          | [layout.md](layout.md) — `hPadding` / `vPadding` `[start, end]` tuples                                        |
-| `style` / CSS `justify-content` / `align-items` / `safe center` on Stack     | [layout.md](layout.md) — `hAlign`/`vAlign` with prefer-`safe` content-position                                |
-| `width:100%` / `w-full` / size-fill `className` on Button or other controls  | [layout.md](layout.md) — Stack `fullWidth` / `expandChildren` or control `fullWidth`                          |
-| `height:100%` / `block-size:100%` on panels / Stack children                 | [layout.md](layout.md) — Stack `fullHeight` + `expandChildren` + stretch                                      |
-| CSS module / Tailwind first “to match the mock” on a Vira root               | [styling.md](styling.md) — props + `usage` before CSS                                                         |
-| `letter-spacing` / `text-transform` / gap / padding reinvented as CSS        | [styling.md](styling.md) / [typography.md](typography.md) — public props                                      |
-| Full-bleed paragraph CSS `line-height` / `max-width` / `text-wrap`           | [typography.md](typography.md) — measure ~10–12 words/line; `lineHeight` / `maxWidth` / `wrap` / `whiteSpace` |
-| Restyle bare `ul`/`ol` / prose / tables already owned by preflight           | [preflight-baseline.md](preflight-baseline.md)                                                                |
-| Always `size={16}` / `size="1rem"` on slot icons                             | [icons.md](icons.md) — omit by default                                                                        |
-| `color` / `variant` / tone set to the part's own default value               | [styling.md](styling.md) — defaults first; paint only for meaning                                             |
-| Icon-only via `children` on IconButton / ToggleButton                        | [icons.md](icons.md) + [accessibility.md](accessibility.md)                                                   |
-| Title `size` as heading level; dates/results as plain Text span              | [accessibility.md](accessibility.md) — `render` hosts (`h*`, `time`/`output`/`p`, …)                          |
-| Stack `direction` for RTL; DirectionProvider without `dir` on `html`         | [responsive.md](responsive.md)                                                                                |
-| Desktop-first `max-width` media / ad-hoc `matchMedia` / JS layout FOUC       | [responsive.md](responsive.md) — CSS first; same em map as `useBreakpoints`                                   |
-| Hover / overlay / press CSS without motion tokens                            | **viraui-motion**                                                                                             |
-| Drag / swipe / sheet feel / mobile PWA gesture lag                           | **viraui-motion** → `gestures.md`                                                                             |
-| Animation jank / dropped frames / `transition: all`                          | **viraui-motion** → `performance.md`                                                                          |
-| Stagger / multi-element entrance feels mechanical or slow                    | **viraui-motion** → `choreography.md`                                                                         |
-| Stress-test / worst-case data / Demo·Worst harness / overflow from data      | **viraui-breakui** (not this skill’s compose path)                                                            |
-| Show N directions / explore variants / prototype picker (explicit ask)       | **viraui-explore** (explicit only — not ambient compose)                                                      |
-| Packaged `LineChart` / `BarChart` / `PieChart` / invent `--vui-charts-*`     | [charts.md](charts.md) → `@viraui/charts/specs`; compose primitives                                           |
-| Chart / graph / data viz without opening charts specs                        | [charts.md](charts.md) — install `@viraui/charts` + `@visx/visx` if missing, then index-first                 |
-| Discover charts API via `rg`/`ls` on `dist` or monorepo source first         | [charts.md](charts.md) → installed `@viraui/charts/specs` only                                                |
+| Raw HTML `div`/`header` + `display:flex`/`display:grid`/CSS columns | [layout.md](layout.md) — Stack/Grid/Masonry |
+| CSS/Tailwind `gap`/`padding` on Stack/Surface/Grid/Masonry/Bleed | [layout.md](layout.md) — public spacing props |
+| `style`/CSS `paddingBlock*`/`paddingInline*`/one-side padding | [layout.md](layout.md) — `hPadding`/`vPadding` `[start, end]` tuples |
+| `style`/CSS `justify-content`/`align-items`/`safe center` on Stack | [layout.md](layout.md) — `hAlign`/`vAlign` with prefer-`safe` content-position |
+| `width:100%`/`w-full`/size-fill `className` on Button or other controls | [layout.md](layout.md) — Stack `fullWidth`/`expandChildren` or control `fullWidth` |
+| `height:100%`/`block-size:100%` on panels/Stack children | [layout.md](layout.md) — Stack `fullHeight` + `expandChildren` + stretch |
+| CSS module/Tailwind first “to match mock” on Vira root | [styling.md](styling.md) — props + `usage` before CSS |
+| `letter-spacing`/`text-transform`/gap/padding reinvented as CSS | [styling.md](styling.md)/[typography.md](typography.md) — public props |
+| Full-bleed paragraph CSS `line-height`/`max-width`/`text-wrap` | [typography.md](typography.md) — measure ~10–12 words/line; `lineHeight`/`maxWidth`/`wrap`/`whiteSpace` |
+| Restyle bare `ul`/`ol`/prose/tables already owned by preflight | [preflight-baseline.md](preflight-baseline.md) |
+| Always `size={16}`/`size="1rem"` on slot icons | [icons.md](icons.md) — omit default |
+| `color`/`variant`/tone set to part's own default value | [styling.md](styling.md) — defaults first; paint only for meaning |
+| Icon-only via `children` on IconButton/ToggleButton | [icons.md](icons.md) + [accessibility.md](accessibility.md) |
+| Title `size` as heading level; dates/results as plain Text span | [accessibility.md](accessibility.md) — `render` hosts (`h*`, `time`/`output`/`p`, …) |
+| Stack `direction` for RTL; DirectionProvider without `dir` on `html` | [responsive.md](responsive.md) |
+| Desktop-first `max-width` media/ad-hoc `matchMedia`/JS layout FOUC | [responsive.md](responsive.md) — CSS first; same em map as `useBreakpoints` |
+| Hover/overlay/press CSS without motion tokens | **viraui-motion** |
+| Drag/swipe/sheet feel/mobile PWA gesture lag | **viraui-motion** → `gestures.md` |
+| Animation jank/dropped frames/`transition: all` | **viraui-motion** → `performance.md` |
+| Stagger/multi-element entrance feels mechanical or slow | **viraui-motion** → `choreography.md` |
+| Stress-test/worst-case data/Demo·Worst harness/overflow from data | **viraui-breakui** (not this skill’s compose path) |
+| Show N directions/explore variants/prototype picker (explicit ask) | **viraui-explore** (explicit only — not ambient compose) |
+| Packaged `LineChart`/`BarChart`/`PieChart`/invent `--vui-charts-*` | [charts.md](charts.md) → `@viraui/charts/specs`; compose primitives |
+| Chart/graph/data viz without opening charts specs | [charts.md](charts.md) — install `@viraui/charts` + `@visx/visx` if missing, then index-first |
+| Discover charts API via `rg`/`ls` on `dist` or monorepo source first | [charts.md](charts.md) → installed `@viraui/charts/specs` only |
 
 ## Depth
 
-Hub action router → sibling refs → `@viraui/react/specs` (UI) / `@viraui/charts/specs` (charts). End of work → [verify.md](verify.md).
+Hub action router → sibling refs → `@viraui/react/specs` (UI)/`@viraui/charts/specs` (charts). End of work → [verify.md](verify.md).

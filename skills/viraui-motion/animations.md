@@ -6,18 +6,18 @@ Two styles. Most UI is functional. Evocative is rare. Tokens: [speed.md](speed.m
 
 ## Defaults
 
-| Style      | Job                          | Typical tokens                                                                        |
+| Style | Job | Typical tokens |
 | ---------- | ---------------------------- | ------------------------------------------------------------------------------------- |
-| Functional | Orient, confirm, complete    | `--duration-instant` / `--duration-fast` + `--easing-standard` or `--easing-entrance` |
-| Evocative  | Capture attention on purpose | `--duration-slow` / `--duration-slowest` + `--easing-elastic` or `--easing-wiggle`    |
+| Functional | Orient, confirm, complete | `--duration-instant` / `--duration-fast` + `--easing-standard` or `--easing-entrance` |
+| Evocative | Capture attention on purpose | `--duration-slow` / `--duration-slowest` + `--easing-elastic` or `--easing-wiggle` |
 
-| Situation                                             | Style                                                                      |
+| Situation | Style |
 | ----------------------------------------------------- | -------------------------------------------------------------------------- |
-| Hover, focus, expand, menu, dialog, tab               | Functional                                                                 |
+| Hover, focus, expand, menu, dialog, tab | Functional |
 | Micro two-face morph (button → check / thin progress) | Functional — use `Interpolator` (compact faces only; set origins per pair) |
-| Toast, badge-in, celebration, hero                    | Evocative                                                                  |
-| Error, destructive, legal, dense data                 | Functional only — no elastic/wiggle                                        |
-| Stakeholder wants “delight” on a table                | Chip + live region; skip bounce                                            |
+| Toast, badge-in, celebration, hero | Evocative |
+| Error, destructive, legal, dense data | Functional only — no elastic/wiggle |
+| Stakeholder wants “delight” on table | Chip + live region; skip bounce |
 
 ## Functional (consumer CSS)
 
@@ -62,22 +62,22 @@ Scroll reveal, stagger, discrete enter, size-to-auto, custom anchor chrome → p
 
 ## Recipe pointers
 
-| Surface                            | Style                       | Next                                            |
+| Surface | Style | Next |
 | ---------------------------------- | --------------------------- | ----------------------------------------------- |
-| Menu / Select / Autocomplete popup | Functional                  | Sample above + [speed.md](speed.md)             |
-| Tabs / Accordion indicator         | Functional                  | Sample above                                    |
-| Dialog / Popover `Sheet` travel    | Functional                  | Specs + `--duration-normal` enter, shorter exit |
-| Toast / celebration banner         | Evocative (rare)            | Sample above; pair with non-motion meaning      |
-| Pressable micro feedback           | Functional or light elastic | `--duration-instant`; dense UI → no elastic     |
-| Drag / swipe dismiss               | —                           | [gestures.md](gestures.md)                      |
+| Menu / Select / Autocomplete popup | Functional | Sample above + [speed.md](speed.md) |
+| Tabs / Accordion indicator | Functional | Sample above |
+| Dialog / Popover `Sheet` travel | Functional | Specs + `--duration-normal` enter, shorter exit |
+| Toast / celebration banner | Evocative (rare) | Sample above; pair with non-motion meaning |
+| Pressable micro feedback | Functional or light elastic | `--duration-instant`; dense UI → no elastic |
+| Drag / swipe dismiss | — | [gestures.md](gestures.md) |
 
 ## Gotchas
 
 - **Tokens only** — no invented `--spring` / Framer when `--easing-elastic` exists.
-- **Do not skip custom CSS** — copy the functional patterns above into consumer chrome.
+- **Do not skip custom CSS** — copy functional patterns above into consumer chrome.
 - Elastic/wiggle on every card or on errors = wrong style.
 - Same showy animation for enter and routine hover = wrong.
-- **Do not load the whole motion folder** — this file is enough for style pick; duration/easing only if choosing tokens next.
+- **Do not load whole motion folder** — this file is enough for style pick; duration/easing only if choosing tokens next.
 
 ## Validation
 

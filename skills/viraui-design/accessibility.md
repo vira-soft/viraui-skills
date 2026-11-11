@@ -1,18 +1,18 @@
 # Accessibility
 
-**When to read:** compose-time names, landmarks, typography/semantic hosts, heading outline, icon-only controls, forms, overlays, or decorative parts — not a full APG audit.
+**When to read:** compose-time names, landmarks, typography/semantic hosts, heading outline, icon-only controls, forms, overlays, decorative parts — not full APG audit.
 
-Vira owns widget behavior (Base UI); consumers own page semantics. Structured APG audit / SR-keyboard debug → **viraui-a11y** (do not fetch the APG example-index HTML).
+Vira owns widget behavior (Base UI); consumers own page semantics. Structured APG audit / SR-keyboard debug → **viraui-a11y** (don't fetch APG example-index HTML).
 
-Follow [APG Read Me First](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/): no ARIA is better than bad ARIA.
+Follow [APG Read Me First](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/): no ARIA better than bad ARIA.
 
 ## Before adding `role` or `aria-*`
 
-1. Read the surface’s specs `a11y.xml` (+ `meta` / `props`) and types/source if unsure.
-2. If Base UI or Vira already emit that role/state → **omit** it (`role`, `aria-pressed`, `aria-expanded`, `aria-selected`, `aria-checked`, `aria-haspopup`, `aria-controls`, `aria-modal`).
-3. Add only consumer-owned names, landmarks, and page status.
+1. Read surface specs `a11y.xml` (+ `meta` / `props`) + types/source if unsure.
+2. Base UI or Vira already emit role/state → **omit** (`role`, `aria-pressed`, `aria-expanded`, `aria-selected`, `aria-checked`, `aria-haspopup`, `aria-controls`, `aria-modal`).
+3. Add only consumer-owned names, landmarks, page status.
 
-Do not fake widgets (`role="button"` on `Stack`/`div` — use `Button` / `IconButton`). Do not stamp `aria-label` on a control that already has visible text, `label`, or `title`. Inspect rendered DOM — do not copy APG sample roles into JSX so an audit “sees ARIA in source.”
+Don't fake widgets (`role="button"` on `Stack`/`div` — use `Button` / `IconButton`). Don't stamp `aria-label` on control with visible text, `label`, or `title`. Inspect rendered DOM — don't copy APG sample roles into JSX so audit “sees ARIA in source.”
 
 ```tsx
 // Don't: Base UI already emits tablist + aria-pressed; aria-label cloaks "Save"
@@ -27,18 +27,18 @@ Do not fake widgets (`role="button"` on `Stack`/`div` — use `Button` / `IconBu
 
 ## Typography + semantic hosts
 
-`Title` / `Text` defaults are `span`. **Size / tone = look. Tag = meaning** — set the host with `render`. Prefer the **most correct native HTML element** for that meaning over ARIA or a generic `span`/`div`. The table below is **examples only** — not a closed list (`mark`, `code`, `kbd`, `samp`, `var`, `cite`, `q`, `abbr`, `address`, `small`, `del`/`ins`, `dfn`, `data`, … — pick what the content is).
+`Title` / `Text` default `span`. **Size / tone = look. Tag = meaning** — set host via `render`. Prefer **most correct native HTML element** over ARIA or generic `span`/`div`. Table = **examples only** — not closed list (`mark`, `code`, `kbd`, `samp`, `var`, `cite`, `q`, `abbr`, `address`, `small`, `del`/`ins`, `dfn`, `data`, … — pick what content is).
 
-| Meaning (examples)          | Host via `render` (examples)                                 |
-| --------------------------- | ------------------------------------------------------------ |
-| Document / section heading  | `Title` + `h1`…`h6` (never bare `Title` as outline)          |
-| Block body / paragraph      | `Text` + `p` when the copy is a block                        |
-| Date or time                | `Text` + `time` with machine-readable `dateTime`             |
-| Calculation / form result   | `Text` + `output` (wire `htmlFor` / form when it applies)    |
-| Inline prose link           | `Text` + `a` (`href` required)                               |
+| Meaning (examples) | Host via `render` (examples) |
+| --- | --- |
+| Document / section heading | `Title` + `h1`…`h6` (never bare `Title` as outline) |
+| Block body / paragraph | `Text` + `p` when copy is block |
+| Date or time | `Text` + `time` with machine-readable `dateTime` |
+| Calculation / form result | `Text` + `output` (wire `htmlFor` / form when applies) |
+| Inline prose link | `Text` + `a` (`href` required) |
 | Stress / importance in copy | `em` / `strong` when meaning needs it — not weight/CSS alone |
 
-Rule: match meaning → correct element → `render` that host. Confirm defaults and don’ts in `title` / `text` `a11y` + `usage` units. Do not use `Text` as a heading; do not treat `Title` `size` as the HTML level.
+Rule: meaning → correct element → `render` that host. Confirm defaults/don’ts in `title` / `text` `a11y` + `usage` units. Don't use `Text` as heading; don't treat `Title` `size` as HTML level.
 
 ```tsx
 // Don't: visual size as fake outline; span for a datetime
@@ -54,9 +54,9 @@ Rule: match meaning → correct element → `render` that host. Confirm defaults
 ### Heading outline (no skips)
 
 - One outline per view: levels climb in order (`h1` → `h2` → `h3` …).
-- **Never skip a level** for styling (no `h2` then `h4` because `size` looked right).
-- Nested sections stay in scale: under an `h2`, the next heading is `h3`, then `h4` — not a jump.
-- Pair `size` (visual) with the correct `h*` via `render`. Specs: Title `a11y` — hierarchy sequential.
+- **Never skip level** for styling (no `h2` then `h4` because `size` looked right).
+- Nested sections stay in scale: under `h2`, next = `h3`, then `h4` — no jump.
+- Pair `size` (visual) with correct `h*` via `render`. Specs: Title `a11y` — hierarchy sequential.
 
 ```tsx
 // Don't: skip h3
@@ -74,14 +74,14 @@ Rule: match meaning → correct element → `render` that host. Confirm defaults
 - [ ] Real landmarks + **sequential** heading outline — no skipped `h*` (`Title` size visual; tag via `render`)
 - [ ] Semantic host = most correct HTML element for meaning (table above = examples) via `Text`/`Title` `render` — not ARIA / bare `span` fakes
 - [ ] DOM / reading / focus order aligned
-- [ ] Interactive controls and regions named
+- [ ] Interactive controls + regions named
 - [ ] Loading via `aria-busy` and/or live status; blocking errors via `role="alert"` (or equivalent)
-- [ ] Focus visible; color / elevation / motion never the only state signal
+- [ ] Focus visible; color / elevation / motion never sole state signal
 - [ ] Custom transitions honor `prefers-reduced-motion` → **viraui-motion**
 
 ## Icon-only controls
 
-`IconButton`, `IconButtonLink`, `ToggleButton`, and icon-only triggers need `aria-label` or `aria-labelledby`. Use icon props — never `children`. Any decorative glyph stays decorative — parent carries the name ([icons.md](icons.md)):
+`IconButton`, `IconButtonLink`, `ToggleButton`, icon-only triggers need `aria-label` or `aria-labelledby`. Use icon props — never `children`. Decorative glyph stays decorative — parent carries name ([icons.md](icons.md)):
 
 ```tsx
 <IconButton aria-label="Close dialog" icon={<Xmark />} />
@@ -89,15 +89,15 @@ Rule: match meaning → correct element → `render` that host. Confirm defaults
 
 ## Buttons, forms, overlays, decorative
 
-Confirm labels, Field ownership, Dialog/Popover titles, and decorative `aria-hidden` rules in the target surface’s `a11y.xml` / `usage.xml`. Do not invent widget ARIA from APG samples.
+Confirm labels, Field ownership, Dialog/Popover titles, decorative `aria-hidden` in target surface `a11y.xml` / `usage.xml`. Don't invent widget ARIA from APG samples.
 
 ## Gotchas
 
 - Dup widget ARIA already emitted by Base UI/Vira.
-- `aria-label` that cloaks visible text / `label` / `title`.
+- `aria-label` cloaks visible text / `label` / `title`.
 - `children` on icon-only APIs instead of `icon` / `restingIcon`.
-- `Title`/`Text` left on default `span` when a more specific semantic element fits (not limited to the example table)
-- Skipped heading levels (`h2` → `h4`) or `size` used as if it set the tag.
-- Treating compose-time a11y as a substitute for **viraui-a11y** when the user asks for an APG audit.
+- `Title`/`Text` left on default `span` when more specific semantic element fits (not limited to example table)
+- Skipped heading levels (`h2` → `h4`) or `size` used as if it set tag.
+- Treating compose-time a11y as substitute for **viraui-a11y** when user asks APG audit.
 
 Prop / part discovery → [discovery.md](discovery.md). Compound assembly → specs `patterns` / `usage` units.

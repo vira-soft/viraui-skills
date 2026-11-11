@@ -1,35 +1,34 @@
-**When to read:** Mapping a Vira `@viraui/react` component to an APG pattern URL before fetching.
+**When to read:** Map Vira `@viraui/react` component → APG pattern URL before fetch.
 
 # Vira → APG pattern
 
-Fetch the pattern URL, not the example-index page. No row = no APG widget pattern; audit page semantics only (see **viraui-design** [accessibility.md](../viraui-design/accessibility.md)).
+Fetch pattern URL, not example-index. No row = no APG widget pattern; audit page semantics only (**viraui-design** [accessibility.md](../viraui-design/accessibility.md)).
 
-**Same-change:** new/renamed/removed public `@viraui/react` component updates this file in the same change — APG pattern URL, or the n/a / layout / decorative footnote. Do not rewrite [roles.md](roles.md) / [properties.md](properties.md) for Vira add/remove (W3C index, not the Vira surface). Matrix sync: **viraui-design** [component-matrix.md](../viraui-design/component-matrix.md).
+**Same-change:** new/renamed/removed public `@viraui/react` component updates this file same change — APG pattern URL, or n/a / layout / decorative footnote. Rewrite not [roles.md](roles.md) / [properties.md](properties.md) for Vira add/remove (W3C index, not Vira surface). Matrix sync: **viraui-design** [component-matrix.md](../viraui-design/component-matrix.md).
 
 ## Checklist
 
-1. Identify the public Vira export (not a raw DOM role).
-2. Look up the row below; fetch that pattern URL only.
-3. If no row: page semantics / specs a11y units only — do not invent a pattern from APG samples.
-4. Layout and decorative components are never APG widgets.
+1. Identify public Vira export (not raw DOM role).
+2. Look up row below; fetch that pattern URL only.
+3. No row → page semantics / specs a11y units only — invent no pattern from APG samples.
+4. Layout + decorative components never APG widgets.
 
 ## Gotchas
 
 - **Never fetch** [APG example-index](https://www.w3.org/WAI/ARIA/apg/example-index/). This table + [roles.md](roles.md) / [properties.md](properties.md) replace it.
 - Do **not** copy APG sample markup onto Vira — map → fetch pattern → compare rendered DOM.
-- Prefer this file over [roles.md](roles.md) when the widget is a known Vira component.
-- `LinearProgress`, `Stack`, `Surface`, `Grid`, `Prose`, `SROnly`, and decorative effects have no widget pattern — do not force Accordion/Button/etc. onto them.
-- Decorative effects include `StaticNoise`, `ProgressiveBlur`, `Glow`, `Beam`, `Shimmer`, `Typewriter`, and similar non-widget visuals.
-- `Interpolator` is an effect / composition shell (n/a APG) — inactive face is inert; it does not move focus.
+- Prefer this file over [roles.md](roles.md) for known Vira component.
+- `LinearProgress`, `Stack`, `Surface`, `Grid`, `Prose`, `SROnly`, decorative effects = no widget pattern — force no Accordion/Button/etc. onto them.
+- Decorative effects include `StaticNoise`, `ProgressiveBlur`, `Glow`, `Beam`, `Shimmer`, `Typewriter`, similar non-widget visuals.
+- `Interpolator` = effect / composition shell (n/a APG) — inactive face inert; moves no focus.
 
 Base: `https://www.w3.org/WAI/ARIA/apg/patterns/<id>/`
 
-| Vira                                                          | Pattern   | URL                                                 |
-| ------------------------------------------------------------- | --------- | --------------------------------------------------- |
-| `Accordion`                                                   | Accordion | https://www.w3.org/WAI/ARIA/apg/patterns/accordion/ |
-| `Autocomplete`                                                | Combobox  | https://www.w3.org/WAI/ARIA/apg/patterns/combobox/  |
-| `Button` / `IconButton` / `ToggleButton` / `ToggleTextButton` | Button    | https://www.w3.org/WAI/ARIA/apg/patterns/button/    |
-
+| Vira | Pattern | URL |
+| --- | --- | --- |
+| `Accordion` | Accordion | https://www.w3.org/WAI/ARIA/apg/patterns/accordion/ |
+| `Autocomplete` | Combobox | https://www.w3.org/WAI/ARIA/apg/patterns/combobox/ |
+| `Button` / `IconButton` / `ToggleButton` / `ToggleTextButton` | Button | https://www.w3.org/WAI/ARIA/apg/patterns/button/ |
 | `ButtonLink` / `IconButtonLink` | Link | https://www.w3.org/WAI/ARIA/apg/patterns/link/ |
 | `Checkbox` / `CheckboxGroup` | Checkbox | https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/ |
 | `Dialog` | Dialog (Modal) | https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/ |
@@ -53,4 +52,4 @@ Base: `https://www.w3.org/WAI/ARIA/apg/patterns/<id>/`
 | `Fieldset` | Radio Group / Checkbox (group name) | https://www.w3.org/WAI/ARIA/apg/patterns/radio/ |
 | Page landmarks | Landmarks | https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/ |
 
-`LinearProgress` has no APG widget row — determinate vs `value={null}` stays in **viraui-design** [accessibility.md](../viraui-design/accessibility.md). `Interpolator` has no APG widget row — two-face morph shell; faces own their semantics; no auto-focus (`components/interpolator/a11y.xml`). `OTPField` has no APG widget row — first slot uses the field label; later slots use Base UI `Character N of {length}` names (see `components/otp-field/a11y.xml`). `NumberField` has no APG widget row — visible `label` names the control; steppers use Decrement/Increment names; optional label scrub (see `components/number-field/a11y.xml`). Layout (`Stack`, `Surface`, `Grid`, `Prose`, `SROnly`, …), `BreakpointsProvider` / `useBreakpoints`, `DirectionProvider` / `useDirection`, and decorative effects are not APG widgets.
+`LinearProgress` — no APG widget row; determinate vs `value={null}` stays in **viraui-design** [accessibility.md](../viraui-design/accessibility.md). `Interpolator` — no APG widget row; two-face morph shell; faces own semantics; no auto-focus (`components/interpolator/a11y.xml`). `OTPField` — no APG widget row; first slot uses field label; later slots Base UI `Character N of {length}` names (see `components/otp-field/a11y.xml`). `NumberField` — no APG widget row; visible `label` names control; steppers use Decrement/Increment names; optional label scrub (see `components/number-field/a11y.xml`). Layout (`Stack`, `Surface`, `Grid`, `Prose`, `SROnly`, …), `BreakpointsProvider` / `useBreakpoints`, `DirectionProvider` / `useDirection`, decorative effects = not APG widgets.
