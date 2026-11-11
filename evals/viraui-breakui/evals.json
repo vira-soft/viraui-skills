@@ -1,0 +1,38 @@
+{
+  "skill_name": "viraui-breakui",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Stress-test this member row (avatar, name, email, role, ••• menu). It looks fine with Jane Doe. Throw worst-case data at it and tell me what breaks.",
+      "expected_output": "Map fields → catalog values → harness Demo/Worst toggle → break at real/320/wide + zoom/dark/RTL → report Broken/Ugly/Fragile with Vira fix ladder (Text/Stack props before raw CSS); stop before fixing unless asked.",
+      "assertions": [
+        "Loads viraui-breakui hub and at least one sibling ref (catalog/harness/signatures/report)",
+        "Uses plausible or schema-backed values, not nonsense aaaa strings",
+        "Changes data at the fixture/mock/props boundary, not hand-edited markup to force overflow",
+        "Reports before applying fixes",
+        "Fix proposals prefer Text/Stack/Avatar public props or design refs over inventing flex CSS first",
+        "Does not auto-treat this as an APG audit (viraui-a11y) or motion token task"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The email overflows. Just add min-width:0 and overflow-wrap in a CSS module — skip the stress skill.",
+      "expected_output": "Refuse raw CSS-first for a data-edge break when breakui is in play; map the field, use worst-case fixture, propose Text wrap/whiteSpace/maxWidth or Stack layout props from specs; route remaining layout through viraui-design; verify after fix.",
+      "assertions": [
+        "Rejects inventing CSS as the first/only fix without checking public props",
+        "Points at signatures.md fix ladder or viraui-design typography/layout",
+        "Keeps harness fixture as regression after any fix"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm composing a new settings form — load viraui-breakui on every field by default?",
+      "expected_output": "No. Ordinary compose → viraui-design. Load viraui-breakui only for stress-test / worst-case / edge-case data asks (or explicit break report follow-ups).",
+      "assertions": [
+        "Declines auto-load for ordinary compose",
+        "Points to viraui-design for compose",
+        "Names viraui-breakui for explicit stress / worst-case symptoms"
+      ]
+    }
+  ]
+}

@@ -25,6 +25,7 @@ This app uses `@viraui/react`. Publishable skills install via:
 - **Charts / graphs / data viz** → **viraui-design** `charts.md` → installed `@viraui/charts/specs` (index-first). Missing packages → install `@viraui/charts` + `@visx/visx` first. No packaged `LineChart`.
 - **Transitions / hover-press / overlay motion / motion tokens** → **viraui-motion** (hub + one ref).
 - **Explicit APG / a11y audit** → **viraui-a11y**. Ordinary compose-time a11y stays in viraui-design `accessibility.md`.
+- **Stress-test / worst-case data / Demo·Worst harness** → **viraui-breakui** (not ordinary compose).
 - **Bootstrap / theme / preflight / providers** → **viraui-setup** (ask charts intent early; yes → `@viraui/charts` + `@visx/visx`).
 - **Before claiming UI done:** CSS rewrite leftovers = 0, then follow viraui-design `verify.md` — emit the adversarial ship report (CSS rewrite inventory, reinvented props-as-CSS: 0, compose a11y, `adversarial verify: pass`). Do not hand off with open criticals.
 ```

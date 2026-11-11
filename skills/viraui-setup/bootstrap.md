@@ -44,7 +44,7 @@ Charts does **not** replace theme/preflight. Compose authority after install →
 
 ## Checklist
 
-- [ ] Install publishable agent skills (`viraui-setup`, `viraui-design`, `viraui-motion`, `viraui-a11y`)
+- [ ] Install publishable agent skills (`viraui-setup`, `viraui-design`, `viraui-motion`, `viraui-a11y`, `viraui-breakui`)
 - [ ] Install `@viraui/react` + peers: `react`, `react-dom`, `@base-ui/react`
 - [ ] **Ask charts intent** — yes → `@viraui/charts` + `@visx/visx`; no → skip; unanswered → blocked
 - [ ] Ask default vs App Studio custom **before** foundation/font installs

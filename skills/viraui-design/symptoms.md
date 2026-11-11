@@ -37,6 +37,7 @@ These cues used to live in the hub `description` (≤1024 discovery budget). The
 | Stack `direction` for RTL; DirectionProvider without `dir` on `html`         | [responsive.md](responsive.md)                                                                                |
 | Desktop-first `max-width` media / ad-hoc `matchMedia` / JS layout FOUC       | [responsive.md](responsive.md) — CSS first; same em map as `useBreakpoints`                                   |
 | Hover / overlay / press CSS without motion tokens                            | **viraui-motion**                                                                                             |
+| Stress-test / worst-case data / Demo·Worst harness / overflow from data      | **viraui-breakui** (not this skill’s compose path)                                                            |
 | Packaged `LineChart` / `BarChart` / `PieChart` / invent `--vui-charts-*`     | [charts.md](charts.md) → `@viraui/charts/specs`; compose primitives                                           |
 | Chart / graph / data viz without opening charts specs                        | [charts.md](charts.md) — install `@viraui/charts` + `@visx/visx` if missing, then index-first                 |
 | Discover charts API via `rg`/`ls` on `dist` or monorepo source first         | [charts.md](charts.md) → installed `@viraui/charts/specs` only                                                |

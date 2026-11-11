@@ -1,0 +1,94 @@
+{
+  "skill_name": "viraui-breakui",
+  "red_baseline_failures": [
+    "Agents auto-load on ordinary compose without stress/worst-case ask",
+    "Agents invent nonsense aaaa… strings instead of plausible/schema-backed data",
+    "Agents hand-edit CSS/markup to force a break instead of changing the data boundary",
+    "Agents fix layout with raw flex CSS before checking Text/Stack public props",
+    "Agents skip report and start fixing without user ask"
+  ],
+  "queries": [
+    {
+      "query": "Stress-test this member list with worst-case data",
+      "should_trigger": true
+    },
+    {
+      "query": "Try the worst case on the settings profile card — long names, empty optional fields",
+      "should_trigger": true
+    },
+    {
+      "query": "Break this UI with edge-case emails and RTL names",
+      "should_trigger": true
+    },
+    {
+      "query": "Add a Demo / Worst case toggle and report what overflows at 320px",
+      "should_trigger": true
+    },
+    {
+      "query": "Find data edge cases that blow up this table — pluralization, missing avatar, 1000 rows",
+      "should_trigger": true
+    },
+    {
+      "query": "Worst-case fixture for this workspace header count badge",
+      "should_trigger": true
+    },
+    {
+      "query": "Stress the checkout summary with huge currency and long product titles",
+      "should_trigger": true
+    },
+    {
+      "query": "Edge-case layout: unbreakable email pushes the row menu off-screen",
+      "should_trigger": true
+    },
+    {
+      "query": "fix all breaks from the last stress report",
+      "should_trigger": true,
+      "notes": "Follow-up fix invoke after a breakui report"
+    },
+    {
+      "query": "Build a new Card grid layout with Stack",
+      "should_trigger": false,
+      "notes": "Ordinary compose — viraui-design"
+    },
+    {
+      "query": "Install ViraUI theme and preflight in Next.js",
+      "should_trigger": false,
+      "notes": "viraui-setup"
+    },
+    {
+      "query": "Add hover fade with --duration-fast on custom panel",
+      "should_trigger": false,
+      "notes": "viraui-motion"
+    },
+    {
+      "query": "Audit this Dialog for APG keyboard support",
+      "should_trigger": false,
+      "notes": "viraui-a11y"
+    },
+    {
+      "query": "What Text wrap prop for a long title?",
+      "should_trigger": false,
+      "notes": "Compose typography — viraui-design unless stress-test asked"
+    },
+    {
+      "query": "Wire DirectionProvider and dir=rtl for the app shell",
+      "should_trigger": false,
+      "notes": "responsive setup — viraui-design / setup, not break harness"
+    },
+    {
+      "query": "Ship verify adversarial report for this screen",
+      "should_trigger": false,
+      "notes": "viraui-design verify.md — CSS/props ship gate, not data stress"
+    },
+    {
+      "query": "Show me three divergent layout variants with a picker",
+      "should_trigger": false,
+      "notes": "viraui-explore (when authored) — not breakui"
+    },
+    {
+      "query": "Update component-matrix.md for new Chip export",
+      "should_trigger": false,
+      "notes": "Monorepo surface sync"
+    }
+  ]
+}
