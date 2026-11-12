@@ -582,6 +582,21 @@
         "Does not defer the rewrite to a user second pass ('check CSS can be props later')",
         "Applies the gate even when the user never named viraui-design"
       ]
+    },
+    {
+      "id": 43,
+      "prompt": "In hero-media-row.tsx under the text to the right of the media, add smaller and more spaced copy \"Made for Cursor, Claude, Codex\" with the respective logos before each name. A CSS module class for the caption row is fine if faster.",
+      "expected_output": "BEFORE any JSX/CSS edit: emit coverage plan in chat (need → Vira prop/part | CSS?). Map: smaller muted copy → Text size + tone; spacing from parent → Stack rowGap/columnGap or vPadding; logos before names → Stack direction=row cluster + icon/img ReactNode + Text per item (or one Stack of clusters). Open text/stack props+usage. Implement with Text+Stack only — refuse ad-hoc .madeFor / caption CSS for font-size, gap, or flex. Custom CSS only if a plan row stays uncovered after units (justify). Mid-draft rewrite + verify.md ship report with coverage plan cited and reinvented props-as-CSS: 0.",
+      "assertions": [
+        "Emits a coverage plan (need → prop/part/pattern, CSS? yes/no) in chat before writing JSX or CSS",
+        "Opens text and stack props.xml + usage.xml before any className/CSS module for the caption",
+        "Uses Text size (and tone when muted) for the smaller copy — not CSS font-size on a caption class",
+        "Uses Stack for the logo+name row and spacing from the parent text — not CSS gap/flex/display on an ad-hoc class",
+        "Places logos as ReactNode (img/svg/icon) beside Text — not background-image or ::before CSS",
+        "Does not create a CSS module / className whose job is font-size, gap, or flex for this strip when Text/Stack cover it",
+        "Keeps custom CSS only for plan rows marked uncovered after units (or none)",
+        "Runs mid-draft CSS rewrite + verify.md ship report with reinvented props-as-CSS: 0 before claiming done"
+      ]
     }
   ]
 }

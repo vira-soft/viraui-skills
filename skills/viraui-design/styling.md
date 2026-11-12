@@ -16,27 +16,37 @@ Before inventing CSS on bare HTML tags (`ul`/`ol`/`p`/`a`/`code`/`table`/…): r
 
 ### Props before CSS (required)
 
-Do **not** guess. Before any custom CSS (or Tailwind utility) that sets visual on Vira root:
+Do **not** guess. **Before any JSX/CSS edit**, emit this **coverage plan** in chat (hub Step 0 — required, not mental):
+
+| Need (from brief)            | Vira prop / part / pattern               | CSS? |
+| ---------------------------- | ---------------------------------------- | ---- |
+| e.g. smaller muted caption   | `Text` `size` + `tone`                   | no   |
+| e.g. logos before names      | `Stack` row + icon/`img` + `Text`        | no   |
+| e.g. space under parent copy | `Stack` `rowGap` / `columnGap` / padding | no   |
+
+Then for each row that might touch a Vira root:
 
 1. Open that surface’s `props.xml` **and** `usage.xml` (index → units). Apply **dont** as hard stops.
-2. If public React prop or Stack/layout pattern covers need → **use it**. Stop. No className.
+2. If public React prop or Stack/layout pattern covers need → **use it** in JSX. Stop. No className.
 3. Else if public `--vui-*` suffix covers it → set hook via `className`.
-4. Else: is this **app chrome** system does not own, **or** did consumer **expressly ask** for override? → minimal CSS for that ask only. Otherwise stop — do not invent.
+4. Else: is this **app chrome** system does not own, **or** did consumer **expressly ask** for override? → mark `CSS? yes`; minimal CSS for that ask only. Otherwise stop — do not invent.
 
-| Temptation (CSS / utility) | Check props first (examples — confirm in units) |
+Classic trap: “smaller caption under hero + logos before names” → `Text` `size`/`tone` + `Stack` row + icon/`img` ReactNode. **Not** a `.madeFor` / `.caption` CSS module for font-size, gap, or flex.
+
+| Temptation (CSS / utility)                                                           | Check props first (examples — confirm in units)                                                                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `letter-spacing` | `Text` / `Title` `tracking` |
-| `text-transform` | `Text` / `Title` `transform` |
-| `color` on body copy | `Text` `tone` (then literal `color` escape hatch) |
-| Meter / Chip highlight track or pill fill | `variant` (`primary` or highlight token — confirm in units) before raw `--highlight-*` / `--vui-meter-*` |
-| `gap` / `padding` on layout | Stack / Surface / Grid / Masonry / Bleed props |
-| `paddingBlock*` / `paddingInline*` / one-side padding `style` | **Forbidden** when root owns `hPadding`/`vPadding`. One side → tuple `[start, end]` with `0` (`vPadding={[0, 'l']}`) — [layout.md](layout.md). Space tokens, not raw `1rem`. |
+| `letter-spacing`                                                                     | `Text` / `Title` `tracking`                                                                                                                                                                                                                                        |
+| `text-transform`                                                                     | `Text` / `Title` `transform`                                                                                                                                                                                                                                       |
+| `color` on body copy                                                                 | `Text` `tone` (then literal `color` escape hatch)                                                                                                                                                                                                                  |
+| Meter / Chip highlight track or pill fill                                            | `variant` (`primary` or highlight token — confirm in units) before raw `--highlight-*` / `--vui-meter-*`                                                                                                                                                           |
+| `gap` / `padding` on layout                                                          | Stack / Surface / Grid / Masonry / Bleed props                                                                                                                                                                                                                     |
+| `paddingBlock*` / `paddingInline*` / one-side padding `style`                        | **Forbidden** when root owns `hPadding`/`vPadding`. One side → tuple `[start, end]` with `0` (`vPadding={[0, 'l']}`) — [layout.md](layout.md). Space tokens, not raw `1rem`.                                                                                       |
 | `width` / `height` / `inline-size` / `block-size: 100%` / `w-full` / size-fill class | **Forbidden** on Vira roots. Component `fullWidth` if any; else Stack `fullWidth` / `fullHeight` / `expandChildren` + stretch align (Stack `patterns.xml`) — [layout.md](layout.md). Fixed-size controls (IconButton) stay content-sized — do not “help” with CSS. |
-| `justify-content` / `align-items` / `safe center` via `style` or CSS module on Stack | **Forbidden** — Stack `hAlign`/`vAlign` (prefer `safe center` / `safe end` for content-position) — [layout.md](layout.md) |
-| `font-weight` / size / family | `weight` / `size` / `family` (and Title equivalents) |
-| `line-height` / `max-width` / `text-wrap` / `white-space` | `lineHeight` / `maxWidth` / `wrap` / `whiteSpace` (+ Stack `maxWidth`) — readable measure → [typography.md](typography.md) |
-| `list-style` / `::marker` / ul-ol padding | Preflight owns lists — [preflight-baseline.md](preflight-baseline.md) / `modules.xml` typography |
-| Table `table-layout` / row hairlines | `data-layout-fixed` / `data-table-separators` — [custom-attributes.md](custom-attributes.md) |
+| `justify-content` / `align-items` / `safe center` via `style` or CSS module on Stack | **Forbidden** — Stack `hAlign`/`vAlign` (prefer `safe center` / `safe end` for content-position) — [layout.md](layout.md)                                                                                                                                          |
+| `font-weight` / size / family                                                        | `weight` / `size` / `family` (and Title equivalents)                                                                                                                                                                                                               |
+| `line-height` / `max-width` / `text-wrap` / `white-space`                            | `lineHeight` / `maxWidth` / `wrap` / `whiteSpace` (+ Stack `maxWidth`) — readable measure → [typography.md](typography.md)                                                                                                                                         |
+| `list-style` / `::marker` / ul-ol padding                                            | Preflight owns lists — [preflight-baseline.md](preflight-baseline.md) / `modules.xml` typography                                                                                                                                                                   |
+| Table `table-layout` / row hairlines                                                 | `data-layout-fixed` / `data-table-separators` — [custom-attributes.md](custom-attributes.md)                                                                                                                                                                       |
 
 Reinventing documented prop as CSS on same root = violation. `--vui-*` is for hooks prop API does not expose as React props, or for theming beyond prop — not shortcut around unread units.
 
@@ -50,13 +60,13 @@ Layout roots first → [layout.md](layout.md). Then layout/visual props from uni
 
 ## Paint: defaults first
 
- theme is design. Every Vira surface ships resolved default paint; **omitting color prop is complete composition, not placeholder.** Pass color only when it carries meaning surface cannot show otherwise.
+theme is design. Every Vira surface ships resolved default paint; **omitting color prop is complete composition, not placeholder.** Pass color only when it carries meaning surface cannot show otherwise.
 
-| Job | Do | Don't |
-| ------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| Plain reading / chrome | omit color props entirely | restate default (`color="var(--global-foreground)"` on part whose default is already foreground) |
-| Status / severity / bands | per-zone or per-segment token (`--highlight-*`), plus arc that follows them | color every part up front "to match mock" or "to be safe" |
-| One accent for hierarchy | surface's own prop (`Text tone`, `Meter` / `Chip` `variant`, `IconMeter` accent) | raw `--highlight-*` when prop already names semantics |
+| Job                       | Do                                                                               | Don't                                                                                            |
+| ------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Plain reading / chrome    | omit color props entirely                                                        | restate default (`color="var(--global-foreground)"` on part whose default is already foreground) |
+| Status / severity / bands | per-zone or per-segment token (`--highlight-*`), plus arc that follows them      | color every part up front "to match mock" or "to be safe"                                        |
+| One accent for hierarchy  | surface's own prop (`Text tone`, `Meter` / `Chip` `variant`, `IconMeter` accent) | raw `--highlight-*` when prop already names semantics                                            |
 
 Restating documented default is quiet failure: it changes nothing on screen, and it pins that part to literal token so theme changes stop reaching it. Treat "set color so it's explicit" as bug, same as passing any other equals-default prop (`discovery.md` → omit equals-default props).
 
@@ -68,15 +78,15 @@ Default: enter/exit, scroll reveal, stagger, size morph, and custom anchored chr
 
 Whether to animate, functional vs evocative, tokens, reduced-motion → **viraui-motion**. This section picks **engine**.
 
-| Job | Prefer | Avoid first |
+| Job                                               | Prefer                                                                | Avoid first                                     |
 | ------------------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------- |
-| Scroll-linked appear / progress | `animation-timeline: view()` / `scroll()` + `animation-range` | `IntersectionObserver` + class toggles |
-| Stagger / sync by list length | `sibling-index()` / `sibling-count()` (delay or custom prop) | `map((item, i) => style={{ animationDelay }})` |
-| Custom anchored UI (non-Vira chrome) | CSS anchor positioning (`anchor-name`, `position-anchor`, `anchor()`) | `getBoundingClientRect` + `position: fixed` |
-| Enter when shown (`display` / popover / discrete) | `@starting-style` + `transition-behavior: allow-discrete` | mount-only `useEffect` class flash |
-| Height / block-size to `auto` | `interpolate-size: allow-keywords` + size transition | `scrollHeight` measure in JS |
-| Same-document morph / page chrome handoff | View Transitions (`view-transition-name`, `::view-transition-*`) | hand-rolled FLIP in React |
-| Open/hover/focus derived from DOM | `:has()`, `:focus-within` | extra open-state classes when selectors suffice |
+| Scroll-linked appear / progress                   | `animation-timeline: view()` / `scroll()` + `animation-range`         | `IntersectionObserver` + class toggles          |
+| Stagger / sync by list length                     | `sibling-index()` / `sibling-count()` (delay or custom prop)          | `map((item, i) => style={{ animationDelay }})`  |
+| Custom anchored UI (non-Vira chrome)              | CSS anchor positioning (`anchor-name`, `position-anchor`, `anchor()`) | `getBoundingClientRect` + `position: fixed`     |
+| Enter when shown (`display` / popover / discrete) | `@starting-style` + `transition-behavior: allow-discrete`             | mount-only `useEffect` class flash              |
+| Height / block-size to `auto`                     | `interpolate-size: allow-keywords` + size transition                  | `scrollHeight` measure in JS                    |
+| Same-document morph / page chrome handoff         | View Transitions (`view-transition-name`, `::view-transition-*`)      | hand-rolled FLIP in React                       |
+| Open/hover/focus derived from DOM                 | `:has()`, `:focus-within`                                             | extra open-state classes when selectors suffice |
 
 ```css
 /* Scroll reveal — view timeline */
@@ -148,13 +158,13 @@ Shadows (`Elevator`) and `z-index` share layers `0`–`4`. Elevation = visual de
 </Elevator>
 ```
 
-| Layer | `resting` / `z-index` | Place here |
+| Layer   | `resting` / `z-index` | Place here                          |
 | ------- | --------------------- | ----------------------------------- |
-| 0 plane | `0` | Page, body, non-lifted backgrounds |
-| 1 | `1` | Cards, fields, buttons |
-| 2 | `2` | Popover, Tooltip, non-modal sheets |
-| 3 | `3` | Sticky header/nav, floating actions |
-| 4 | `4` | Modal Dialog/drawer, global Toast |
+| 0 plane | `0`                   | Page, body, non-lifted backgrounds  |
+| 1       | `1`                   | Cards, fields, buttons              |
+| 2       | `2`                   | Popover, Tooltip, non-modal sheets  |
+| 3       | `3`                   | Sticky header/nav, floating actions |
+| 4       | `4`                   | Modal Dialog/drawer, global Toast   |
 
 Vira overlays already own layer 4. Do not restyle them to “win” stacking. Sticky chrome stays at 3 — Dialog covers it on purpose. Promo/modal above page → `Dialog`, not custom overlay with huge `z-index`.
 

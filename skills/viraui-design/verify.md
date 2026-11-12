@@ -8,13 +8,14 @@ Compose-time loops in sibling refs stay in place. This file = **ship-time** gate
 
 ## Hard gate
 
-1. Run **CSS rewrite inventory** (below) on **final** diff first.
-2. Copy checklist below into working notes.
-3. Mark each item against **final** output (not plan).
-4. Any fail = critical → fix → re-run this file from top.
-5. **Emit ship report** (below) in **final reply**. Silent mental checklist = fail.
-6. Claim done only at **0 critical** with `adversarial verify: pass`.
-7. Never hand off with “looks fine — swap CSS for props later.”
+1. Confirm a **coverage plan** was emitted in chat **before** the first JSX/CSS edit this task (hub Step 0). Missing plan = critical — do not invent one after the fact to pass; re-do from plan if edits already shipped replaceable CSS.
+2. Run **CSS rewrite inventory** (below) on **final** diff.
+3. Copy checklist below into working notes.
+4. Mark each item against **final** output (not plan).
+5. Any fail = critical → fix → re-run this file from top.
+6. **Emit ship report** (below) in **final reply**. Silent mental checklist = fail.
+7. Claim done only at **0 critical** with `adversarial verify: pass`.
+8. Never hand off with “looks fine — swap CSS for props later.”
 
 ## CSS rewrite inventory (required)
 
@@ -22,12 +23,12 @@ Before rest of checklist: scan **every** new CSS module rule, Tailwind utility, 
 
 For each declaration, write one line:
 
-| Declaration | Maps to | Action |
-| ------------------------------------- | -------------------------------- | ---------------------------- |
-| e.g. `gap: 1rem` | Stack `rowGap` / `columnGap` | **delete** CSS; use prop |
-| e.g. `letter-spacing` | Text `tracking` | **delete** CSS; use prop |
-| e.g. page backdrop blur | app chrome (system doesn't own) | keep — justify |
-| e.g. mock-matched Button radius tweak | consumer **expressly asked** | keep — cite ask; units first |
+| Declaration                           | Maps to                         | Action                       |
+| ------------------------------------- | ------------------------------- | ---------------------------- |
+| e.g. `gap: 1rem`                      | Stack `rowGap` / `columnGap`    | **delete** CSS; use prop     |
+| e.g. `letter-spacing`                 | Text `tracking`                 | **delete** CSS; use prop     |
+| e.g. page backdrop blur               | app chrome (system doesn't own) | keep — justify               |
+| e.g. mock-matched Button radius tweak | consumer **expressly asked**    | keep — cite ask; units first |
 
 Rules:
 
@@ -41,6 +42,7 @@ Rules:
 
 ### Discovery / authority
 
+- [ ] **Coverage plan** emitted in chat before first JSX/CSS edit (need → prop/part/pattern | CSS?). Logo+label / smaller caption / spacing rows map to `Text`/`Stack`/icons — not a new CSS class. Missing plan = critical.
 - [ ] Specs **index-first** for every Vira surface touched (`index.xml` / `@viraui/react/specs` → scoped units). Charts / data viz → `@viraui/charts/specs` via [charts.md](charts.md) (install `@viraui/charts` + `@visx/visx` first if missing). No first discovery via `ls` / `rg` / `grep` on `dist/components/**` or `*.d.ts` trees.
 - [ ] **Compose-with:** `props.xml` + `usage.xml` opened **before** any CSS module / utility / size-fill `className` on those Vira roots. No “I already know this control — style first.” Unsolicited reshape CSS forbidden; consumer-requested overrides still need units first.
 - [ ] No invented props, parts, hooks, or CSS prefixes. Stories are examples only — never API authority.
@@ -141,6 +143,7 @@ Copy + fill. Omit = fail (don't claim done).
 ```markdown
 ## Adversarial verify
 
+- coverage plan (before first edit): yes — summary of need→prop/part rows | **missing = critical**
 - specs/units: …
 - CSS rewrite inventory: none | declaration → prop/part/--vui-*/justify/delete (every new CSS/utility/style)
 - custom CSS on Vira roots kept: none | list + why (app chrome / explicit ask only)

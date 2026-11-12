@@ -3,6 +3,7 @@
   "red_baseline_failures": [
     "Agents claim UI done without emitting verify.md ship report (CSS inventory + compose a11y + adversarial verify: pass)",
     "Agents finish a first UI pass with custom CSS that public Vira props/parts already cover, then wait for the user to ask a second pass to swap CSS for props — instead of running the mid-draft CSS rewrite pass and blocking done until reinvented props-as-CSS is 0",
+    "Agents skip the pre-edit coverage plan and jump straight to a CSS module / className for small UI copy, logo+label rows, or spacing that Text/Stack/icon slots already cover — instead of emitting need→prop/part rows in chat and writing JSX with Vira props first; custom CSS only for plan rows that remain uncovered",
     "Agents skip skill on generic UI intents (settings/login/dashboard) that never name Vira or this skill",
     "Agents skip skill when user never says 'viraui-design' despite @viraui/react UI work",
     "Agents follow description workflow summary instead of reading hub router",
@@ -137,6 +138,14 @@
     },
     {
       "query": "Ship login card fast \u2014 style Button and IconButton with a CSS module before opening specs",
+      "should_trigger": true
+    },
+    {
+      "query": "Under hero text beside media, add smaller spaced Made for Cursor, Claude, Codex with logos before each name \u2014 CSS module for caption row is fine",
+      "should_trigger": true
+    },
+    {
+      "query": "Logo + label strip under Title \u2014 invent .madeFor class for font-size and gap instead of Text and Stack",
       "should_trigger": true
     },
     {

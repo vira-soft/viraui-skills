@@ -2,47 +2,50 @@
 
 **When to read:** with hub on every compose/edit — before inventing CSS, skipping units, or rationalizing shortcuts.
 
-| Excuse | Reality |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| “Small UI tweak — skip skill” | ~1% UI fit → Read hub |
-| “I know Button — CSS module first, specs later” | **Compose with** units first — unsolicited CSS on Vira roots = protocol fail; override only if consumer expressly asked |
-| “rg/ls dist/components or *.d.ts first” | Specs index + units first — FORBIDDEN shell-parse |
-| “Story shows this prop — ship it” | Specs units + source own API |
-| “Default prop for clarity” | Omit documented defaults |
-| “Set `color` on every part so it’s explicit” | Restating default changes nothing and pins it — omit; paint only for meaning — [styling.md](styling.md) |
-| “CSS letter-spacing/text-transform on Text” | `tracking`/`transform` props — open `props.xml` |
-| “Full-bleed UI paragraph — CSS line-height/max-width” | Measure ~10–12 words **scaled to size** + `lineHeight`/`maxWidth`/`wrap` — [typography.md](typography.md) |
-| “Lists need list-style/custom bullets — preflight bare” | Preflight already styles `ul`/`ol` — [preflight-baseline.md](preflight-baseline.md)/`modules.xml` |
-| “Hand-roll table row borders/table-layout” | `data-table-separators`/`data-layout-fixed` — [custom-attributes.md](custom-attributes.md) |
-| “Guess prop — skip units” | Index → units → then decide CSS |
-| “Invent Base UI pass-through from memory” | `meta` `base_ui` → Base UI API; ask if still unsure |
-| “Button/IconButton needs width:100%/inline-size class” | **Never** — Stack `fullWidth`/`expandChildren` or control `fullWidth`; fixed-size controls stay content-sized — [layout.md](layout.md) |
-| “Panels need height:100%/block-size:100% CSS” | **Never** — Stack `fullHeight` + `expandChildren` + stretch align (Stack `patterns.xml`) — [layout.md](layout.md) |
-| “Need bottom padding — style paddingBlockEnd” | **Never** — `vPadding={[0, 'l']}`/`hPadding` tuples on Stack/Surface/Grid — [layout.md](layout.md) |
-| “Need safe center — style justifyContent/alignItems” | **Never** — Stack `hAlign`/`vAlign` (`safe center`/`safe end`); prefer `safe` on content-position — [layout.md](layout.md) |
-| “Import FieldLabel/label CSS for forgot-password row” | ReactNode `label` + `Text` `size="s"` `weight="semibold"` for title — [composition.md](composition.md) |
-| “Bare center is fine — skip safe” | Prefer `safe center`/`safe end` for content-position; keep `stretch`/`space-*` bare — [layout.md](layout.md) |
-| “Bare Stack/Grid/Surface is omit-defaults” | Unset gap/padding = 0 — [layout.md](layout.md) |
-| “Dense UI → use `xs`/`2xs` gaps and padding” | Container floor is `m`; `s` = tight cluster, `xs`/`2xs` = optical micro pair only — [layout.md](layout.md) |
-| “Plain `div`/`header` + display:flex” | Flex framing = `Stack`; tag via `render` |
-| “CSS grid/columns instead of Grid/Masonry” | Tracks → `Grid`; ragged pack → `Masonry` |
-| “Desktop-first max-width media” | Mobile-first — [responsive.md](responsive.md) |
-| “useBreakpoints for flex-direction/CSS-only layout” | `@media`/`@container` first (anti-FOUC); same em map — [responsive.md](responsive.md) |
-| “768px media beside BreakpointsProvider” | Same em map as `useBreakpoints`/provider/defaults |
-| “matchMedia hook instead of useBreakpoints” | Structure/prop branches → `useBreakpoints`; layout CSS → shared map |
-| “DirectionProvider alone = RTL”/“Stack direction=rtl” | Provider + `dir` on `html`; Stack `direction` = flex only — [responsive.md](responsive.md) |
-| “Import @base-ui/react/direction-provider” | Re-export from `@viraui/react` |
-| “Unstyled — import component CSS” | **viraui-setup** |
-| “Scroll reveal needs IntersectionObserver” | [styling.md](styling.md) CSS timelines first |
-| “Must use `@viraui/icons/react` for every slot” | Any ReactNode — [icons.md](icons.md) |
-| “Always set `size={16}`/`size="1rem"` on slot icons” | **Never default** — omit; host CSS/icon default — [icons.md](icons.md) |
-| “Dynamic import map of every icon” | Static named imports — [icons.md](icons.md) |
-| “Bare glyph = accessible name” | Wrap control + parent name — [icons.md](icons.md) |
-| “Title size = heading level; skip h3 for style” | `size` visual; `render={<h*/>}` = outline; no skipped levels — [accessibility.md](accessibility.md) |
-| “Date/result as plain Text span”/“only listed tags matter” | Most-correct semantic host via `render` (table = examples) — [accessibility.md](accessibility.md) |
-| “Ship now — verify later”/“Looks fine — skip adversarial” | Hard gate — [verify.md](verify.md) before done; emit ship report |
-| “Ship first — user can ask later to swap CSS for props” | STOP — mid-draft **CSS rewrite pass** now; reinvented props-as-CSS must be 0 before done — hub Step 0 + [verify.md](verify.md) |
-| “ graph — skip charts.md/invent LineChart” | [charts.md](charts.md) → install if missing → `@viraui/charts/specs` index-first; compose primitives |
-| “Charts missing — guess from visx memory/monorepo” | Install `@viraui/charts` + `@visx/visx`; authority = installed specs, not clone or skill encyclopedia |
-| “Install every `@visx/<pkg>` for charts” | One peer: `@visx/visx` — [charts.md](charts.md) |
-| “Override series with `--vui-charts-*`/ChartRoot” | Token strings on styled props only — no charts CSS token layer |
+| Excuse                                                               | Reality                                                                                                                                |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| “Small UI tweak — skip skill”                                        | ~1% UI fit → Read hub                                                                                                                  |
+| “I know Button — CSS module first, specs later”                      | **Compose with** units first — unsolicited CSS on Vira roots = protocol fail; override only if consumer expressly asked                |
+| “Small tweak — skip coverage plan, open CSS module”                  | STOP — emit need→prop/part plan in chat **before** any JSX/CSS; CSS only for uncovered rows — hub Step 0                               |
+| “Made for X / logo+label strip — `.caption` class for size/gap/flex” | **Never** — `Text` `size`/`tone` + `Stack` row + icon/`img` ReactNode; no ad-hoc caption CSS when props cover it                       |
+| “Faster to ship className now, props later”                          | STOP — coverage plan + JSX props first; mid-draft rewrite still mandatory if CSS slipped in                                            |
+| “rg/ls dist/components or *.d.ts first”                              | Specs index + units first — FORBIDDEN shell-parse                                                                                      |
+| “Story shows this prop — ship it”                                    | Specs units + source own API                                                                                                           |
+| “Default prop for clarity”                                           | Omit documented defaults                                                                                                               |
+| “Set `color` on every part so it’s explicit”                         | Restating default changes nothing and pins it — omit; paint only for meaning — [styling.md](styling.md)                                |
+| “CSS letter-spacing/text-transform on Text”                          | `tracking`/`transform` props — open `props.xml`                                                                                        |
+| “Full-bleed UI paragraph — CSS line-height/max-width”                | Measure ~10–12 words **scaled to size** + `lineHeight`/`maxWidth`/`wrap` — [typography.md](typography.md)                              |
+| “Lists need list-style/custom bullets — preflight bare”              | Preflight already styles `ul`/`ol` — [preflight-baseline.md](preflight-baseline.md)/`modules.xml`                                      |
+| “Hand-roll table row borders/table-layout”                           | `data-table-separators`/`data-layout-fixed` — [custom-attributes.md](custom-attributes.md)                                             |
+| “Guess prop — skip units”                                            | Index → units → then decide CSS                                                                                                        |
+| “Invent Base UI pass-through from memory”                            | `meta` `base_ui` → Base UI API; ask if still unsure                                                                                    |
+| “Button/IconButton needs width:100%/inline-size class”               | **Never** — Stack `fullWidth`/`expandChildren` or control `fullWidth`; fixed-size controls stay content-sized — [layout.md](layout.md) |
+| “Panels need height:100%/block-size:100% CSS”                        | **Never** — Stack `fullHeight` + `expandChildren` + stretch align (Stack `patterns.xml`) — [layout.md](layout.md)                      |
+| “Need bottom padding — style paddingBlockEnd”                        | **Never** — `vPadding={[0, 'l']}`/`hPadding` tuples on Stack/Surface/Grid — [layout.md](layout.md)                                     |
+| “Need safe center — style justifyContent/alignItems”                 | **Never** — Stack `hAlign`/`vAlign` (`safe center`/`safe end`); prefer `safe` on content-position — [layout.md](layout.md)             |
+| “Import FieldLabel/label CSS for forgot-password row”                | ReactNode `label` + `Text` `size="s"` `weight="semibold"` for title — [composition.md](composition.md)                                 |
+| “Bare center is fine — skip safe”                                    | Prefer `safe center`/`safe end` for content-position; keep `stretch`/`space-*` bare — [layout.md](layout.md)                           |
+| “Bare Stack/Grid/Surface is omit-defaults”                           | Unset gap/padding = 0 — [layout.md](layout.md)                                                                                         |
+| “Dense UI → use `xs`/`2xs` gaps and padding”                         | Container floor is `m`; `s` = tight cluster, `xs`/`2xs` = optical micro pair only — [layout.md](layout.md)                             |
+| “Plain `div`/`header` + display:flex”                                | Flex framing = `Stack`; tag via `render`                                                                                               |
+| “CSS grid/columns instead of Grid/Masonry”                           | Tracks → `Grid`; ragged pack → `Masonry`                                                                                               |
+| “Desktop-first max-width media”                                      | Mobile-first — [responsive.md](responsive.md)                                                                                          |
+| “useBreakpoints for flex-direction/CSS-only layout”                  | `@media`/`@container` first (anti-FOUC); same em map — [responsive.md](responsive.md)                                                  |
+| “768px media beside BreakpointsProvider”                             | Same em map as `useBreakpoints`/provider/defaults                                                                                      |
+| “matchMedia hook instead of useBreakpoints”                          | Structure/prop branches → `useBreakpoints`; layout CSS → shared map                                                                    |
+| “DirectionProvider alone = RTL”/“Stack direction=rtl”                | Provider + `dir` on `html`; Stack `direction` = flex only — [responsive.md](responsive.md)                                             |
+| “Import @base-ui/react/direction-provider”                           | Re-export from `@viraui/react`                                                                                                         |
+| “Unstyled — import component CSS”                                    | **viraui-setup**                                                                                                                       |
+| “Scroll reveal needs IntersectionObserver”                           | [styling.md](styling.md) CSS timelines first                                                                                           |
+| “Must use `@viraui/icons/react` for every slot”                      | Any ReactNode — [icons.md](icons.md)                                                                                                   |
+| “Always set `size={16}`/`size="1rem"` on slot icons”                 | **Never default** — omit; host CSS/icon default — [icons.md](icons.md)                                                                 |
+| “Dynamic import map of every icon”                                   | Static named imports — [icons.md](icons.md)                                                                                            |
+| “Bare glyph = accessible name”                                       | Wrap control + parent name — [icons.md](icons.md)                                                                                      |
+| “Title size = heading level; skip h3 for style”                      | `size` visual; `render={<h*/>}` = outline; no skipped levels — [accessibility.md](accessibility.md)                                    |
+| “Date/result as plain Text span”/“only listed tags matter”           | Most-correct semantic host via `render` (table = examples) — [accessibility.md](accessibility.md)                                      |
+| “Ship now — verify later”/“Looks fine — skip adversarial”            | Hard gate — [verify.md](verify.md) before done; emit ship report                                                                       |
+| “Ship first — user can ask later to swap CSS for props”              | STOP — mid-draft **CSS rewrite pass** now; reinvented props-as-CSS must be 0 before done — hub Step 0 + [verify.md](verify.md)         |
+| “ graph — skip charts.md/invent LineChart”                           | [charts.md](charts.md) → install if missing → `@viraui/charts/specs` index-first; compose primitives                                   |
+| “Charts missing — guess from visx memory/monorepo”                   | Install `@viraui/charts` + `@visx/visx`; authority = installed specs, not clone or skill encyclopedia                                  |
+| “Install every `@visx/<pkg>` for charts”                             | One peer: `@visx/visx` — [charts.md](charts.md)                                                                                        |
+| “Override series with `--vui-charts-*`/ChartRoot”                    | Token strings on styled props only — no charts CSS token layer                                                                         |
