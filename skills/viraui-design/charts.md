@@ -82,12 +82,12 @@ import { Stack as VisxStack, LinePath } from '@viraui/charts';
 Specs: `foundation/defaults.xml` + domain `props.xml`. Override with same props:
 
 ```tsx
-<LinePath data={data} x={…} y={…} stroke="var(--highlight-acid)" />
+<LinePath data={data} x={…} y={…} stroke="var(--color-acid-40)" />
 ```
 
 | Surface | Default paint |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Series stroke/fill | `--highlight-blue` (+ translucent fill). `Area`/`AreaClosed`: gradient + top edge default; stacked = translucent path + `LinePath` |
+| Series stroke/fill | `--global-contrast` stroke + `--global-primary` fill. Multi-series → override with raw `--color-*-40`; prefer raw ramp over `--highlight-*`. `Area`/`AreaClosed`: gradient + top edge default; stacked = translucent path + `LinePath` |
 | Grid/axis line/ticks | `--global-contrast` |
 | Axis/legend/annotation chrome labels | `--global-muted` |
 | Point/series numbers & labels (`Text`) | `--global-foreground` |
