@@ -15,28 +15,40 @@ Copy wraps / looks hard to read?
 Confirm props in units. No invented typography CSS on Text/Title.
 ```
 
+## Family (`heading` | `body` | `mono`)
+
+Prefer the matching primitive — **do not** swap faces to fake the other:
+
+| Need                                 | Prefer                                 | Avoid (rare escape only) |
+| ------------------------------------ | -------------------------------------- | ------------------------ |
+| Heading / display face + title scale | `Title` (default `family="heading"`)   | `Text family="heading"`  |
+| Body / UI copy face + body scale     | `Text` (default `family="body"`)       | `Title family="body"`    |
+| Metrics / code-like chrome           | `Text` or `Title` with `family="mono"` | —                        |
+
+Leave `family` omitted unless you need `mono` (or a rare intentional cross-swap). Size/scale still come from the component you picked — family alone does not turn Text into a heading.
+
 ## Measure (~10–12 words / line, scaled by size)
 
-| Approach | Use |
-| ---------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `Text` / `Title` `maxWidth` | Cap that block for its `size` |
+| Approach                                                               | Use                                                                     |
+| ---------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `Text` / `Title` `maxWidth`                                            | Cap that block for its `size`                                           |
 | Parent `Stack` `maxWidth` (+ `fullWidth` under `hAlign="safe center"`) | Shared column — pick width from **dominant body `size`** in that column |
-| CSS `max-width` on Text/Title | **Forbidden** — public prop covers it |
+| CSS `max-width` on Text/Title                                          | **Forbidden** — public prop covers it                                   |
 
 Rough caps in **`ch`** (tune per content; confirm units — not second API). Ladder = smaller → narrower. Patterns/examples use `ch`, not `rem`.
 
-| `Text` `size` | Typical `maxWidth` | Notes |
+| `Text` `size` | Typical `maxWidth`                             | Notes                                |
 | ------------- | ---------------------------------------------- | ------------------------------------ |
-| `xs` / `s` | `~36ch`–`50ch` | Helpers, empty states, captions |
-| `m` | `~55ch`–`65ch` | Default body |
-| `l` | `~60ch`–`70ch` | Comfortable body |
-| `xl` / `2xl` | `~65ch`–`75ch` | Large leads |
+| `xs` / `s`    | `~36ch`–`50ch`                                 | Helpers, empty states, captions      |
+| `m`           | `~55ch`–`65ch`                                 | Default body                         |
+| `l`           | `~60ch`–`70ch`                                 | Comfortable body                     |
+| `xl` / `2xl`  | `~65ch`–`75ch`                                 | Large leads                          |
 | `3xl` / `4xl` | Wider `ch`, or shorter wrap + `wrap="balance"` | Display-ish body; still ~10–12 words |
 
-| `Title` `size` | Typical `maxWidth` | Notes |
+| `Title` `size`    | Typical `maxWidth`         | Notes                                  |
 | ----------------- | -------------------------- | -------------------------------------- |
-| display / `1`–`2` | `~24ch`–`40ch` | Often `wrap="balance"` when multi-line |
-| `3`–`6` | narrower than large titles | Section / card — scale down |
+| display / `1`–`2` | `~24ch`–`40ch`             | Often `wrap="balance"` when multi-line |
+| `3`–`6`           | narrower than large titles | Section / card — scale down            |
 
 **Do not** leave marketing/UI paragraphs full-bleed across wide shell unless they are true text wall (below). **Do not** reuse large-body `72ch` shell for `size="s"` copy.
 
@@ -44,26 +56,26 @@ Rough caps in **`ch`** (tune per content; confirm units — not second API). Lad
 
 Tokens: `'none' | 'xs' | 's' | 'm' | 'l'` → foundation `--font-leading-*`. Confirm defaults in units.
 
-| Context | Prefer | Why |
+| Context                           | Prefer                                      | Why                                               |
 | --------------------------------- | ------------------------------------------- | ------------------------------------------------- |
-| Root `Text` body | Omit (`m`) or `l` when open | Default leading; roomier for larger/`fluid` body |
-| Dense chrome / tight labels | `s` | Less air in UI clusters |
-| Nested `Text` inside outer `Text` | **Omit** `lineHeight` | Inherits outer |
-| `Title` alone (UI) | Omit (`m`) or `s` when wrapping large sizes | Patterns often use `lineHeight="s"` on big titles |
-| `Title` **inside `Prose`** | `lineHeight="s"` | Prose usage — headings sit denser than body |
-| `Text` inside long `Prose` | Per block (`m` / `l` / `s`) | Prose does **not** own leading |
+| Root `Text` body                  | Omit (`m`) or `l` when open                 | Default leading; roomier for larger/`fluid` body  |
+| Dense chrome / tight labels       | `s`                                         | Less air in UI clusters                           |
+| Nested `Text` inside outer `Text` | **Omit** `lineHeight`                       | Inherits outer                                    |
+| `Title` alone (UI)                | Omit (`m`) or `s` when wrapping large sizes | Patterns often use `lineHeight="s"` on big titles |
+| `Title` **inside `Prose`**        | `lineHeight="s"`                            | Prose usage — headings sit denser than body       |
+| `Text` inside long `Prose`        | Per block (`m` / `l` / `s`)                 | Prose does **not** own leading                    |
 
 Never invent CSS `line-height` on Text/Title when `lineHeight` covers it.
 
 ## `wrap` vs `whiteSpace` + `align`
 
-| Prop | Rule |
+| Prop            | Rule                                                                                                                                                                                                                                                                                                                      |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `wrap` | CSS `text-wrap` — wrapping **algorithm** / wrap on-off. Default **`pretty`** (orphan-aware) on Text / Title / Prose. Prefer `wrap="balance"` on short multi-line heads/blurbs that need even line lengths. `wrap="nowrap"` only when you need no wrap **without** changing space collapse. Do not invent CSS `text-wrap`. |
-| `whiteSpace` | CSS `white-space` — collapse/preserve spaces and newlines (Text/Title only). Prefer **`whiteSpace="nowrap"`** for single-line metrics/chrome (also collapses spaces). Not substitute for `wrap="balance"` / `pretty`. |
-| `align` | Omit so copy inherits parent. Pass only to override (`center`, `end`, …). |
-| `Prose` `wrap` | Region default `pretty`; inherits to descendants unless child overrides. |
-| `Prose` `align` | Set **once** on region; omit Title/Text `align` so they inherit. |
+| `wrap`          | CSS `text-wrap` — wrapping **algorithm** / wrap on-off. Default **`pretty`** (orphan-aware) on Text / Title / Prose. Prefer `wrap="balance"` on short multi-line heads/blurbs that need even line lengths. `wrap="nowrap"` only when you need no wrap **without** changing space collapse. Do not invent CSS `text-wrap`. |
+| `whiteSpace`    | CSS `white-space` — collapse/preserve spaces and newlines (Text/Title only). Prefer **`whiteSpace="nowrap"`** for single-line metrics/chrome (also collapses spaces). Not substitute for `wrap="balance"` / `pretty`.                                                                                                     |
+| `align`         | Omit so copy inherits parent. Pass only to override (`center`, `end`, …).                                                                                                                                                                                                                                                 |
+| `Prose` `wrap`  | Region default `pretty`; inherits to descendants unless child overrides.                                                                                                                                                                                                                                                  |
+| `Prose` `align` | Set **once** on region; omit Title/Text `align` so they inherit.                                                                                                                                                                                                                                                          |
 
 Both `wrap="nowrap"` and `whiteSpace="nowrap"` can stop wrapping — **prefer `whiteSpace` for metrics**; use `wrap` for pretty/balance/stable algorithms.
 
@@ -133,23 +145,23 @@ Use for **articles, docs, privacy/terms, long editorial** — not every card blu
 
 Preflight already styles bare `p` / inline chrome — [preflight-baseline.md](preflight-baseline.md). Headings are **not** preflight-typed → prefer `Title` + `render={<h*/>}`.
 
-| Need | Prefer |
+| Need                                   | Prefer                                                       |
 | -------------------------------------- | ------------------------------------------------------------ |
-| Body in Vira UI | `Text` (+ `render={<p/>}` when paragraph host matters) |
-| Cap bare HTML column | Parent `Stack` `maxWidth` — not ad-hoc CSS on every `p` |
-| Long HTML article | `Prose` wrapping Title/Text (or semantic hosts via `render`) |
-| Override preflight leading on bare `p` | Only if consumer expressly asks — else use `Text` |
+| Body in Vira UI                        | `Text` (+ `render={<p/>}` when paragraph host matters)       |
+| Cap bare HTML column                   | Parent `Stack` `maxWidth` — not ad-hoc CSS on every `p`      |
+| Long HTML article                      | `Prose` wrapping Title/Text (or semantic hosts via `render`) |
+| Override preflight leading on bare `p` | Only if consumer expressly asks — else use `Text`            |
 
 ## Props before CSS (typography)
 
-| Temptation | Use instead |
+| Temptation                                        | Use instead                                         |
 | ------------------------------------------------- | --------------------------------------------------- |
-| CSS `line-height` | `lineHeight` |
-| CSS `max-width` / `max-inline-size` on Text/Title | `maxWidth` or Stack `maxWidth` |
-| CSS `text-wrap` / `text-wrap: balance` / `pretty` | `wrap` (default `pretty`) |
-| CSS `white-space: nowrap` for metrics | `whiteSpace="nowrap"` (not `wrap="nowrap"`) |
-| CSS `text-align` on every child in Prose | Prose `align` once |
-| CSS `letter-spacing` / `text-transform` | `tracking` / `transform` — [styling.md](styling.md) |
+| CSS `line-height`                                 | `lineHeight`                                        |
+| CSS `max-width` / `max-inline-size` on Text/Title | `maxWidth` or Stack `maxWidth`                      |
+| CSS `text-wrap` / `text-wrap: balance` / `pretty` | `wrap` (default `pretty`)                           |
+| CSS `white-space: nowrap` for metrics             | `whiteSpace="nowrap"` (not `wrap="nowrap"`)         |
+| CSS `text-align` on every child in Prose          | Prose `align` once                                  |
+| CSS `letter-spacing` / `text-transform`           | `tracking` / `transform` — [styling.md](styling.md) |
 
 ## Checklist
 
@@ -163,14 +175,16 @@ Preflight already styles bare `p` / inline chrome — [preflight-baseline.md](pr
 
 ## Gotchas
 
-| Mistake | Fix |
+| Mistake                                        | Fix                                                         |
 | ---------------------------------------------- | ----------------------------------------------------------- |
-| Full-width hero blurb across 1200px shell | `maxWidth` from size (~10–12 words); often `wrap="balance"` |
-| Same `72ch` / `65ch` shell for `s` and `2xl` | Scale column with `size` — smaller type → narrower cap |
-| CSS module `line-height` / `max-width` on Text | Props — open units |
-| CSS `text-wrap` instead of `wrap` | Public `wrap` prop |
-| `wrap="nowrap"` for dollar metric | Prefer `whiteSpace="nowrap"` |
-| Every Title/Text `align="center"` inside Prose | One Prose `align` |
-| Card blurb wrapped in Prose “for leading” | Prose = text walls; use Text/Title props |
-| Nested Text re-sets `size`/`lineHeight` | Omit so outer owns type |
-| Bare `h1` + CSS type scale | `Title` + `render={<h1/>}` |
+| Full-width hero blurb across 1200px shell      | `maxWidth` from size (~10–12 words); often `wrap="balance"` |
+| Same `72ch` / `65ch` shell for `s` and `2xl`   | Scale column with `size` — smaller type → narrower cap      |
+| CSS module `line-height` / `max-width` on Text | Props — open units                                          |
+| CSS `text-wrap` instead of `wrap`              | Public `wrap` prop                                          |
+| `wrap="nowrap"` for dollar metric              | Prefer `whiteSpace="nowrap"`                                |
+| Every Title/Text `align="center"` inside Prose | One Prose `align`                                           |
+| Card blurb wrapped in Prose “for leading”      | Prose = text walls; use Text/Title props                    |
+| Nested Text re-sets `size`/`lineHeight`        | Omit so outer owns type                                     |
+| Bare `h1` + CSS type scale                     | `Title` + `render={<h1/>}`                                  |
+| `Text family="heading"` for a title look       | `Title` (default family)                                    |
+| `Title family="body"` for body copy            | `Text` (default family)                                     |
