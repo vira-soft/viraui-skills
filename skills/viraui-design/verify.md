@@ -79,6 +79,7 @@ Depth → [layout.md](layout.md).
 - [ ] Mobile-first base; enhance at larger viewports / containers.
 - [ ] Layout / style-only (same tree) → CSS `@media` / `@container` first (anti-FOUC) — not `useBreakpoints`.
 - [ ] Structure or Vira prop branches → `BreakpointsProvider` + `useBreakpoints` (not ad-hoc `matchMedia`).
+- [ ] Container-sized layout → `enableContainer` on the queried `Stack`/`Surface` (Masonry always on) and `@container stack` / `surface` / `masonry`; no hand-rolled `container-type` on Vira roots.
 - [ ] Every `@media` / `@container` length = active `useBreakpoints` / provider map (override or defaults) — no px drift.
 - [ ] RTL → `DirectionProvider` from `@viraui/react` **and** `dir="rtl"` on portal ancestor (`html`); not Stack flex `direction`.
 

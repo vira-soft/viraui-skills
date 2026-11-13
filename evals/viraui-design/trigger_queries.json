@@ -163,6 +163,14 @@
       "should_trigger": true
     },
     {
+      "query": "Card in a resizable split pane should reflow by its own width, not the viewport — enableContainer on Surface or media queries?",
+      "should_trigger": true
+    },
+    {
+      "query": "Sidebar panel should show two columns only when the panel itself is wide — @container stack or @container surface?",
+      "should_trigger": true
+    },
+    {
       "query": "Import all lucide icons via dynamic map for a gallery",
       "should_trigger": true
     },

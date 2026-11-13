@@ -47,6 +47,7 @@ by viewport?
 
 Container-sized layout (not viewport)?
   → @container — still same em map; not useBreakpoints
+     opt in with Stack/Surface `enableContainer` (Masonry always exposes one)
 ```
 
 `useBreakpoints` **not** default layout engine. JS after paint can flash wrong layout. Reach for hook only when structure or React props must change.
@@ -66,18 +67,38 @@ When React tree + Vira props stay same:
     flex-direction: row; /* narrow base stays column in the module */
   }
 }
+```
 
-/* Parent must establish a containment context */
-.panel {
-  container-type: inline-size;
-}
+### Container queries: enable on the Vira root
 
-@container (min-width: 60em) {
-  .panelBody {
-    /* same medium threshold as useBreakpoints('medium') */
+Do **not** hand-roll `container-type` on a Vira root or on a wrapper around one. Opt in on the root that owns the space; its descendants then query the **named** container:
+
+| Root      | Enablement                 | Descendant query                    |
+| --------- | -------------------------- | ----------------------------------- |
+| `Stack`   | `enableContainer` (opt-in) | `@container stack (min-width: …)`   |
+| `Surface` | `enableContainer` (opt-in) | `@container surface (min-width: …)` |
+| `Masonry` | always on                  | `@container masonry (min-width: …)` |
+
+`Grid` has no `enableContainer`. Querying element must be a **descendant** of the enabled root — the root itself cannot query its own container.
+
+```tsx
+<Surface enableContainer radius="l">
+  <div className={styles.body}>…</div>
+</Surface>
+```
+
+```css
+@container surface (min-width: 48em) {
+  .body {
+    grid-template-columns: 8rem 1fr;
   }
 }
 ```
+
+- Use this when the answer is the component's rendered width (split pane, sidebar, card) — not the viewport. Viewport intent stays `@media`.
+- Name the container you enabled. An unnamed `@container` binds to the **nearest** ancestor container, so nested enabled roots can capture a query meant for an outer one.
+- `enableContainer` adds inline-size containment that can change nested layout (e.g. cards inside Masonry). Enable only the root that must be queried.
+- Same mobile-first `min-width` lengths from the active breakpoint map.
 
 ## `useBreakpoints` (structure / props only)
 
@@ -134,6 +155,9 @@ const bp = useBreakpoints();
 - CSS-first for layout; `useBreakpoints` only for structure / React props.
 - Responsive bag spread **before** the base props — base wins and the override disappears. Base first, bag last.
 - Per-breakpoint prop objects for style-only changes — `@media` / `@container` owns those.
+- Hand-rolled `container-type` or an extra wrapper `div` when Stack/Surface `enableContainer` (or Masonry's built-in container) covers it.
+- Naming a container you never enabled, or leaving `@container` unnamed inside nested enabled roots — the query binds to the nearest container, not the one you meant.
+- Viewport `@media` when the design intent is the component's own inline-size (split pane / sidebar) — and vice versa.
 - `@media` / `@container` lengths ≠ active map (drift, px aliases, theme tokens).
 - mobile-first `min-width` as main responsive strategy.
 - `letter-spacing` / non-responsive spacing reinvented in CSS when public prop covers it.

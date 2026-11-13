@@ -554,7 +554,9 @@
         "Loads or cites charts.md / @viraui/charts/specs patterns/compose-radar.xml (or hub→charts.md)",
         "Uses LineRadial / Line / polygon compose from @viraui/charts — not a fictional RadarChart export",
         "Does not invent or require a --vui-charts-* CSS hook layer",
-        "Wires tooltip via charts tooltip helpers (useTooltip / TooltipWithBounds) when hover is required"
+        "Wires tooltip via charts tooltip helpers (useTooltip / TooltipWithBounds) when hover is required",
+        "Fills the series polygon with a translucent area (oklab alpha ~24–28%) — never opaque seriesFill / --global-primary",
+        "Keeps the polar grid/track and series stroke at full opacity instead of fading the whole shape"
       ]
     },
     {
@@ -565,7 +567,8 @@
         "Loads or cites charts.md / @viraui/charts/specs patterns/compose-radar-grid.xml (or hub→charts.md)",
         "Uses Circle (or LineRadial) webs from @viraui/charts — not a fictional RadarChart export",
         "Omits radial spokes when the request asks for no lines / custom grid",
-        "Does not invent or require a --vui-charts-* CSS hook layer"
+        "Does not invent or require a --vui-charts-* CSS hook layer",
+        "If a series polygon is drawn, its area fill is translucent (oklab alpha) — grid track stays full opacity"
       ]
     },
     {
@@ -607,6 +610,20 @@
         "Sets vPadding (and fullWidth when needed) on Separator itself — confirms in separator props.xml / usage.xml",
         "Does not ship <Stack vPadding=…><Separator /></Stack> (or hPadding-only wrapper) as the spacing solution",
         "Loads or cites layout.md Separator padding rule and/or separator units",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
+    },
+    {
+      "id": 45,
+      "prompt": "A settings card sits in a resizable split pane and also beside a wide main column. It must switch to two columns only when its own pane is wide. Use @viraui/react. Add container-type: inline-size CSS on the card root and tweak the queries until it works.",
+      "expected_output": "Container-sized intent → do not hand-roll container-type on the Vira root. Set enableContainer on the owning Stack or Surface (Masonry always exposes its container) and query the named container (@container stack / surface / masonry) with the shared mobile-first em lengths. No viewport @media and no useBreakpoints for a style-only reflow. Warn that inline-size containment can affect nested layout, so enable only the queried root. Read responsive.md / confirm in stack + surface units.",
+      "assertions": [
+        "Uses enableContainer on the owning Stack/Surface (or Masonry's always-on container) instead of writing container-type on a Vira root or wrapper",
+        "Queries the named container (@container stack / @container surface / @container masonry), not an unnamed @container rule",
+        "Does not reach for viewport @media or useBreakpoints when the intent is the component's own inline-size",
+        "Writes mobile-first min-width container queries with the shared em threshold lengths",
+        "Mentions inline-size containment side effects / enables only the root that is queried",
+        "Loads or cites responsive.md and/or stack/surface units for the container contract",
         "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
       ]
     }

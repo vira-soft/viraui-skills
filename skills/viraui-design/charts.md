@@ -87,12 +87,16 @@ Specs: `foundation/defaults.xml` + domain `props.xml`. Override with same props:
 
 | Surface | Default paint |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Series stroke/fill | `--global-contrast` stroke + `--global-primary` fill. Multi-series → override with raw `--color-*-40`; prefer raw ramp over `--highlight-*`. `Area`/`AreaClosed`: gradient + top edge default; stacked = translucent path + `LinePath` |
+| Series stroke/fill | `--global-contrast` stroke + `--global-primary` fill for opaque marks (bar/point). Multi-series / area / radar → raw `--color-*-40` + translucent oklab alpha (24–28%); prefer raw ramp over `--highlight-*`. `Area`/`AreaClosed`: gradient + top edge default; stacked = translucent path + `LinePath` |
 | Grid/axis line/ticks | `--global-contrast` |
 | Axis/legend/annotation chrome labels | `--global-muted` |
 | Point/series numbers & labels (`Text`) | `--global-foreground` |
 
 Do **not** invent charts CSS token layer or package composed chart.
+
+## Radar fill (hard rule)
+
+Radar series area is always translucent — `fill="oklab(from <series-token> l a b / 24%)"`, 28% max for one series, 20–24% when series overlap. Track (webs/spokes) and series stroke stay full opacity. Never use `seriesFill` / `var(--global-primary)` / an opaque `--color-*-40` as polygon fill, and never whole-shape `opacity` (it fades the stroke too). Prefer `patterns/compose-radar-lines.xml` when fills would still obscure crossing series.
 
 ## Mobile Cartesian (prefer)
 

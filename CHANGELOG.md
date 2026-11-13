@@ -4,6 +4,7 @@
 
 ### Patch
 
+- `viraui-design`: teach the container-query engine — `Stack` / `Surface` `enableContainer` publishes the named `stack` / `surface` containers (Masonry is always `masonry`), descendants query the named container with the shared em map, and `container-type` is never hand-rolled on a Vira root. Touches `responsive.md`, `verify.md`, trigger queries, and evals.
 - `viraui-design`: add layout **scale floor** — `m` (16px) is the baseline for container gaps and insets; `s` is for tight in-row clusters, `xs`/`2xs` for optical micro pairs only. Fixes agents shipping cramped layouts with `xs`/`2xs` container spacing. Touches `layout.md` (floor table + rules), `verify.md`, `red-flags.md`, `discovery.md`, hub router row, and evals.
 
 ### Major
