@@ -57,7 +57,8 @@
     "Agents skip charts.md / @viraui/charts/specs when the task is a graph, chart, plot, or data visualization even if the user never names @viraui/charts",
     "Agents compose charts without installing missing @viraui/charts + @visx/visx first",
     "Agents discover charts API via rg/ls on dist or *.d.ts before @viraui/charts/specs index.xml",
-    "Agents open vira-ui monorepo chart source or skills encyclopedia instead of installed @viraui/charts/specs"
+    "Agents open vira-ui monorepo chart source or skills encyclopedia instead of installed @viraui/charts/specs",
+    "Agents wrap Separator in a Stack whose only job is vPadding/hPadding/fullWidth instead of setting those props on Separator"
   ],
   "queries": [
     {
@@ -134,6 +135,10 @@
     },
     {
       "query": "Absolute Stack overlay \u2014 style paddingBlockEnd 1rem instead of vPadding tuple",
+      "should_trigger": true
+    },
+    {
+      "query": "Add generous vertical space around a Separator \u2014 wrap it in Stack vPadding 4xl fullWidth",
       "should_trigger": true
     },
     {

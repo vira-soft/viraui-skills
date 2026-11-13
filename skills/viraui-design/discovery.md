@@ -1,9 +1,13 @@
 # Component discovery
 
 **When to read:** before choose component, invent prop/part, or read story for API truth.
+
 ## Stance
+
 Compose **with** `@viraui/react` parts + props. Specs units = map of those parts — open before JSX/CSS. Do **not** restyle Vira roots from memory of other libs or from mock **unless consumer expressly requests** override / personalization. Default custom CSS = app chrome system does not own. Package `PROTOCOL.md` § Compose with the system.
+
 ## Authority order
+
 1. `@viraui/react/specs/index.xml` (+ `activity-hints.xml`) — pick surface; **index-first, always**.
 2. Scoped units under `@viraui/react/specs/components/<id>/` — typically `meta` → `props` → `usage` → `a11y` / `patterns`.
 3. Foundation units under `@viraui/react/specs/foundation/` for attributes, toggles, elevation, bootstrap, theme-topics.
@@ -16,16 +20,18 @@ Skills = routers only. Do **not** treat deleted encyclopedias or legacy surface 
 On disk: `node_modules/@viraui/react/dist/specs/…`. Package export: `@viraui/react/specs/*`.
 
 **FORBIDDEN:** `ls` / `rg` / `grep` on `dist/components/**` or `*.d.ts` trees before index + target units. Failure to route = index/content defect — not permission to tree-walk.
+
 ## Activity playbooks
-| Activity | Load sequence (stop when sufficient) |
+
+| Activity                                                   | Load sequence (stop when sufficient)                                                                                                     |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Choose a component | `index.xml` (+ hints) → matrix pointer optional → **not** every props.xml |
-| Implement component Y | index → `components/<id>/` meta → props → **usage (do/dont)** → if `meta` has `base_ui`, open that Base UI API → a11y/patterns as needed |
-| Compound overlay / form tree | [composition.md](composition.md) → specs `patterns`/`usage`/`props` |
-| Foundation attrs / vibrancy | index → `foundation/attributes.xml` (+ toggles / elevation as needed) |
-| Layout spacing / density | [layout.md](layout.md) → specs `patterns/compose-layout-first` (+ related patterns) → confirm props in stack/surface/grid/masonry units |
-| Mobile-first / `@media` / `@container` / breakpoints / RTL | [responsive.md](responsive.md) → specs `breakpoints` + `direction-provider` units |
-| Charts / graph / plot / data viz | [charts.md](charts.md) → install if missing → `@viraui/charts/specs/index.xml` (+ compose patterns) — not `@viraui/react` folders |
+| Choose a component                                         | `index.xml` (+ hints) → matrix pointer optional → **not** every props.xml                                                                |
+| Implement component Y                                      | index → `components/<id>/` meta → props → **usage (do/dont)** → if `meta` has `base_ui`, open that Base UI API → a11y/patterns as needed |
+| Compound overlay / form tree                               | [composition.md](composition.md) → specs `patterns`/`usage`/`props`                                                                      |
+| Foundation attrs / vibrancy                                | index → `foundation/attributes.xml` (+ toggles / elevation as needed)                                                                    |
+| Layout spacing / density                                   | [layout.md](layout.md) → specs `patterns/compose-layout-first` (+ related patterns) → confirm props in stack/surface/grid/masonry units  |
+| Mobile-first / `@media` / `@container` / breakpoints / RTL | [responsive.md](responsive.md) → specs `breakpoints` + `direction-provider` units                                                        |
+| Charts / graph / plot / data viz                           | [charts.md](charts.md) → install if missing → `@viraui/charts/specs/index.xml` (+ compose patterns) — not `@viraui/react` folders        |
 
 ## Layout discipline
 
@@ -73,13 +79,13 @@ Many Vira surfaces wrap `@base-ui/react`. After Vira `props.xml` (+ `usage`):
 
 No `base_ui` in meta → Vira-only surface; skip Base UI.
 
-| Control | Slot | Never |
+| Control                                                | Slot                                      | Never                   |
 | ------------------------------------------------------ | ----------------------------------------- | ----------------------- |
-| `IconButton` / `IconButtonLink` | `icon` | `children` |
-| `ToggleButton` | `restingIcon` (+ optional `pressedIcon`) | `children` |
-| Visible text action | `Button` / `ButtonLink` | hacking icon-only APIs |
-| Visible value on `Slider` / `Meter` / `LinearProgress` | `renderValue` (`true` or Value formatter) | `showValue` |
-| Color-coded `Meter` / `Chip` fill | `variant` (`primary` or highlight token) | raw `--highlight-*` CSS |
+| `IconButton` / `IconButtonLink`                        | `icon`                                    | `children`              |
+| `ToggleButton`                                         | `restingIcon` (+ optional `pressedIcon`)  | `children`              |
+| Visible text action                                    | `Button` / `ButtonLink`                   | hacking icon-only APIs  |
+| Visible value on `Slider` / `Meter` / `LinearProgress` | `renderValue` (`true` or Value formatter) | `showValue`             |
+| Color-coded `Meter` / `Chip` fill                      | `variant` (`primary` or highlight token)  | raw `--highlight-*` CSS |
 
 ## Validation loop
 
@@ -90,7 +96,9 @@ No `base_ui` in meta → Vira-only surface; skip Base UI.
 5. Diff planned props/parts vs `props.xml` / `meta.xml`, Base UI (when linked), + source defaults.
 6. Apply `usage.xml` **do/dont** before writing CSS — treat donts as hard stops.
 7. Still unsure → ask. Missing from those sources → stop; don't invent.
+
 ## Gotchas
+
 - First discovery via `dist/components` or `*.d.ts` shell-parse.
 - CSS module / utilities on Vira roots before opening surface `props` + `usage` (compose-around, not compose-with).
 - Inventing props from another library, Figma names, or stories.
@@ -99,12 +107,15 @@ No `base_ui` in meta → Vira-only surface; skip Base UI.
 - Writing CSS for job public prop already owns (skipping `props.xml`).
 - Inventing `width` / `height` / `inline-size` / `block-size: 100%` / size-fill `className` on Stack or **any** Vira control (works or not — e.g. square IconButton) instead of Stack fill props (`fullWidth` / `fullHeight` / `expandChildren` + stretch; Stack `patterns.xml`) / control `fullWidth`.
 - Inventing `paddingBlock*` / `paddingInline*` / side padding `style` on Stack/Surface/Grid when `vPadding`/`hPadding` `[start, end]` tuples cover one-sided inset.
+- Wrapping `Separator` in a Stack only for `vPadding`/`hPadding`/`fullWidth` — Separator owns those props (`separator` units).
 - Passing documented defaults “for clarity.”
 - Setting `color` / accent props to part's own default (Gauge parts, `Meter`/`Chip` variant, `IconMeter` accent, `Text` tone) — omit; paint only where meaning must show — [styling.md](styling.md).
 - `children` on icon-only controls.
 - Inferring `--vui-*` prefix without `shared_contract`.
 - Loading every `props.xml` instead of index-first selective units.
+
 ## Machine paths
+
 - `@viraui/react/specs/PROTOCOL.md`
 - `@viraui/react/specs/index.xml`
 - `@viraui/react/specs/activity-hints.xml`
@@ -113,4 +124,3 @@ No `base_ui` in meta → Vira-only surface; skip Base UI.
 - `@viraui/react/catalog.json` (tooling index only)
 
 Intent → [component-matrix.md](component-matrix.md). Confirm in specs index/units.
-

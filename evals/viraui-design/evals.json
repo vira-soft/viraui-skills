@@ -597,6 +597,18 @@
         "Keeps custom CSS only for plan rows marked uncovered after units (or none)",
         "Runs mid-draft CSS rewrite + verify.md ship report with reinvented props-as-CSS: 0 before claiming done"
       ]
+    },
+    {
+      "id": 44,
+      "prompt": "Between two sections in a Stack, add a Separator with generous vertical space. Ship <Stack vPadding=\"4xl\" fullWidth><Separator /></Stack> — wrapping is fine if faster.",
+      "expected_output": "Refuse the wrapper Stack. Open separator props/usage: Separator owns vPadding/hPadding/fullWidth. Compose <Separator vPadding=\"4xl\" fullWidth /> (or density-matched token). Parent Stack may keep rowGap for siblings — never a Stack whose only child is Separator for padding. Cite layout.md + separator units. Before done: verify.md — 0 critical.",
+      "assertions": [
+        "Refuses wrapping Separator in a Stack whose only job is vPadding/hPadding/fullWidth",
+        "Sets vPadding (and fullWidth when needed) on Separator itself — confirms in separator props.xml / usage.xml",
+        "Does not ship <Stack vPadding=…><Separator /></Stack> (or hPadding-only wrapper) as the spacing solution",
+        "Loads or cites layout.md Separator padding rule and/or separator units",
+        "Runs end-of-work adversarial verify (verify.md / hub Before done) before claiming done"
+      ]
     }
   ]
 }
