@@ -6,10 +6,10 @@ Exact provider/hook API → specs `components/breakpoints/` + `components/direct
 
 ## Two different `direction`s
 
-| Word | Surface | Values | Meaning |
-| --- | --- | --- | --- |
-| `direction` | `Stack` (layout) | `row` / `column` / … | Flex main axis — **not** RTL |
-| `direction` | `DirectionProvider` | `ltr` / `rtl` | Reading direction for Base UI–backed trees |
+| Word        | Surface             | Values               | Meaning                                    |
+| ----------- | ------------------- | -------------------- | ------------------------------------------ |
+| `direction` | `Stack` (layout)    | `row` / `column` / … | Flex main axis — **not** RTL               |
+| `direction` | `DirectionProvider` | `ltr` / `rtl`        | Reading direction for Base UI–backed trees |
 
 Do **not** set `Stack direction="rtl"`. Same-tree flex axis swap at breakpoint = CSS `@media` / `@container` (below). Different React trees or Vira **props** by viewport = `useBreakpoints`.
 
@@ -83,7 +83,7 @@ When React tree + Vira props stay same:
 
 1. Open specs index → `breakpoints` units (`meta` → `props` → `usage`).
 2. Wrap tree that calls hook in `BreakpointsProvider` inside Client Component (`'use client'`). Not Server Component module. Overlay bootstrap (`Dialog` / `Tooltip` / `Toast`) stays separate — don't treat provider as mandatory root chrome.
-3. Prefer `useBreakpoints('small')` (one boolean) when only one flag matters.
+3. Prefer `useBreakpoints('small')` (one boolean) when only one flag matters; call `useBreakpoints()` once when a branch reads several flags (one subscription, no per-flag hooks).
 4. Compose mobile-first: default JSX = narrow; when flag true, swap **trees**, density / other Vira props, or children CSS cannot express.
 
 ```tsx
@@ -109,9 +109,31 @@ export function SettingsPage() {
 
 Custom map: `breakpoints` on provider **replaces** whole default map (no sparse merge). Align every `@media` / `@container` length to that map.
 
+## Prop override by viewport (typed bag)
+
+Vira has **no** per-breakpoint prop API (no `lg={...}` / `at={...}` on components). Props that must change by viewport = hook + a typed `Partial<Props>` bag spread into the JSX. This keeps prop-only changes in one place without a second responsive system.
+
+```tsx
+const wideHeading: Partial<TextProps> = { weight: 'bold', size: 'xl' };
+
+const bp = useBreakpoints();
+
+<Text weight="semibold" size="l" {...(bp.medium && wideHeading)}>
+```
+
+- Base props = narrow; the bag carries **only** what the wide viewport changes.
+- Spread the bag **after** the base props. Reversed order lets base values win and silently drops the override.
+- `false` in a JSX spread is a no-op — no ternary needed.
+- `useBreakpoints()` once when the branch reads several flags; `useBreakpoints('medium')` when only one matters.
+- Constant bag at module scope (no per-render allocation). Type it with the exported props type (`TextProps`, `StackProps`, …).
+- Cumulative mobile-first: at `large`, `small`/`medium`/`large` all match — decide the order of spreads yourself, outermost narrowest.
+- Still CSS: flex axis, gap, padding, visibility (anti-FOUC, above). Still conditional JSX: different trees / parts.
+
 ## Breakpoint gotchas
 
 - CSS-first for layout; `useBreakpoints` only for structure / React props.
+- Responsive bag spread **before** the base props — base wins and the override disappears. Base first, bag last.
+- Per-breakpoint prop objects for style-only changes — `@media` / `@container` owns those.
 - `@media` / `@container` lengths ≠ active map (drift, px aliases, theme tokens).
 - mobile-first `min-width` as main responsive strategy.
 - `letter-spacing` / non-responsive spacing reinvented in CSS when public prop covers it.
