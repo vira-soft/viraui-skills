@@ -129,7 +129,7 @@ Still Vira for Dialog / Popover / Menu / Tooltip / Toast — do not replace thos
 
 - `ButtonLink` / `IconButtonLink` share `--vui-button-*`.
 - Compound hooks sit on documented part root (e.g. `Dialog.Sheet`).
-- Button family inside padded `Surface`: prefer `radius="auto"` (concentric `--vui-button-radius-*`) over hand-tuning `--vui-button-radius`. Default `radius="natural"` is size-driven; `radius="pill"` is capsule mode (no boolean `pill` prop).
+- Button family / `Avatar` / `AvatarGroup` inside padded `Surface`: prefer `radius="auto"` (concentric `--vui-*-radius-*`, group also drives overlap hole + overflow) over hand-tuning radius tokens. Default `radius="natural"` is size-driven; `radius="pill"` is fully rounded (no boolean `pill` prop). On `AvatarGroup`, set group `radius` — not per-avatar.
 
 ```css
 .primaryAction {
