@@ -34,6 +34,7 @@
     "Agents ship desktop-first responsive CSS or invent px breakpoints instead of mobile-first + the shared BreakpointsProvider / useBreakpoints map (em) for @media / @container",
     "Agents use useBreakpoints / JS for pure layout switches (flex-direction, columns, visibility, padding) and accept FOUC — instead of CSS @media / @container first",
     "Agents write @media / @container lengths that drift from the active useBreakpoints map (invented px, theme tokens, or skill defaults when the app overrode breakpoints)",
+    "Agents invent per-component responsive props (lg={...} / at={...}) or an HOC over every export to change Vira props by viewport, instead of useBreakpoints + a typed Partial<Props> bag spread after the base props (component prop surface stays unchanged; hook-backed props would force a client boundary on RSC-safe primitives)",
     "Agents branch React markup with window.matchMedia when useBreakpoints owns structure/prop swaps",
     "Agents confuse Stack direction (row/column) with DirectionProvider direction (ltr/rtl)",
     "Agents enable RTL with DirectionProvider alone \u2014 skip dir=rtl on html / portal ancestor",
@@ -211,6 +212,10 @@
     },
     {
       "query": "useBreakpoints without a provider \u2014 which wrapper do I need?",
+      "should_trigger": true
+    },
+    {
+      "query": "Change Text weight when the viewport is large \u2014 add an lg or at prop to Text?",
       "should_trigger": true
     },
     {
