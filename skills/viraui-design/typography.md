@@ -67,6 +67,26 @@ Tokens: `'none' | 'xs' | 's' | 'm' | 'l'` → foundation `--font-leading-*`. Con
 
 Never invent CSS `line-height` on Text/Title when `lineHeight` covers it.
 
+## Weight (`Title`)
+
+| Need | Prefer |
+| ---- | ------ |
+| Brand-wide heading weight | Theme `--font-heading-weight` (`font.heading-weight` in brand JSON; default `500`) — omit Title `weight` |
+| One Title heavier/lighter | Numeric `weight={700}` (etc.) on that instance |
+| CSS `font-weight` on Title root | **Forbidden** — prop / theme token cover it |
+
+```tsx
+{/* Theme default — omit weight → --font-heading-weight */}
+<Title size="1" render={<h1 />} maxWidth="36ch" lineHeight="s" wrap="balance">
+  Ship readable hero lines
+</Title>
+
+{/* Instance override */}
+<Title size="1" render={<h1 />} weight={700} maxWidth="36ch" lineHeight="s" wrap="balance">
+  Ship readable hero lines
+</Title>
+```
+
 ## `wrap` vs `whiteSpace` + `align`
 
 | Prop            | Rule                                                                                                                                                                                                                                                                                                                      |
@@ -162,6 +182,7 @@ Preflight already styles bare `p` / inline chrome — [preflight-baseline.md](pr
 | CSS `white-space: nowrap` for metrics             | `whiteSpace="nowrap"` (not `wrap="nowrap"`)         |
 | CSS `text-align` on every child in Prose          | Prose `align` once                                  |
 | CSS `letter-spacing` / `text-transform`           | `tracking` / `transform` — [styling.md](styling.md) |
+| CSS `font-weight` on Title                        | Theme `--font-heading-weight` or Title `weight`     |
 
 ## Checklist
 
@@ -188,3 +209,4 @@ Preflight already styles bare `p` / inline chrome — [preflight-baseline.md](pr
 | Bare `h1` + CSS type scale                     | `Title` + `render={<h1/>}`                                  |
 | `Text family="heading"` for a title look       | `Title` (default family)                                    |
 | `Title family="body"` for body copy            | `Text` (default family)                                     |
+| CSS `font-weight` on every Title               | Brand `--font-heading-weight`; `weight={n}` only one-offs   |

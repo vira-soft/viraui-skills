@@ -54,7 +54,7 @@ Authority: `@viraui/react/specs/foundation/theme-topics.xml`. Preset paths → [
 | Vibrancy | `--vibrancy-blur` | Glass blur amount (px input) for `data-vibrant` |
 | Radius | `--radius-*`, `--corner-shape` | Radius scale + corner-shape. With `--effect-corner-shape` on, theme `corner-shape` can cap full/pill radius — raw CSS pills need local `corner-shape: unset` (consumer-owned). ViraUI sets internal `--__corner-shape` for token `full` / pills. |
 | Space | `--space-*` | Spacing scale |
-| Typography | `--font-root-size`, `--font-heading-typescale`, `--font-body-typescale`, `--font-leading-*`, `--font-family-*` | Root size (UA-default %), editable modular ratios, leading, families. `--font-scale-*` are **derived by preflight** (not theme overrides) |
+| Typography | `--font-root-size`, `--font-heading-typescale`, `--font-body-typescale`, `--font-heading-weight`, `--font-leading-*`, `--font-family-*` | Root size (UA-default %), editable modular ratios, heading weight (Title default; brand `500`), leading, families. `--font-scale-*` are **derived by preflight** (not theme overrides) |
 | Motion | `--duration-*`, `--easing-*` | Animation tokens → compose with **viraui-motion** |
 
 Raw `--color-{palette}-{step}` (`0`–`70` by tens) exist for presets; prefer semantic aliases.
